@@ -89,13 +89,21 @@ return packer.startup(function(use)
 
   -- Telescope / Fuzzy Finder
   use "nvim-telescope/telescope.nvim"
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"
   use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "nvim-treesitter/nvim-treesitter-textobjects"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
+
+  -- Extras
+  use "folke/trouble.nvim"
+  use "folke/todo-comments.nvim"
+  use {"phaazon/hop.nvim", branch = "v1"}
+  use "AckslD/nvim-neoclip.lua"
 
 --[[
   -- Automatically set up your configuration after cloning packer.nvim
