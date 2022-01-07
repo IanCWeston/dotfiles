@@ -1,0 +1,11 @@
+---
+binaries:
+  - neovim
+  - gh
+  - lazygit
+  - zoxide
+  - fd
+  - ripgrep
+  - bat
+  - exa
+    
