@@ -7,7 +7,7 @@ local options = {
   hlsearch = true,                         -- highlight all matches on previous search pattern
   pumheight = 10,                          -- pop up menu height
   ignorecase = true,                       -- ignore case in search patterns
-  smartcase = true, 
+  smartcase = true,
   smartindent = true,                      -- make indenting smarter again
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
@@ -27,10 +27,9 @@ local options = {
   sidescrolloff = 8,
   signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
   termguicolors = true,
-  -- mouse = "a",                             -- allow the mouse to be used in neovim
+  mouse = "a",                             -- allow the mouse to be used in neovim
 }
 
--- vim.opt.shortmess:append "c"
 
 for k, v in pairs(options) do
   vim.opt[k] = v
@@ -38,4 +37,7 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
+
+-- other options
 -- vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+-- vim.opt.shortmess:append "c"
