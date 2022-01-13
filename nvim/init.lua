@@ -22,4 +22,5 @@ require "ian.impatient"
 require "ian.indentline"
 require "ian.alpha"
 require "ian.whichkey"
+require "ian.autocommands"
 
