@@ -1,7 +1,10 @@
+-- Base
 require "user.options"
 require "user.keymaps"
 require "user.plugins"
 require "user.colorscheme"
+
+-- LSP
 require "user.cmp"
 require "user.lsp"
 require "user.telescope"
@@ -18,4 +21,5 @@ require "user.project"
 require "user.impatient"
 require "user.indentline"
 require "user.alpha"
+require "user.whichkey"
 
