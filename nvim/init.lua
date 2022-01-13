@@ -13,6 +13,7 @@ require "user.nvim-tree"
 require "user.bufferline"
 require "user.lsp.null-ls"
 require "user.lualine"
+require "user.toggleterm"
 
 require "user.impatient"
 
