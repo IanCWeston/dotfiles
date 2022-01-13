@@ -12,6 +12,7 @@ require "user.gitsigns"
 require "user.nvim-tree"
 require "user.bufferline"
 require "user.lsp.null-ls"
+require "user.lualine"
 
 require "user.impatient"
 
