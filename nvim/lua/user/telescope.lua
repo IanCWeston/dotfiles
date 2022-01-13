@@ -95,3 +95,6 @@ telescope.setup {
   },
 }
 
+-- Faster results
+require('telescope').load_extension('fzf')
+
