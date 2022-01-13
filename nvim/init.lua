@@ -14,6 +14,7 @@ require "user.bufferline"
 require "user.lsp.null-ls"
 require "user.lualine"
 require "user.toggleterm"
+require "user.project"
 
 require "user.impatient"
 
