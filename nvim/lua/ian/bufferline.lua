@@ -1,10 +1,9 @@
-
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
   return
 end
 
-bufferline.setup {
+bufferline.setup({
   options = {
     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
     close_command = "bdelete! %d", -- can be a string | function, see "Mouse actions"
@@ -165,4 +164,4 @@ bufferline.setup {
       guibg = { attribute = "bg", highlight = "Normal" },
     },
   },
-}
+})

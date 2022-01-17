@@ -3,9 +3,9 @@ if not status_ok then
   return
 end
 
-local actions = require "telescope.actions"
+local actions = require("telescope.actions")
 
-telescope.setup {
+telescope.setup({
   defaults = {
 
     prompt_prefix = " ",
@@ -93,8 +93,7 @@ telescope.setup {
     -- }
     -- please take a look at the readme of the extension you want to configure
   },
-}
+})
 
 -- Faster results
-require('telescope').load_extension('fzf')
-
+require("telescope").load_extension("fzf")
