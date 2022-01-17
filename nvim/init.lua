@@ -24,6 +24,7 @@ require("ian.bufferline")
 require("ian.lualine")
 require("ian.toggleterm")
 require("ian.alpha")
+require("ian.trouble")
 
 -- EXTRAS
 require("ian.impatient")
