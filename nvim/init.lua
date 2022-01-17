@@ -25,6 +25,7 @@ require("ian.lualine")
 require("ian.toggleterm")
 require("ian.alpha")
 require("ian.trouble")
+require("ian.todo-comments")
 
 -- EXTRAS
 require("ian.impatient")
