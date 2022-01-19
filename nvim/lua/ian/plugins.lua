@@ -104,7 +104,13 @@ return packer.startup(function(use)
   use({ "phaazon/hop.nvim", branch = "v1" })
   use("ggandor/lightspeed.nvim")
   use("AckslD/nvim-neoclip.lua")
-
+  use({
+    "norcalli/nvim-colorizer.lua",
+    cmd = { "ColorizerToggle" },
+    config = function()
+      require("colorizer").setup()
+    end,
+  })
   --[[
   -- Automatically set up your configuration after cloning packer.nvim
   if PACKER_BOOTSTRAP then
