@@ -102,6 +102,7 @@ return packer.startup(function(use)
   use("folke/trouble.nvim")
   use("folke/todo-comments.nvim")
   use({ "phaazon/hop.nvim", branch = "v1" })
+  use("ggandor/lightspeed.nvim")
   use("AckslD/nvim-neoclip.lua")
 
   --[[
