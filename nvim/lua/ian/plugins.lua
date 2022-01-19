@@ -42,11 +42,10 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-  -- My plugins here
   use("wbthomason/packer.nvim") -- Have packer manage itself
 
   -- Prerequisites
-  -- use "nvim-lua/popup.nvim"                -- An implementation of the Popup API from vim in Neovim
+  -- use "nvim-lua/popup.nvim"
   use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
   use("kyazdani42/nvim-web-devicons")
 
@@ -65,8 +64,8 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use("folke/tokyonight.nvim")
-  use("rebelot/kanagawa.nvim")
-  use("shaunsingh/nord.nvim")
+  -- use("rebelot/kanagawa.nvim")
+  -- use("shaunsingh/nord.nvim")
 
   -- Completion
   use("hrsh7th/nvim-cmp")
@@ -104,6 +103,7 @@ return packer.startup(function(use)
   use({ "phaazon/hop.nvim", branch = "v1" })
   use("ggandor/lightspeed.nvim")
   use("AckslD/nvim-neoclip.lua")
+
   use({
     "norcalli/nvim-colorizer.lua",
     cmd = { "ColorizerToggle" },
