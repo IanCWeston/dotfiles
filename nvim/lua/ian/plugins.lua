@@ -100,7 +100,17 @@ return packer.startup(function(use)
   -- Extras
   use("folke/trouble.nvim")
   use("folke/todo-comments.nvim")
-  use({ "phaazon/hop.nvim", branch = "v1" })
+
+  use({
+    "phaazon/hop.nvim",
+    branch = "v1",
+    keys = { "gh" },
+    cmd = { "HopWord", "HopChar1" },
+    config = function()
+      require("hop").setup()
+    end,
+  })
+  
   use("ggandor/lightspeed.nvim")
   use("AckslD/nvim-neoclip.lua")
 
