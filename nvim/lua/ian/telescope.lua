@@ -97,3 +97,6 @@ telescope.setup({
 
 -- Faster results
 require("telescope").load_extension("fzf")
+
+-- Clipboard manager
+require("telescope").load_extension("neoclip")

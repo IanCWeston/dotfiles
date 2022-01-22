@@ -111,7 +111,12 @@ return packer.startup(function(use)
   })
 
   use("ggandor/lightspeed.nvim")
-  use("AckslD/nvim-neoclip.lua") -- we may not need this
+  use({
+    "AckslD/nvim-neoclip.lua", -- we may not need this
+    config = function()
+      require("neoclip").setup()
+    end,
+  })
 
   use({
     "norcalli/nvim-colorizer.lua",
