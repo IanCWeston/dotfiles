@@ -180,6 +180,12 @@ local mappings = {
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
+
+  H = {
+    name = "Hop",
+    c = { "<cmd>HopChar1<cr>", "Char1" },
+    w = { "<cmd>HopWord<cr>", "Word" },
+  },
 }
 
 local vopts = {

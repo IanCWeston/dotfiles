@@ -105,10 +105,9 @@ return packer.startup(function(use)
   use({
     "phaazon/hop.nvim",
     branch = "v1",
-    keys = { "gh" },
     cmd = { "HopWord", "HopChar1" },
     config = function()
-      require("hop").setup()
+      require("hop").setup() -- trying out packer config ability
     end,
   })
 
