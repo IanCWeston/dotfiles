@@ -96,6 +96,7 @@ local mappings = {
     "Find files",
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+  ["t"] = { "<cmd>ToggleTerm<cr>", "Terminal" },
 
   P = {
     name = "Packer",
@@ -173,10 +174,9 @@ local mappings = {
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
 
-  t = {
-    name = "Terminal",
-    -- p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
+  T = {
+    name = "Terminal (Extended)",
+    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
     h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
     v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
   },
