@@ -78,6 +78,7 @@ return packer.startup(function(use)
   -- Snippets
   use("L3MON4D3/LuaSnip")
   use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
+  use("bammab/vscode-snippets-for-ansible")
 
   -- LSP
   use("neovim/nvim-lspconfig") -- enable LSP
