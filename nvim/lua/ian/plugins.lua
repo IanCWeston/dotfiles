@@ -40,7 +40,6 @@ packer.init({
   },
 })
 
--- Install your plugins here
 return packer.startup(function(use)
   use("wbthomason/packer.nvim") -- Have packer manage itself
 
@@ -111,7 +110,7 @@ return packer.startup(function(use)
     end,
   })
 
-  use("ggandor/lightspeed.nvim")
+  use("ggandor/lightspeed.nvim") -- we may not need this
   use("AckslD/nvim-neoclip.lua")
 
   use({
