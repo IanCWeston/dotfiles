@@ -110,8 +110,8 @@ return packer.startup(function(use)
     end,
   })
 
-  use("ggandor/lightspeed.nvim") -- we may not need this
-  use("AckslD/nvim-neoclip.lua")
+  use("ggandor/lightspeed.nvim")
+  use("AckslD/nvim-neoclip.lua") -- we may not need this
 
   use({
     "norcalli/nvim-colorizer.lua",
