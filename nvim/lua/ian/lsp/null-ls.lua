@@ -15,8 +15,8 @@ null_ls.setup({
 		formatting.stylua,
 
     --  PYTHON
-		formatting.black,
 		formatting.isort,
+		formatting.black,
 		-- diagnostics.flake8,
 
     --  SHELL
