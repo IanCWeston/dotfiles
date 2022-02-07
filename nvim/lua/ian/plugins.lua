@@ -98,6 +98,7 @@ return packer.startup(function(use)
   use("lewis6991/gitsigns.nvim")
 
   -- Extras
+  use("nathom/filetype.nvim")
   use("folke/trouble.nvim")
   use("folke/todo-comments.nvim")
 
