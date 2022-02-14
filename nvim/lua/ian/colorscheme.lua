@@ -1,6 +1,7 @@
-local colorscheme = "tokyonight"
--- local colorscheme = "kanagawa"
--- local colorscheme = "nord"
+local colorscheme = "kanagawa"
+-- local colorscheme = "tokyonight"
+-- local colorscheme = "nightfox"
+
 
 if colorscheme == "tokyonight" then
   vim.g.tokyonight_italic_keywords = true

@@ -63,8 +63,8 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use("folke/tokyonight.nvim")
-  -- use("rebelot/kanagawa.nvim")
-  -- use("shaunsingh/nord.nvim")
+  use("rebelot/kanagawa.nvim")
+  use("EdenEast/nightfox.nvim")
 
   -- Completion
   use("hrsh7th/nvim-cmp")
