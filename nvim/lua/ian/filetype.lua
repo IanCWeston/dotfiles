@@ -10,3 +10,4 @@ require("filetype").setup({
             yml = "yaml.ansible"
         }
     }
+})
