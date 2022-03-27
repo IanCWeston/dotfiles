@@ -101,6 +101,8 @@ return packer.startup(function(use)
   use("nathom/filetype.nvim")
   use("folke/trouble.nvim")
   use("folke/todo-comments.nvim")
+  use("ggandor/lightspeed.nvim")
+  use("simrat39/symbols-outline.nvim")
 
   use({
     "phaazon/hop.nvim",
@@ -111,7 +113,6 @@ return packer.startup(function(use)
     end,
   })
 
-  use("ggandor/lightspeed.nvim")
   use({
     "AckslD/nvim-neoclip.lua", -- we may not need this
     config = function()
@@ -124,6 +125,13 @@ return packer.startup(function(use)
     cmd = { "ColorizerToggle" },
     config = function()
       require("colorizer").setup()
+    end,
+  })
+
+  use({
+    "kosayoda/nvim-lightbulb",
+    config = function()
+      autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()
     end,
   })
   --[[
