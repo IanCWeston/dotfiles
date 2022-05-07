@@ -64,69 +64,70 @@ cmp.setup({
     -- Set `select` to `false` to only confirm explicitly selected items.
     ["<CR>"] = cmp.mapping.confirm({ select = false }),
 
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expandable() then
-        luasnip.expand()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif check_backspace() then
-        fallback()
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
+    --   ["<Tab>"] = cmp.mapping(function(fallback)
+    --     if cmp.visible() then
+    --       cmp.select_next_item()
+    --     elseif luasnip.expandable() then
+    --       luasnip.expand()
+    --     elseif luasnip.expand_or_jumpable() then
+    --       luasnip.expand_or_jump()
+    --     elseif check_backspace() then
+    --       fallback()
+    --     else
+    --       fallback()
+    --     end
+    --   end, {
+    --     "i",
+    --     "s",
+    --   }),
+    --
+    --   ["<S-Tab>"] = cmp.mapping(function(fallback)
+    --     if cmp.visible() then
+    --       cmp.select_prev_item()
+    --     elseif luasnip.jumpable(-1) then
+    --       luasnip.jump(-1)
+    --     else
+    --       fallback()
+    --     end
+    --   end, {
+    --     "i",
+    --     "s",
+    --   }),
+    -- },
 
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, {
-      "i",
-      "s",
-    }),
-  },
-
-  formatting = {
-    fields = { "abbr", "kind", "menu" },
-    format = function(entry, vim_item)
-      -- Kind icons
-      -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        luasnip = "[Snippet]",
-        nvim_lua = "[Nvim API]",
-        buffer = "[Buffer]",
-        path = "[Path]",
-      })[entry.source.name]
-      return vim_item
-    end,
-  },
-  sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "nvim_lua" },
-    { name = "buffer" },
-    { name = "path" },
-  },
-  confirm_opts = {
-    behavior = cmp.ConfirmBehavior.Replace,
-    select = false,
-  },
-  window = {
-    documentation = "native",
-  },
-  experimental = {
-    ghost_text = false,
-    native_menu = false,
+    formatting = {
+      fields = { "abbr", "kind", "menu" },
+      format = function(entry, vim_item)
+        -- Kind icons
+        -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+        vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+        vim_item.menu = ({
+          nvim_lsp = "[LSP]",
+          luasnip = "[Snippet]",
+          nvim_lua = "[Nvim API]",
+          buffer = "[Buffer]",
+          path = "[Path]",
+        })[entry.source.name]
+        return vim_item
+      end,
+    },
+    sources = {
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+      { name = "nvim_lua" },
+      { name = "buffer" },
+      { name = "path" },
+    },
+    confirm_opts = {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = false,
+    },
+    window = {
+      documentation = "native",
+    },
+    experimental = {
+      ghost_text = false,
+      native_menu = false,
+    },
   },
 })

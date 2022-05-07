@@ -131,6 +131,8 @@ return packer.startup(function(use)
     config = function()
       vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
     end,
+
+  use("abecodes/tabout.nvim")
   })
   --[[
   -- Automatically set up your configuration after cloning packer.nvim
