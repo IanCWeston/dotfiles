@@ -1,0 +1,17 @@
+format = '$all'
+scan_timeout = 30
+command_timeout = 500
+add_newline = false
+
+[cmd_duration]
+disabled = true
+
+[directory]
+fish_style_pwd_dir_length = 1
+truncate_to_repo = false
+truncation_length = 3
+# truncation_symbol = '.../'
+style = "bold blue"
+
+[python]
+disabled = true
