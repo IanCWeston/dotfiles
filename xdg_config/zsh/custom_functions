@@ -1,0 +1,18 @@
+# Custom functions
+
+# search ssh config
+function s() {
+  if ! command -v fzf > /dev/null 2>&1; then
+    echo "Please install fzf"
+    exit
+  else
+    eval ssh $(grep '^Host\s' ~/.ssh/config | cut -d ' ' -f 2 | fzf)
+  fi
+}
+
+# Find out what flags do
+function argshelp() {
+  ARGS="${@:2}"
+  $1 --help | grep -w -- "-[$ARGS]"
+}
+

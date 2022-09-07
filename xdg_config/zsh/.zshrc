@@ -38,49 +38,11 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # General
 set -o vi # Vi shell
-export EDITOR="/usr/bin/nvim"
-export COLORTERM="truecolor"
-alias ll='exa -l'
-alias tree='exa --icons --tree'
-alias lg='lazygit'
-alias cls='clear'
-
-alias gf='/home/westoia/scripts/personal/pull_firewall_config.sh'
-alias n='nvim'
-alias tm='tmux'
-
-# Custom functions
-
-# search ssh config
-function s() {
-  if ! command -v fzf > /dev/null 2>&1; then
-    echo "Please install fzf"
-    exit
-  else
-    eval ssh $(grep '^Host\s' ~/.ssh/config | cut -d ' ' -f 2 | fzf)
-  fi
-}
-
-# Find out what flags do
-function argshelp() {
-  ARGS="${@:2}"
-  $1 --help | grep -w -- "-[$ARGS]"
-}
+source $ZDOTDIR/aliases
+source $ZDOTDIR/custom_functions
+source $ZDOTDIR/cli_tools
 
 # Glab
 #eval "$(glab completion -s zsh)"
 #alias gl='glab'
 
-# FZF
-export FZF_DEFAULT_COMMAND='rg --files --hidden -g !.git/ -g !.apps/'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-source "$HOME/.config/fzf/shell/key-bindings.zsh"
-
-# Zoxide
-eval "$(zoxide init zsh)"
-
-# Starship prompt
-eval "$(starship init zsh)"
-
-# mcfly
-eval "$(mcfly init zsh)"

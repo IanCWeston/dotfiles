@@ -1,0 +1,11 @@
+# FZ
+source "$HOME/.config/fzf/key-bindings.zsh"
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# Starship prompt
+eval "$(starship init zsh)"
+
+# mcfly
+eval "$(mcfly init zsh)"
