@@ -68,8 +68,8 @@ function argshelp() {
 }
 
 # Glab
-eval "$(glab completion -s zsh)"
-alias gl='glab'
+#eval "$(glab completion -s zsh)"
+#alias gl='glab'
 
 # FZF
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g !.git/ -g !.apps/'
