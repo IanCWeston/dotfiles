@@ -72,7 +72,9 @@ return packer.startup(function(use)
 
   -- LSP
   use("neovim/nvim-lspconfig") -- enable LSP
-  use("williamboman/nvim-lsp-installer") -- language server installer
+  --use("williamboman/nvim-lsp-installer") -- language server installer
+  use("williamboman/mason.nvim") -- manage external editor tooling i.e lsp servers
+  use("williamboman/mason-lspconfig.nvim") -- automatically install language servers to stdpath
   use("tamago324/nlsp-settings.nvim") -- language server settings defined in json format
   use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
 

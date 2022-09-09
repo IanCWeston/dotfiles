@@ -1,4 +1,6 @@
-local lsp_status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
+require('mason').setup()
+
+local lsp_status_ok, lsp_installer = pcall(require, "mason-lspconfig")
 if not lsp_status_ok then
   return
 end
