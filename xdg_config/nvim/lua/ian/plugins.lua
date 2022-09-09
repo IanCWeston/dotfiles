@@ -41,22 +41,18 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim") -- Have packer manage itself
 
   -- Prerequisites
-  -- use "nvim-lua/popup.nvim"
   use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
   use("kyazdani42/nvim-web-devicons")
 
   use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
   use("numToStr/Comment.nvim") -- Easily comment stuff
-  use("kyazdani42/nvim-tree.lua") -- Explorer
-  use("akinsho/bufferline.nvim") -- Tabline
+  --use("akinsho/bufferline.nvim") -- Tabline
   use("nvim-lualine/lualine.nvim") -- Status Line
-  use("akinsho/toggleterm.nvim") -- Integrated terminal
+  --use("akinsho/toggleterm.nvim") -- Integrated terminal
   use("ahmedkhalf/project.nvim") -- Project manager
   use("lukas-reineke/indent-blankline.nvim") -- Adds indent lines
   use("goolord/alpha-nvim") -- Start screen
   use("folke/which-key.nvim") -- Keymap support
-  use("lewis6991/impatient.nvim") -- Speed up startup
-  -- use "antoinemadec/FixCursorHold.nvim"    -- This is needed to fix lsp doc highlight
 
   -- Colorschemes
   use("rebelot/kanagawa.nvim")
@@ -95,46 +91,12 @@ return packer.startup(function(use)
   -- Extras
   use("nathom/filetype.nvim")
   use("folke/trouble.nvim")
-  use("folke/todo-comments.nvim")
-  use("ggandor/lightspeed.nvim")
-  use("simrat39/symbols-outline.nvim")
+  use("abecodes/tabout.nvim")
 
-  use({
-    "phaazon/hop.nvim",
-    branch = "v1",
-    cmd = { "HopWord", "HopChar1" },
-    config = function()
-      require("hop").setup() -- trying out packer config ability
-    end,
-  })
-
-  use({
-    "AckslD/nvim-neoclip.lua", -- we may not need this
-    config = function()
-      require("neoclip").setup()
-    end,
-  })
-
-  use({
-    "norcalli/nvim-colorizer.lua",
-    cmd = { "ColorizerToggle" },
+  use({ "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
   })
 
-  use({
-    "kosayoda/nvim-lightbulb",
-    config = function()
-      vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
-    end,
-
-  use("abecodes/tabout.nvim")
-  })
-  --[[
-  -- Automatically set up your configuration after cloning packer.nvim
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
---]]
 end)

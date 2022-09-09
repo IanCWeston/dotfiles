@@ -19,18 +19,14 @@ require("ian.indentline")
 require("ian.project")
 
 -- VISUAL ADD-ONS
-require("ian.nvim-tree")
-require("ian.bufferline")
+--require("ian.bufferline")
 require("ian.lualine")
-require("ian.toggleterm")
+--require("ian.toggleterm")
 require("ian.alpha")
 require("ian.trouble")
-require("ian.todo-comments")
 
 -- EXTRAS
-require("ian.impatient")
 require("ian.whichkey")
 require("ian.autocommands")
-require("ian.lightspeed")
 require("ian.filetype")
 require("ian.tabout")
