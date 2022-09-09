@@ -81,6 +81,7 @@ return packer.startup(function(use)
   -- Telescope / Fuzzy Finder
   use("nvim-telescope/telescope.nvim")
   use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use { "nvim-telescope/telescope-file-browser.nvim" }
 
   -- Treesitter
   use("nvim-treesitter/nvim-treesitter")
