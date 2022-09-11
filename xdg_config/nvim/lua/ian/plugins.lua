@@ -38,68 +38,68 @@ packer.init({
 })
 
 return packer.startup(function(use)
-  use("wbthomason/packer.nvim") -- Have packer manage itself
+  use "wbthomason/packer.nvim" -- Have packer manage itself
 
   -- Prerequisites
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-  use("kyazdani42/nvim-web-devicons")
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "kyazdani42/nvim-web-devicons"
 
-  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-  use("numToStr/Comment.nvim") -- Easily comment stuff
+  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use "numToStr/Comment.nvim" -- Easily comment stuff
   --use("akinsho/bufferline.nvim") -- Tabline
-  use("nvim-lualine/lualine.nvim") -- Status Line
+  use "nvim-lualine/lualine.nvim" -- Status Line
   --use("akinsho/toggleterm.nvim") -- Integrated terminal
-  use("ahmedkhalf/project.nvim") -- Project manager
-  use("lukas-reineke/indent-blankline.nvim") -- Adds indent lines
-  use("goolord/alpha-nvim") -- Start screen
-  use("folke/which-key.nvim") -- Keymap support
+  use "ahmedkhalf/project.nvim" -- Project manager
+  use "lukas-reineke/indent-blankline.nvim" -- Adds indent lines
+  use "goolord/alpha-nvim" -- Start screen
+  use "folke/which-key.nvim" -- Keymap support
 
   -- Colorschemes
-  use("rebelot/kanagawa.nvim")
+  use "rebelot/kanagawa.nvim"
 
   -- Completion
-  use("hrsh7th/nvim-cmp")
-  use("hrsh7th/cmp-buffer") -- buffer completions
-  use("hrsh7th/cmp-path") -- path completions
-  use("saadparwaiz1/cmp_luasnip") -- snippet completions
-  use("hrsh7th/cmp-nvim-lsp") -- nvim LSP completions
-  use("hrsh7th/cmp-nvim-lua") -- nvim lua API completions
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp" -- nvim LSP completions
+  use "hrsh7th/cmp-nvim-lua" -- nvim lua API completions
 
   -- Snippets
-  use("L3MON4D3/LuaSnip")
-  use("rafamadriz/friendly-snippets") -- main set of snippets
-  use("bammab/vscode-snippets-for-ansible") -- additional ansible snippets
+  use "L3MON4D3/LuaSnip"
+  use "rafamadriz/friendly-snippets" -- main set of snippets
+  use "bammab/vscode-snippets-for-ansible" -- additional ansible snippets
 
   -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
   --use("williamboman/nvim-lsp-installer") -- language server installer
-  use("williamboman/mason.nvim") -- manage external editor tooling i.e lsp servers
-  use("williamboman/mason-lspconfig.nvim") -- automatically install language servers to stdpath
-  use("tamago324/nlsp-settings.nvim") -- language server settings defined in json format
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  use "williamboman/mason.nvim" -- manage external editor tooling i.e lsp servers
+  use "williamboman/mason-lspconfig.nvim" -- automatically install language servers to stdpath
+  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json format
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
 
   -- Telescope / Fuzzy Finder
-  use("nvim-telescope/telescope.nvim")
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  use "nvim-telescope/telescope.nvim"
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use { "nvim-telescope/telescope-file-browser.nvim" }
 
   -- Treesitter
-  use("nvim-treesitter/nvim-treesitter")
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("nvim-treesitter/nvim-treesitter-textobjects")
+  use "nvim-treesitter/nvim-treesitter"
+  use "JoosepAlviste/nvim-ts-context-commentstring"
+  use "nvim-treesitter/nvim-treesitter-textobjects"
 
   -- Git
-  use("lewis6991/gitsigns.nvim")
+  use "lewis6991/gitsigns.nvim"
 
   -- Extras
-  use("nathom/filetype.nvim")
-  use("folke/trouble.nvim")
-  use("abecodes/tabout.nvim")
+  use "nathom/filetype.nvim"
+  use "folke/trouble.nvim"
+  use "abecodes/tabout.nvim"
 
-  use({ "norcalli/nvim-colorizer.lua",
+  use { "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
-  })
+  }
 
 end)
