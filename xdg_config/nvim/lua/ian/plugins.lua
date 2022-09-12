@@ -93,7 +93,6 @@ return packer.startup(function(use)
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"
-  use "JoosepAlviste/nvim-ts-context-commentstring"
   use "nvim-treesitter/nvim-treesitter-textobjects"
 
   -- Git
@@ -107,7 +106,12 @@ return packer.startup(function(use)
   use "windwp/nvim-autopairs"
 
   -- Comments
-  use "numToStr/Comment.nvim"
+use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+}
 
   -- Find and replace
   use "windwp/nvim-spectre"
