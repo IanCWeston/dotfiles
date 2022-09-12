@@ -131,9 +131,9 @@ use {
   use "ggandor/leap.nvim"
   use "ThePrimeagen/harpoon"
 
-  -- Session
-  use "rmagatti/auto-session"
-  use "rmagatti/session-lens"
+  -- Session - TODO: Need to figure out issues with Alpha first
+  -- use "rmagatti/auto-session"
+  -- use "rmagatti/session-lens"
 
   -- Quickfix
   use "kevinhwang91/nvim-bqf"
