@@ -45,9 +45,6 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"
   use "kyazdani42/nvim-web-devicons"
 
-  -- Tabline
-  --use("akinsho/bufferline.nvim") -- Tabline
-
   -- Statusline
   use "nvim-lualine/lualine.nvim"
 
@@ -118,10 +115,7 @@ use {
   -- Keybinds
   use "folke/which-key.nvim"
 
-  -- Explorer (currenting A/Bing two options)
-  use "tamago324/lir.nvim"
-  use "tamago324/lir-git-status.nvim"
-
+  -- Explorer
   use { "nvim-neo-tree/neo-tree.nvim",
     branch = "v2.x",
     requires = { "MunifTanjim/nui.nvim" }
@@ -131,10 +125,6 @@ use {
   use "ggandor/leap.nvim"
   use "ThePrimeagen/harpoon"
 
-  -- Session - TODO: Need to figure out issues with Alpha first
-  -- use "rmagatti/auto-session"
-  -- use "rmagatti/session-lens"
-
   -- Quickfix
   use "kevinhwang91/nvim-bqf"
 
@@ -142,8 +132,6 @@ use {
   use "lewis6991/impatient.nvim"
   use "nathom/filetype.nvim"
   use "rcarriga/nvim-notify"
-  use "Vhyrro/neorg"
-
 
   use { "norcalli/nvim-colorizer.lua",
     config = function()
