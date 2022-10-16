@@ -1,12 +1,14 @@
 local options = {
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
+  cmdheight = 0, -- hide command line when not in use (requires v0.8+)
   completeopt = { "menuone", "noselect" }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   cursorline = true, -- highlight the current line
   expandtab = true, -- convert tabs to spaces
   fileencoding = "utf-8", -- the encoding written to a file
   ignorecase = true, -- ignore case in search patterns
+  laststatus = 3, -- set global statusline (requires v0.7+)
   list = true, -- allows showing hidden characters
   mouse = "a", -- allow the mouse to be used in neovim
   number = true, -- set numbered lines
@@ -27,6 +29,7 @@ local options = {
   timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 250, -- faster completion (4000ms default)
+  winbar = "%=%m%F", -- enables the winbar feature (requires v0.8+)
   wrap = false, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }

@@ -1,6 +1,7 @@
 -- BASE
 require("ian.options")
 require("ian.keymaps")
+require("ian.autocommands")
 require("ian.plugins")
 require("ian.colorscheme")
 
@@ -18,14 +19,12 @@ require("ian.indentline")
 require("ian.project")
 
 -- VISUAL ADD-ONS
---require("ian.bufferline")
-require("ian.lualine")
 --require("ian.toggleterm")
+require("ian.lualine")
 require("ian.alpha")
 require("ian.trouble")
 
 -- EXTRAS
 require("ian.whichkey")
-require("ian.autocommands")
 require("ian.filetype")
 require("ian.tabout")
