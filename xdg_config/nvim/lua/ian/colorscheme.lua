@@ -1,6 +1,6 @@
-local colorscheme = "kanagawa"
--- local colorscheme = "tokyonight"
--- local colorscheme = "nightfox"
+-- local colorscheme = "kanagawa"
+-- local colorscheme = "catppuccin"
+local colorscheme = "tokyonight"
 
 
 -- if colorscheme == "tokyonight" then

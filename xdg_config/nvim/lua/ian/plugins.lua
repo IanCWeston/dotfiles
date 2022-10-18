@@ -56,6 +56,8 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use "rebelot/kanagawa.nvim"
+  use "folke/tokyonight.nvim"
+  use "catppuccin/nvim"
 
   -- Completion
   use "hrsh7th/nvim-cmp"
