@@ -9,16 +9,13 @@ if not status_ok_1 then
 end
 
 local servers = {
-  "cssls",
-  "emmet_ls",
-  "html",
+  "ansiblels",
+  "bashls",
   "jsonls",
-  "sumneko_lua",
-  "tflint",
-  "terraformls",
   "pyright",
-  "yamlls",
-  "bashls"
+  "sumneko_lua",
+  "yamlls"
+  -- "tflint",
 }
 
 local settings = {
@@ -36,7 +33,7 @@ local settings = {
 
 mason.setup(settings)
 mason_lspconfig.setup {
-  ensure_installed = servers,
+  -- ensure_installed = servers,
   automatic_installation = false,
 }
 
@@ -55,40 +52,10 @@ for _, server in pairs(servers) do
 
   server = vim.split(server, "@")[1]
 
+  -- TODO: look into schemastore
   -- if server == "jsonls" then
   --   local jsonls_opts = require("ian.lsp.settings.jsonls")
   --   opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-  -- end
-
-  if server == "yamlls" then
-    local yamlls_opts = require "ian.lsp.settings.yamlls"
-    opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
-  end
-
-  -- if server == "sumneko_lua" then
-  --   local l_status_ok, lua_dev = pcall(require, "lua-dev")
-  --   if not l_status_ok then
-  --     return
-  --   end
-  --   -- local sumneko_opts = require "user.lsp.settings.sumneko_lua"
-  --   -- opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  --   -- opts = vim.tbl_deep_extend("force", require("lua-dev").setup(), opts)
-  --   local luadev = lua_dev.setup {
-  --     --   -- add any options here, or leave empty to use the default settings
-  --     -- lspconfig = opts,
-  --     lspconfig = {
-  --       on_attach = opts.on_attach,
-  --       capabilities = opts.capabilities,
-  --       --   -- settings = opts.settings,
-  --     },
-  --   }
-  --   lspconfig.sumneko_lua.setup(luadev)
-  --   goto continue
-  -- end
-
-  -- if server == "tsserver" then
-  --   local tsserver_opts = require "user.lsp.settings.tsserver"
-  --   opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
   -- end
 
   if server == "pyright" then
@@ -96,31 +63,15 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
-  if server == "emmet_ls" then
-    local emmet_ls_opts = require "ian.lsp.settings.emmet_ls"
-    opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
+  if server == "sumneko_lua" then
+    local sumneko_opts = require "ian.lsp.settings.sumneko_lua"
+    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
   end
 
-  -- if server == "zk" then
-  --   local zk_opts = require "user.lsp.settings.zk"
-  --   opts = vim.tbl_deep_extend("force", zk_opts, opts)
-  -- end
-
-  -- if server == "jdtls" then
-  --   goto continue
-  -- end
-
-  -- if server == "rust_analyzer" then
-  --   local rust_opts = require "user.lsp.settings.rust"
-  --   -- opts = vim.tbl_deep_extend("force", rust_opts, opts)
-  --   local rust_tools_status_ok, rust_tools = pcall(require, "rust-tools")
-  --   if not rust_tools_status_ok then
-  --     return
-  --   end
-
-  --   rust_tools.setup(rust_opts)
-  --   goto continue
-  -- end
+  if server == "yamlls" then
+    local yamlls_opts = require "ian.lsp.settings.yamlls"
+    opts = vim.tbl_deep_extend("force", yamlls_opts, opts)
+  end
 
   lspconfig[server].setup(opts)
   ::continue::
