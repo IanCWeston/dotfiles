@@ -44,25 +44,21 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"
   use "nvim-lua/popup.nvim"
   use "kyazdani42/nvim-web-devicons"
+  use "MunifTanjim/nui.nvim"
 
   -- Statusline
   use "nvim-lualine/lualine.nvim"
 
-  -- Indents
-  use "lukas-reineke/indent-blankline.nvim"
-
-  -- Startup
-  use "goolord/alpha-nvim"
-
   -- Colorschemes
-  use "rebelot/kanagawa.nvim"
   use "folke/tokyonight.nvim"
-  use "catppuccin/nvim"
+  -- use "rebelot/kanagawa.nvim"
+  -- use "catppuccin/nvim"
 
   -- Completion
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-cmdline"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
   use "saadparwaiz1/cmp_luasnip"
@@ -79,7 +75,6 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json format
   use "jose-elias-alvarez/null-ls.nvim"
   use "folke/trouble.nvim"
-  use "j-hui/fidget.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -95,45 +90,33 @@ return packer.startup(function(use)
 
   -- Git
   use "lewis6991/gitsigns.nvim"
-  use "sindrets/diffview.nvim"
+
+  -- Movement
+  use "ggandor/leap.nvim"
 
   -- Editting support
   use "abecodes/tabout.nvim"
   use "monaqa/dial.nvim"
   use "kylechui/nvim-surround"
   use "windwp/nvim-autopairs"
+  use "kevinhwang91/nvim-bqf"
+  use "folke/todo-comments.nvim"
 
-  -- Comments
-use {
+  -- Explorer / UI
+  use { "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x"
+  }
+  use "goolord/alpha-nvim"
+  use "rcarriga/nvim-notify"
+  use "folke/which-key.nvim"
+  use "lukas-reineke/indent-blankline.nvim"
+
+  use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup()
+      require('Comment').setup()
     end
-}
-
-  -- Find and replace
-  use "windwp/nvim-spectre"
-
-  -- Keybinds
-  use "folke/which-key.nvim"
-
-  -- Explorer
-  use { "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = { "MunifTanjim/nui.nvim" }
   }
-
-  -- Movement
-  use "ggandor/leap.nvim"
-  use "ThePrimeagen/harpoon"
-
-  -- Quickfix
-  use "kevinhwang91/nvim-bqf"
-
-  -- Extras
-  use "lewis6991/impatient.nvim"
-  use "nathom/filetype.nvim"
-  use "rcarriga/nvim-notify"
 
   use { "norcalli/nvim-colorizer.lua",
     config = function()
@@ -141,4 +124,9 @@ use {
     end,
   }
 
+  -- Future options
+  -- use "windwp/nvim-spectre"
+  -- use "SmiteshP/nvim-navic"
+  -- use "stevearc/aerial.nvim"
+  -- use "karb94/neoscroll.nvim"
 end)
