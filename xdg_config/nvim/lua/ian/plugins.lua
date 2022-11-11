@@ -50,9 +50,8 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"
 
   -- Colorschemes
-  use "folke/tokyonight.nvim"
+  use "AbdelrahmanDwedar/awesome-nvim-colorschemes"
   -- use "rebelot/kanagawa.nvim"
-  -- use "catppuccin/nvim"
 
   -- Completion
   use "hrsh7th/nvim-cmp"
@@ -75,6 +74,8 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json format
   use "jose-elias-alvarez/null-ls.nvim"
   use "folke/trouble.nvim"
+  use "SmiteshP/nvim-navic"
+  use "stevearc/aerial.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -86,7 +87,6 @@ return packer.startup(function(use)
 
   -- Treesitter
   use "nvim-treesitter/nvim-treesitter"
-  use "nvim-treesitter/nvim-treesitter-textobjects"
 
   -- Git
   use "lewis6991/gitsigns.nvim"
@@ -95,10 +95,9 @@ return packer.startup(function(use)
   use "ggandor/leap.nvim"
 
   -- Editting support
-  use "abecodes/tabout.nvim"
-  use "monaqa/dial.nvim"
-  use "kylechui/nvim-surround"
   use "windwp/nvim-autopairs"
+  use "abecodes/tabout.nvim"
+  use "kylechui/nvim-surround"
   use "kevinhwang91/nvim-bqf"
   use "folke/todo-comments.nvim"
 
@@ -107,26 +106,15 @@ return packer.startup(function(use)
     branch = "v2.x"
   }
   use "goolord/alpha-nvim"
-  use "rcarriga/nvim-notify"
   use "folke/which-key.nvim"
   use "lukas-reineke/indent-blankline.nvim"
-
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
-
-  use { "norcalli/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup()
-    end,
-  }
+  use 'numToStr/Comment.nvim'
+  use "NvChad/nvim-colorizer.lua"
 
   -- Future options
+  -- use "monaqa/dial.nvim"
+  -- use "nvim-treesitter/nvim-treesitter-textobjects"
   -- use "windwp/nvim-spectre"
-  -- use "SmiteshP/nvim-navic"
-  -- use "stevearc/aerial.nvim"
   -- use "karb94/neoscroll.nvim"
+  -- use "b0o/SchemaStore.nvim"
 end)
