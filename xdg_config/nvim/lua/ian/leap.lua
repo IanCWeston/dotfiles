@@ -3,4 +3,4 @@ if not status_ok then
     return
 end
 
-require('leap').add_default_mappings()
+leap.add_default_mappings()

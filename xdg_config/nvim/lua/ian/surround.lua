@@ -3,6 +3,6 @@ if not status_ok then
     return
 end
 
-require("surround").setup({
+surround.setup({
     -- Configuration here, or leave empty to use defaults
 })
