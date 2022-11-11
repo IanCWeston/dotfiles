@@ -112,6 +112,9 @@ return packer.startup(function(use)
   use "NvChad/nvim-colorizer.lua"
 
   -- Future options
+  -- use 'ThePrimeagen/harpoon'
+  -- use 'mfussenegger/nvim-dap'
+  -- use 'rcarriga/nvim-dap-ui'
   -- use "monaqa/dial.nvim"
   -- use "nvim-treesitter/nvim-treesitter-textobjects"
   -- use "windwp/nvim-spectre"
