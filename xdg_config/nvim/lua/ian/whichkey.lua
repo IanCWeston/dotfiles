@@ -79,22 +79,24 @@ local opts = {
 }
 
 local mappings = {
+  ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   ["<space>"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
-  ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["e"] = { "<cmd>NeoTreeFloatToggle<CR>", "Explorer" },
-  ["w"] = { "<cmd>w<CR>", "Save" },
-  ["q"] = { "<cmd>q<CR>", "Quit" },
   ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["e"] = { "<cmd>NeoTreeFloatToggle<CR>", "Explorer" },
   ["f"] = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Find files",
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["p"] = { "\"+p", "System Paste" },
+  ["q"] = { "<cmd>q<CR>", "Quit" },
+  ["w"] = { "<cmd>w<CR>", "Save" },
+  ["y"] = { "\"+y", "System Yank" },
 
   P = {
     name = "Packer",
@@ -182,6 +184,7 @@ local vopts = {
 }
 local vmappings = {
   ["/"] = { '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>', "Comment" },
+  ["y"] = { "\"+y", "System Yank" },
 }
 
 which_key.setup(setup)
