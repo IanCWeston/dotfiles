@@ -6,12 +6,16 @@ add_newline = false
 [cmd_duration]
 disabled = true
 
+[package]
+disabled = true
+
 [directory]
 fish_style_pwd_dir_length = 1
 truncate_to_repo = false
 truncation_length = 3
-# truncation_symbol = '.../'
 style = "bold blue"
 
 [python]
-disabled = true
+detect_extensions = []
+symbol = ' '
+version_format = "v${major}.${minor}"
