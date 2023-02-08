@@ -32,15 +32,9 @@ lsp.setup_nvim_cmp({
         ['<S-Tab>'] = vim.NIL,
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs( -1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-        ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.SelectBehavior.Insert, select = true }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close(),
-        }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
+        -- Snippets
         ["<C-k>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
