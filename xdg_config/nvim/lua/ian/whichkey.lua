@@ -79,24 +79,24 @@ local opts = {
 }
 
 local mappings = {
+  ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   ["<space>"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
-  ["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
   ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-  ["w"] = { "<cmd>w!<CR>", "Save" },
-  ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
-  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["p"] = { "<cmd>Telescope projects<cr>", "Projects" },
+  ["e"] = { "<cmd>NeoTreeFloatToggle<CR>", "Explorer" },
   ["f"] = {
     "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Find files",
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  ["t"] = { "<cmd>ToggleTerm<cr>", "Terminal" },
+  ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+  ["p"] = { "\"+p", "System Paste" },
+  ["q"] = { "<cmd>q<CR>", "Quit" },
+  ["w"] = { "<cmd>w<CR>", "Save" },
+  ["y"] = { "\"+y", "System Yank" },
 
   P = {
     name = "Packer",
@@ -109,7 +109,6 @@ local mappings = {
 
   g = {
     name = "Git",
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
@@ -173,19 +172,6 @@ local mappings = {
     k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
   },
-
-  T = {
-    name = "Terminal (Extended)",
-    p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
-    h = { "<cmd>ToggleTerm size=10 direction=horizontal<cr>", "Horizontal" },
-    v = { "<cmd>ToggleTerm size=80 direction=vertical<cr>", "Vertical" },
-  },
-
-  H = {
-    name = "Hop",
-    c = { "<cmd>HopChar1<cr>", "Char1" },
-    w = { "<cmd>HopWord<cr>", "Word" },
-  },
 }
 
 local vopts = {
@@ -197,7 +183,8 @@ local vopts = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 local vmappings = {
-  ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+  ["/"] = { '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>', "Comment" },
+  ["y"] = { "\"+y", "System Yank" },
 }
 
 which_key.setup(setup)

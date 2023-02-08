@@ -1,6 +1,7 @@
 -- BASE
 require("ian.options")
 require("ian.keymaps")
+require("ian.autocommands")
 require("ian.plugins")
 require("ian.colorscheme")
 
@@ -13,24 +14,22 @@ require("ian.lsp.null-ls")
 require("ian.telescope")
 require("ian.treesitter")
 require("ian.autopairs")
-require("ian.comment")
 require("ian.gitsigns")
 require("ian.indentline")
 require("ian.project")
 
 -- VISUAL ADD-ONS
-require("ian.nvim-tree")
-require("ian.bufferline")
 require("ian.lualine")
-require("ian.toggleterm")
 require("ian.alpha")
 require("ian.trouble")
-require("ian.todo-comments")
 
 -- EXTRAS
-require("ian.impatient")
 require("ian.whichkey")
-require("ian.autocommands")
-require("ian.lightspeed")
 require("ian.filetype")
 require("ian.tabout")
+require("ian.comment")
+require("ian.colorizer")
+require("ian.aerial")
+require("ian.leap")
+require("ian.surround")
+require("ian.neo-tree")

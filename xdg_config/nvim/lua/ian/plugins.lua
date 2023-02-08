@@ -1,7 +1,7 @@
-local is_wsl = (function() 
-  local output = vim.fn.systemlist "uname -r" 
+local is_wsl = (function()
+  local output = vim.fn.systemlist "uname -r"
   return not not string.find(output[1] or "", "WSL")
-end)() 
+end)()
 
 local is_mac = vim.fn.has("macunix") == 1
 
@@ -9,9 +9,9 @@ local is_linux = not is_wsl and not is_mac
 
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -38,103 +38,86 @@ packer.init({
 })
 
 return packer.startup(function(use)
-  use("wbthomason/packer.nvim") -- Have packer manage itself
+  use "wbthomason/packer.nvim"
 
   -- Prerequisites
-  -- use "nvim-lua/popup.nvim"
-  use("nvim-lua/plenary.nvim") -- Useful lua functions used ny lots of plugins
-  use("kyazdani42/nvim-web-devicons")
+  use "nvim-lua/plenary.nvim"
+  use "nvim-lua/popup.nvim"
+  use "kyazdani42/nvim-web-devicons"
+  use "MunifTanjim/nui.nvim"
 
-  use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitter
-  use("numToStr/Comment.nvim") -- Easily comment stuff
-  use("kyazdani42/nvim-tree.lua") -- Explorer
-  use("akinsho/bufferline.nvim") -- Tabline
-  use("nvim-lualine/lualine.nvim") -- Status Line
-  use("akinsho/toggleterm.nvim") -- Integrated terminal
-  use("ahmedkhalf/project.nvim") -- Project manager
-  use("lukas-reineke/indent-blankline.nvim") -- Adds indent lines
-  use("goolord/alpha-nvim") -- Start screen
-  use("folke/which-key.nvim") -- Keymap support
-  use("lewis6991/impatient.nvim") -- Speed up startup
-  -- use "antoinemadec/FixCursorHold.nvim"    -- This is needed to fix lsp doc highlight
+  -- Statusline
+  use "nvim-lualine/lualine.nvim"
 
   -- Colorschemes
-  use("rebelot/kanagawa.nvim")
+  use "AbdelrahmanDwedar/awesome-nvim-colorschemes"
+  -- use "rebelot/kanagawa.nvim"
 
   -- Completion
-  use("hrsh7th/nvim-cmp")
-  use("hrsh7th/cmp-buffer") -- buffer completions
-  use("hrsh7th/cmp-path") -- path completions
-  use("saadparwaiz1/cmp_luasnip") -- snippet completions
-  use("hrsh7th/cmp-nvim-lsp") -- nvim LSP completions
-  use("hrsh7th/cmp-nvim-lua") -- nvim lua API completions
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-nvim-lua"
+  use "saadparwaiz1/cmp_luasnip"
 
   -- Snippets
-  use("L3MON4D3/LuaSnip")
-  use("rafamadriz/friendly-snippets") -- main set of snippets
-  use("bammab/vscode-snippets-for-ansible") -- additional ansible snippets
+  use "L3MON4D3/LuaSnip"
+  use "rafamadriz/friendly-snippets"
+  use "bammab/vscode-snippets-for-ansible"
 
   -- LSP
-  use("neovim/nvim-lspconfig") -- enable LSP
-  use("williamboman/nvim-lsp-installer") -- language server installer
-  use("tamago324/nlsp-settings.nvim") -- language server settings defined in json format
-  use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+  use "neovim/nvim-lspconfig"
+  use "williamboman/mason.nvim"
+  use "williamboman/mason-lspconfig.nvim"
+  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json format
+  use "jose-elias-alvarez/null-ls.nvim"
+  use "folke/trouble.nvim"
 
-  -- Telescope / Fuzzy Finder
-  use("nvim-telescope/telescope.nvim")
-  use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+  -- Telescope
+  use "nvim-telescope/telescope.nvim"
+  use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+  use "nvim-telescope/telescope-ui-select.nvim"
+
+  -- Projects
+  use "ahmedkhalf/project.nvim"
 
   -- Treesitter
-  use("nvim-treesitter/nvim-treesitter")
-  use("JoosepAlviste/nvim-ts-context-commentstring")
-  use("nvim-treesitter/nvim-treesitter-textobjects")
+  use "nvim-treesitter/nvim-treesitter"
 
   -- Git
-  use("lewis6991/gitsigns.nvim")
+  use "lewis6991/gitsigns.nvim"
 
-  -- Extras
-  use("nathom/filetype.nvim")
-  use("folke/trouble.nvim")
-  use("folke/todo-comments.nvim")
-  use("ggandor/lightspeed.nvim")
-  use("simrat39/symbols-outline.nvim")
+  -- Movement
+  use "ggandor/leap.nvim"
 
-  use({
-    "phaazon/hop.nvim",
-    branch = "v1",
-    cmd = { "HopWord", "HopChar1" },
-    config = function()
-      require("hop").setup() -- trying out packer config ability
-    end,
-  })
+  -- Editting support
+  use "windwp/nvim-autopairs"
+  use "abecodes/tabout.nvim"
+  use "kylechui/nvim-surround"
+  use "kevinhwang91/nvim-bqf"
+  use "folke/todo-comments.nvim"
 
-  use({
-    "AckslD/nvim-neoclip.lua", -- we may not need this
-    config = function()
-      require("neoclip").setup()
-    end,
-  })
+  -- Explorer / UI
+  use { "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x"
+  }
+  use "goolord/alpha-nvim"
+  use "folke/which-key.nvim"
+  use "lukas-reineke/indent-blankline.nvim"
+  use 'numToStr/Comment.nvim'
+  use "NvChad/nvim-colorizer.lua"
 
-  use({
-    "norcalli/nvim-colorizer.lua",
-    cmd = { "ColorizerToggle" },
-    config = function()
-      require("colorizer").setup()
-    end,
-  })
-
-  use({
-    "kosayoda/nvim-lightbulb",
-    config = function()
-      vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
-    end,
-
-  use("abecodes/tabout.nvim")
-  })
-  --[[
-  -- Automatically set up your configuration after cloning packer.nvim
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
---]]
+  -- Future options
+  -- use 'ThePrimeagen/harpoon'
+  -- use 'mfussenegger/nvim-dap'
+  -- use 'rcarriga/nvim-dap-ui'
+  -- use "monaqa/dial.nvim"
+  -- use "nvim-treesitter/nvim-treesitter-textobjects"
+  -- use "windwp/nvim-spectre"
+  -- use "karb94/neoscroll.nvim"
+  -- use "b0o/SchemaStore.nvim"
+  -- use "hrsh7th/cmp-cmdline"
+  -- use "SmiteshP/nvim-navic"
+  -- use "stevearc/aerial.nvim"
 end)

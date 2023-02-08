@@ -95,11 +95,22 @@ telescope.setup({
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+    file_browser = {
+      --theme = "ivy",
+      -- disables netrw and use telescope-file-browser in its place
+      hijack_netrw = true,
+      mappings = {
+        ["i"] = {
+          -- your custom insert mode mappings
+        },
+        ["n"] = {
+          -- your custom normal mode mappings
+        },
+      },
+    },
   },
 })
 
 -- Faster results
 require("telescope").load_extension("fzf")
 
--- Clipboard manager
-require("telescope").load_extension("neoclip")

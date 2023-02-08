@@ -1,24 +1,38 @@
-local runtime_path = vim.split(package.path, ";")
-
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
-
 return {
   settings = {
     Lua = {
+      type = {
+        -- weakUnionCheck = true,
+        -- weakNilCheck = true,
+        -- castNumberToInteger = true,
+      },
+      format = {
+        enable = false,
+      },
+      hint = {
+        enable = true,
+        arrayIndex = "Disable", -- "Enable", "Auto", "Disable"
+        await = true,
+        paramName = "Disable", -- "All", "Literal", "Disable"
+        paramType = false,
+        semicolon = "Disable", -- "All", "SameLine", "Disable"
+        setType = true,
+      },
+      -- spell = {"the"}
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = "LuaJIT",
-        -- Setup your lua path
-        path = runtime_path,
+        special = {
+          reload = "require",
+        },
       },
       diagnostics = {
         globals = { "vim" },
       },
       workspace = {
         library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. "/lua"] = true,
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.stdpath "config" .. "/lua"] = true,
+          -- [vim.fn.datapath "config" .. "/lua"] = true,
         },
       },
       telemetry = {
