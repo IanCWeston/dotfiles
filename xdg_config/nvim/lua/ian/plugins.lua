@@ -57,7 +57,6 @@ return packer.startup(function(use)
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-cmdline"
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
   use "saadparwaiz1/cmp_luasnip"
@@ -74,8 +73,6 @@ return packer.startup(function(use)
   use "tamago324/nlsp-settings.nvim" -- language server settings defined in json format
   use "jose-elias-alvarez/null-ls.nvim"
   use "folke/trouble.nvim"
-  use "SmiteshP/nvim-navic"
-  use "stevearc/aerial.nvim"
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -120,4 +117,7 @@ return packer.startup(function(use)
   -- use "windwp/nvim-spectre"
   -- use "karb94/neoscroll.nvim"
   -- use "b0o/SchemaStore.nvim"
+  -- use "hrsh7th/cmp-cmdline"
+  -- use "SmiteshP/nvim-navic"
+  -- use "stevearc/aerial.nvim"
 end)
