@@ -81,7 +81,6 @@ return packer.startup(function(use)
     }
   }
 
-  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json format
   use "jose-elias-alvarez/null-ls.nvim"
   use "folke/trouble.nvim"
 
