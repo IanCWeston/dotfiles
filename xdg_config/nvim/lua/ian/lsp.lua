@@ -19,6 +19,7 @@ local servers = {
 }
 
 lsp.ensure_installed(servers)
+lsp.nvim_workspace() -- auto setup sumneko_lua
 
 lsp.set_preferences({
     sign_icons = {
@@ -86,6 +87,30 @@ lsp.on_attach(function(client, bufnr)
         end
     end
 end)
+
+lsp.configure('pyright', {
+    settings = {
+        python = {
+            analysis = {
+                typeCheckingMode = "basic",
+                diagnosticMode = "workspace",
+                inlayHints = {
+                    variableTypes = true,
+                    functionReturnTypes = true,
+                },
+            },
+        },
+    },
+})
+
+lsp.configure('yamlls', {
+    yaml = {
+        schemaStore = {
+            enable = true
+        }
+    }
+})
+
 
 lsp.setup()
 
