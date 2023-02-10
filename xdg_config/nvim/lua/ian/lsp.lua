@@ -1,10 +1,12 @@
 local lsp = require("lsp-zero")
+
 local cmp = require('cmp')
 local luasnip = require('luasnip')
+local null_ls = require('null-ls')
 
 lsp.preset("recommended")
 
-lsp.ensure_installed({
+local servers = {
     'sumneko_lua',
     'bashls',
     'yamlls',
@@ -14,7 +16,9 @@ lsp.ensure_installed({
     'dockerls',
     -- 'gopls',
     -- 'terraformls',
-})
+}
+
+lsp.ensure_installed(servers)
 
 lsp.set_preferences({
     sign_icons = {
@@ -73,9 +77,38 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
     vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help() end, opts)
     vim.keymap.set("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts)
+
+    -- We use null-ls for formatting
+    for _, server in ipairs(servers) do
+        if client.name == server then
+            client.server_capabilities.documentFormattingProvider = false
+            client.server_capabilities.documentFormattingRangeProvider = false
+        end
+    end
 end)
 
 lsp.setup()
+
+-- NULL-LS
+local null_opts = lsp.build_options('null-ls', {})
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+
+null_ls.setup({
+    on_attach = function(client, bufnr)
+        null_opts.on_attach(client, bufnr)
+    end,
+    sources = {
+        formatting.prettier.with {
+            extra_filetypes = { "toml" },
+            extra_args = { "--no-semi", "--single-quote" },
+        },
+        formatting.isort,
+        formatting.black.with { extra_args = { "--fast" } },
+        formatting.stylua,
+        diagnostics.shellcheck,
+    }
+})
 
 -- Trying this out
 vim.diagnostic.config({
