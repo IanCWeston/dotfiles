@@ -1,4 +1,6 @@
 local lsp = require("lsp-zero")
+local cmp = require('cmp')
+local luasnip = require('luasnip')
 
 lsp.preset("recommended")
 
@@ -23,7 +25,6 @@ lsp.set_preferences({
     }
 })
 
-local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 lsp.setup_nvim_cmp({
@@ -35,7 +36,7 @@ lsp.setup_nvim_cmp({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
         -- Snippets
-        ["<C-k>"] = cmp.mapping(function(fallback)
+        ["<C-j>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             else
@@ -45,7 +46,7 @@ lsp.setup_nvim_cmp({
             "i",
             "s",
         }),
-        ["<C-j>"] = cmp.mapping(function(fallback)
+        ["<C-k>"] = cmp.mapping(function(fallback)
             if luasnip.jumpable( -1) then
                 luasnip.jump( -1)
             else
