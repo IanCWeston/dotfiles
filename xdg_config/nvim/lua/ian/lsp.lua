@@ -31,6 +31,7 @@ lsp.set_preferences({
 })
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_confirm = { behavior = cmp.SelectBehavior.Insert, select = true}
 
 lsp.setup_nvim_cmp({
     mapping = lsp.defaults.cmp_mappings({
@@ -38,7 +39,9 @@ lsp.setup_nvim_cmp({
         ['<S-Tab>'] = vim.NIL,
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ['<CR>'] = cmp.mapping.confirm(cmp_confirm),
 
         -- Snippets
         ["<C-j>"] = cmp.mapping(function(fallback)
