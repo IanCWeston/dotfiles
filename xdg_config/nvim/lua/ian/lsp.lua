@@ -4,7 +4,12 @@ local cmp = require('cmp')
 local luasnip = require('luasnip')
 local null_ls = require('null-ls')
 
-lsp.preset("recommended")
+lsp.preset({
+    name = 'minimal',
+    set_lsp_keymaps = true,
+    manage_nvim_cmp = true,
+    suggest_lsp_servers = false,
+})
 
 local servers = {
     'sumneko_lua',
