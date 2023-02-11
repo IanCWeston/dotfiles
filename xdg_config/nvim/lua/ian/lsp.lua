@@ -36,7 +36,12 @@ lsp.set_preferences({
 })
 
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_confirm = { behavior = cmp.SelectBehavior.Insert, select = true}
+local cmp_confirm = { behavior = cmp.SelectBehavior.Insert, select = true }
+
+local check_backspace = function()
+    local col = vim.fn.col(".") - 1
+    return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
 
 lsp.setup_nvim_cmp({
     mapping = lsp.defaults.cmp_mappings({
@@ -52,6 +57,8 @@ lsp.setup_nvim_cmp({
         ["<C-j>"] = cmp.mapping(function(fallback)
             if luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
+            elseif check_backspace() then
+                fallback()
             else
                 fallback()
             end
