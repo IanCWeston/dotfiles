@@ -53,10 +53,6 @@ return packer.startup(function(use)
   use "AbdelrahmanDwedar/awesome-nvim-colorschemes"
   -- use "rebelot/kanagawa.nvim"
 
-  -- Completion
-  use "hrsh7th/cmp-nvim-lua"
-  use "bammab/vscode-snippets-for-ansible"
-
   -- LSP
   use {
     'VonHeikemen/lsp-zero.nvim',
@@ -66,6 +62,9 @@ return packer.startup(function(use)
       {'neovim/nvim-lspconfig'},             -- Required
       {'williamboman/mason.nvim'},           -- Optional
       {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+      -- External Diagnostics and Formatting
+      {'jose-elias-alvarez/null-ls.nvim'}, -- Optional
   
       -- Autocompletion
       {'hrsh7th/nvim-cmp'},         -- Required
@@ -77,11 +76,11 @@ return packer.startup(function(use)
   
       -- Snippets
       {'L3MON4D3/LuaSnip'},             -- Required
-      {'rafamadriz/friendly-snippets'}, -- Optional
+      {'rafamadriz/friendly-snippets'}, -- Optional, General Snippets
+      {'bammab/vscode-snippets-for-ansible'}, -- Optional, Ansible Snippets
     }
   }
 
-  use "jose-elias-alvarez/null-ls.nvim"
   use "folke/trouble.nvim"
 
   -- Telescope
