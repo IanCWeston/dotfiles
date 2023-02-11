@@ -6,9 +6,7 @@ require("ian.plugins")
 require("ian.colorscheme")
 
 -- LSP
-require("ian.cmp")
 require("ian.lsp")
-require("ian.lsp.null-ls")
 
 -- CODE HELPS
 require("ian.telescope")
