@@ -83,6 +83,7 @@ tree.setup({
       },
       ["<2-LeftMouse>"] = "open",
       ["<cr>"] = "open",
+      ["l"] = "open",
       ["<esc>"] = "revert_preview",
       ["P"] = { "toggle_preview", config = { use_float = true } },
       ["S"] = "open_split",
@@ -95,8 +96,9 @@ tree.setup({
       ["w"] = "open_with_window_picker",
       --["P"] = "toggle_preview", -- enter preview mode, which shows the current node without focusing
       ["C"] = "close_node",
+      ["h"] = "close_node",
       ["z"] = "close_all_nodes",
-      --["Z"] = "expand_all_nodes",
+      ["Z"] = "expand_all_nodes",
       ["a"] = {
         "add",
         -- some commands may take optional config options, see `:h neo-tree-mappings` for details
