@@ -12,7 +12,7 @@ lsp.preset({
 })
 
 local servers = {
-    'sumneko_lua',
+    'lua_ls', -- formally sumneko_lua
     'bashls',
     'yamlls',
     'ansiblels',
@@ -24,7 +24,7 @@ local servers = {
 }
 
 lsp.ensure_installed(servers)
-lsp.nvim_workspace() -- auto setup sumneko_lua
+lsp.nvim_workspace() -- auto setup lua_ls/sumneko_lua
 
 lsp.set_preferences({
     sign_icons = {
