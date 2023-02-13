@@ -50,7 +50,8 @@ return packer.startup(function(use)
   use "nvim-lualine/lualine.nvim"
 
   -- Colorschemes
-  use "AbdelrahmanDwedar/awesome-nvim-colorschemes"
+  use "folke/tokyonight.nvim"
+  -- use "catppuccin/nvim"
   -- use "rebelot/kanagawa.nvim"
 
   -- LSP
