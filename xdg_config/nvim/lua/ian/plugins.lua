@@ -86,7 +86,6 @@ return packer.startup(function(use)
   -- Telescope
   use "nvim-telescope/telescope.nvim"
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-  use "nvim-telescope/telescope-ui-select.nvim"
 
   -- Projects
   use "ahmedkhalf/project.nvim"
@@ -129,4 +128,5 @@ return packer.startup(function(use)
   -- use "hrsh7th/cmp-cmdline"
   -- use "SmiteshP/nvim-navic"
   -- use "stevearc/aerial.nvim"
+  -- use "stevearc/dressing.nvim"
 end)
