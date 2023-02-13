@@ -29,7 +29,6 @@ local options = {
   timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
   updatetime = 250, -- faster completion (4000ms default)
-  winbar = "%=%m%F", -- enables the winbar feature (requires v0.8+)
   wrap = false, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }

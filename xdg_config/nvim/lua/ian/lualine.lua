@@ -3,12 +3,22 @@ if not status_ok then
   return
 end
 
+
+local custom_fileformat = {
+  'fileformat',
+      symbols = {
+        unix = 'lf',
+        dos = 'crlf',
+        mac = 'cr',
+      }
+}
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
     theme = 'auto',
-    component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },
+    component_separators = { left = '', right = '|' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -24,10 +34,10 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = { 'mode' },
-    lualine_b = { 'branch', 'diff', 'diagnostics' },
-    lualine_c = { '%=', { 'filename', path = 3 } },
-    lualine_x = { 'fileformat', 'filetype' },
-    lualine_y = { 'progress' },
+    lualine_b = { 'branch' },
+    lualine_c = { 'diff', 'diagnostics', '%=', 'filename' },
+    lualine_x = { 'searchcount', 'encoding', custom_fileformat, 'filetype' },
+    lualine_y = {},
     lualine_z = { 'location' }
   },
   inactive_sections = {
@@ -39,7 +49,11 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {},
-  winbar = {},
-  inactive_winbar = {},
+  winbar = {
+     lualine_c = { '%=', { 'filename', path = 3 } },
+  },
+  inactive_winbar = {
+       lualine_c = { '%=', 'filename' },
+  },
   extensions = {}
 }
