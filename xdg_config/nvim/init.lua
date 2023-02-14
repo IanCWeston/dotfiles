@@ -23,7 +23,6 @@ require("ian.trouble")
 
 -- EXTRAS
 require("ian.whichkey")
-require("ian.tabout")
 require("ian.comment")
 require("ian.colorizer")
 require("ian.leap")

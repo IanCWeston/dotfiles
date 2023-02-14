@@ -102,7 +102,6 @@ return packer.startup(function(use)
 
   -- Editting support
   use "windwp/nvim-autopairs"
-  use "abecodes/tabout.nvim"
   use "kylechui/nvim-surround"
   use "kevinhwang91/nvim-bqf"
   use "folke/todo-comments.nvim"

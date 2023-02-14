@@ -44,6 +44,9 @@ keymap("n", "N", "Nzz")
 keymap("i", "jk", "<ESC>")
 keymap("i", "kj", "<ESC>")
 
+-- Tabout
+keymap("i", "<Tab>", "<Right>")
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv")
