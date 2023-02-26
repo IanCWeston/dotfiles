@@ -1,7 +1,7 @@
 -- BASE
-require("ian.options")
-require("ian.keymaps")
-require("ian.autocommands")
+require("ian.core.options")
+require("ian.core.keymaps")
+require("ian.core.autocommands")
 require("ian.core.lazy")
 -- require("ian.colorscheme")
 
