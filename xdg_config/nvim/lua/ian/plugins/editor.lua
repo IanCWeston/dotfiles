@@ -78,7 +78,7 @@ return {
   {
     "ahmedkhalf/project.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
-    cmd = "Telescope projects",
+    ft = "alpha",
     config = function()
       require("project_nvim").setup()
       require("telescope").load_extension("projects")
