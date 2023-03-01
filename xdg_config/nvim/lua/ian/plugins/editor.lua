@@ -2,8 +2,9 @@ return {
   -- FILE EXPLORER
   {
     "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
+    cmd = { "Neotree", "NeoTreeFloatToggle"},
     opts = {
+      popup_border_style = "rounded",
       filesystem = {
         bind_to_cwd = false,
       },
