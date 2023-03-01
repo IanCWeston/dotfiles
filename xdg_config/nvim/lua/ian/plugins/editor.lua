@@ -2,6 +2,12 @@ return {
   -- FILE EXPLORER
   {
     "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
     cmd = { "Neotree", "NeoTreeFloatToggle"},
     opts = {
       popup_border_style = "rounded",
