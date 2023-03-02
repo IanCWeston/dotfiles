@@ -31,19 +31,11 @@ return {
       },
       ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
       ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
+      ["L"] = { "<cmd>Lazy<CR>", "Lazy" },
       ["p"] = { '"+p', "System Paste" },
       ["q"] = { "<cmd>q<CR>", "Quit" },
       ["w"] = { "<cmd>w<CR>", "Save" },
       ["y"] = { '"+y', "System Yank" },
-
-      P = {
-        name = "Packer",
-        c = { "<cmd>PackerCompile<cr>", "Compile" },
-        i = { "<cmd>PackerInstall<cr>", "Install" },
-        s = { "<cmd>PackerSync<cr>", "Sync" },
-        S = { "<cmd>PackerStatus<cr>", "Status" },
-        u = { "<cmd>PackerUpdate<cr>", "Update" },
-      },
 
       g = {
         name = "Git",
