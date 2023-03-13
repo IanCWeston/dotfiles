@@ -179,22 +179,23 @@ return {
 
     -- NULL-LS
     local null_opts = lsp.build_options("null-ls", {})
-    local formatting = null_ls.builtins.formatting
     local diagnostics = null_ls.builtins.diagnostics
+    local formatting = null_ls.builtins.formatting
 
     null_ls.setup({
       on_attach = function(client, bufnr)
         null_opts.on_attach(client, bufnr)
       end,
       sources = {
+        diagnostics.ruff,
+        diagnostics.shellcheck,
         formatting.prettier.with({
-          extra_filetypes = { "toml" },
+          extra_filetypes = { "toml", "xml" },
           extra_args = { "--no-semi", "--single-quote" },
         }),
-        formatting.isort,
+        formatting.ruff.with({ extra_args = { "--fixable", "I" } }),
         formatting.black.with({ extra_args = { "--fast" } }),
         formatting.stylua,
-        diagnostics.shellcheck,
       },
     })
 
