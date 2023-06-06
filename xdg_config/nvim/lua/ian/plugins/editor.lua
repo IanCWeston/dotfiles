@@ -90,4 +90,12 @@ return {
       require("telescope").load_extension("projects")
     end,
   },
+  -- PREVIEW MARKDOWN
+  {
+    "iamcco/markdown-preview.nvim",
+    ft = "markdown",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 }
