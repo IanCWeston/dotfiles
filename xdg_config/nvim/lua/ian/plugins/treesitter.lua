@@ -98,13 +98,4 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     opts = {},
   },
-  {
-    "stevearc/aerial.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {},
-  },
 }
