@@ -8,7 +8,7 @@ return {
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
-    cmd = { "Neotree", "NeoTreeFloatToggle"},
+    cmd = { "Neotree", "NeoTreeFloatToggle" },
     opts = {
       popup_border_style = "rounded",
       filesystem = {
@@ -88,14 +88,6 @@ return {
     config = function()
       require("project_nvim").setup()
       require("telescope").load_extension("projects")
-    end,
-  },
-  -- PREVIEW MARKDOWN
-  {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    build = function()
-      vim.fn["mkdp#util#install"]()
     end,
   },
 }
