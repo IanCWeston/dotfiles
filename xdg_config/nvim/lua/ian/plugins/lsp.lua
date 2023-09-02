@@ -8,7 +8,6 @@ return {
       require("lsp-zero.settings").preset({})
     end,
   },
-
   -- Autocompletion
   {
     "hrsh7th/nvim-cmp",
@@ -84,14 +83,14 @@ return {
       { "hrsh7th/cmp-nvim-lsp" },
       { "williamboman/mason-lspconfig.nvim" },
       { "williamboman/mason.nvim" },
+      { "folke/neodev.nvim" },
     },
     config = function()
-      -- This is where all the LSP shenanigans will live
+      require("neodev").setup({})
 
       local lsp = require("lsp-zero")
 
       local servers = {
-        "lua_ls", -- formally sumneko_lua
         "bashls",
         "yamlls",
         "ansiblels",
@@ -128,9 +127,6 @@ return {
           documentFormattingRangeProvider = false,
         },
       })
-
-      -- Configure lua language server for neovim
-      require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 
       lsp.configure("pyright", {
         settings = {
