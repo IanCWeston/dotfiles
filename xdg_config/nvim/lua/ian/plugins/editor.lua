@@ -2,13 +2,13 @@ return {
   -- FILE EXPLORER
   {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+    branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
-    cmd = { "Neotree", "NeoTreeFloatToggle" },
+    cmd = { "Neotree" },
     opts = {
       popup_border_style = "rounded",
       filesystem = {
@@ -20,6 +20,12 @@ return {
           ["l"] = "open",
           ["h"] = "close_node",
         },
+      },
+      sources = {
+        "filesystem",
+        "buffers",
+        "git_status",
+        "document_symbols",
       },
     },
   },
