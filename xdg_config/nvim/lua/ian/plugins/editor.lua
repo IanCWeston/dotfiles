@@ -26,7 +26,14 @@ return {
   -- FUZZY FINDER
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
+      "debugloop/telescope-undo.nvim",
+      "ahmedkhalf/project.nvim",
+    },
     cmd = "Telescope",
+    build = "make",
     version = false, -- telescope did only one release, so use HEAD for now
     opts = {
       defaults = {
@@ -57,14 +64,11 @@ return {
         },
       },
     },
-  },
-  -- Faster fuzzy finder results
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    build = "make",
     config = function()
+      require("project_nvim").setup()
+      require("telescope").load_extension("projects")
       require("telescope").load_extension("fzf")
+      require("telescope").load_extension("undo")
     end,
   },
   -- Better diagnostic list
@@ -79,15 +83,5 @@ return {
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "BufReadPost", "BufNewFile" },
     config = true,
-  },
-  -- PROJECT MGMT
-  {
-    "ahmedkhalf/project.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    ft = "alpha",
-    config = function()
-      require("project_nvim").setup()
-      require("telescope").load_extension("projects")
-    end,
   },
 }
