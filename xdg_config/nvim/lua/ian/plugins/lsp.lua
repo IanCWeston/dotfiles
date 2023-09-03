@@ -13,11 +13,9 @@ return {
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "hrsh7th/cmp-nvim-lsp" },
-      { "folke/neodev.nvim" },
+      { "folke/neodev.nvim", opts = {} },
     },
     config = function()
-      require("neodev").setup({})
-
       local lspconfig = require("lspconfig")
       local lsp_defaults = lspconfig.util.default_config
 
