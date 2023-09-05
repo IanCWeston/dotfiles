@@ -8,13 +8,13 @@ return {
     { "hrsh7th/cmp-nvim-lua" },
     { "L3MON4D3/LuaSnip" },
     { "rafamadriz/friendly-snippets" },
-    { "bammab/vscode-snippets-for-ansible" },
   },
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
 
-    require("luasnip.loaders.from_vscode").lazy_load()
+    require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
+    require("luasnip.loaders.from_vscode").lazy_load() -- need to call second time for friendly-snippets
     luasnip.config.setup({})
 
     local cmp_select = { behavior = cmp.SelectBehavior.Select }
