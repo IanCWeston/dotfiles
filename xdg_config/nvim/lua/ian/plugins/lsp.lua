@@ -1,32 +1,32 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-    lazy = true,
-    config = true,
-  },
+	{
+		"williamboman/mason.nvim",
+		cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+		lazy = true,
+		config = true,
+	},
 
-  {
-    "williamboman/mason-lspconfig.nvim",
-    cmd = { "LspInfo", "LspInstall", "LspStart" },
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      { "neovim/nvim-lspconfig" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "folke/neodev.nvim", opts = {} },
-    },
-    config = function()
-      local lspconfig = require("lspconfig")
-      local lsp_defaults = lspconfig.util.default_config
+	{
+		"williamboman/mason-lspconfig.nvim",
+		cmd = { "LspInfo", "LspInstall", "LspStart" },
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			{ "neovim/nvim-lspconfig" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "folke/neodev.nvim", opts = {} },
+		},
+		config = function()
+			local lspconfig = require("lspconfig")
+			local lsp_defaults = lspconfig.util.default_config
 
-      lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+			lsp_defaults.capabilities =
+				vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-      vim.api.nvim_create_autocmd("LspAttach", {
-        desc = "LSP actions",
-        callback = function(event)
-          local map = vim.keymap.set
-          local opts = { buffer = event.buf, remap = false }
+			vim.api.nvim_create_autocmd("LspAttach", {
+				desc = "LSP actions",
+				callback = function(event)
+					local map = vim.keymap.set
+					local opts = { buffer = event.buf, remap = false }
 
           -- stylua: ignore start
           map("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -40,77 +40,77 @@ return {
           map("n", "gr", function() vim.lsp.buf.references() end, opts)
           map("n", "gS", function() vim.lsp.buf.signature_help() end, opts)
           map("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts)
-          -- stylua: ignore end
-        end,
-      })
+					-- stylua: ignore end
+				end,
+			})
 
-      local default_setup = function(server)
-        lspconfig[server].setup({})
-      end
+			local default_setup = function(server)
+				lspconfig[server].setup({})
+			end
 
-      require("mason").setup({})
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "pyright",
-          "bashls",
-          "yamlls",
-          "ansiblels",
-          "jsonls",
-          "dockerls",
-        },
-        handlers = {
-          default_setup,
-          pyright = function()
-            require("lspconfig").pyright.setup({
-              settings = {
-                python = {
-                  analysis = {
-                    typeCheckingMode = "basic",
-                    diagnosticMode = "workspace",
-                    inlayHints = {
-                      variableTypes = true,
-                      functionReturnTypes = true,
-                    },
-                  },
-                },
-              },
-            })
-          end,
-        },
-      })
+			require("mason").setup({})
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"pyright",
+					"bashls",
+					"yamlls",
+					"ansiblels",
+					"jsonls",
+					"dockerls",
+				},
+				handlers = {
+					default_setup,
+					pyright = function()
+						require("lspconfig").pyright.setup({
+							settings = {
+								python = {
+									analysis = {
+										typeCheckingMode = "basic",
+										diagnosticMode = "workspace",
+										inlayHints = {
+											variableTypes = true,
+											functionReturnTypes = true,
+										},
+									},
+								},
+							},
+						})
+					end,
+				},
+			})
 
-      vim.diagnostic.config({
-        virtual_text = true,
-      })
-    end,
-  },
-  {
-    "j-hui/fidget.nvim",
-    branch = "legacy",
-    opts = {},
-  },
-  -- TODO: Look into alternative formatting options
-  {
-    "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local null_ls = require("null-ls")
-      local diagnostics = null_ls.builtins.diagnostics
-      local formatting = null_ls.builtins.formatting
+			vim.diagnostic.config({
+				virtual_text = true,
+			})
+		end,
+	},
+	{
+		"j-hui/fidget.nvim",
+		branch = "legacy",
+		opts = {},
+	},
+	-- TODO: Look into alternative formatting options
+	{
+		"jose-elias-alvarez/null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local null_ls = require("null-ls")
+			local diagnostics = null_ls.builtins.diagnostics
+			local formatting = null_ls.builtins.formatting
 
-      null_ls.setup({
-        sources = {
-          diagnostics.ruff,
-          diagnostics.shellcheck,
-          formatting.prettier.with({
-            extra_filetypes = { "toml", "xml" },
-            extra_args = { "--no-semi", "--single-quote" },
-          }),
-          formatting.ruff.with({ extra_args = { "--fixable", "I" } }),
-          formatting.black.with({ extra_args = { "--fast" } }),
-          formatting.stylua,
-        },
-      })
-    end,
-  },
+			null_ls.setup({
+				sources = {
+					diagnostics.ruff,
+					diagnostics.shellcheck,
+					formatting.prettier.with({
+						extra_filetypes = { "toml", "xml" },
+						extra_args = { "--no-semi", "--single-quote" },
+					}),
+					formatting.ruff.with({ extra_args = { "--fixable", "I" } }),
+					formatting.black.with({ extra_args = { "--fast" } }),
+					formatting.stylua,
+				},
+			})
+		end,
+	},
 }
