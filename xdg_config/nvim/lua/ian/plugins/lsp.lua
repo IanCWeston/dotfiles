@@ -16,67 +16,68 @@ return {
       { "folke/neodev.nvim", opts = {} },
     },
     config = function()
-      local lspconfig = require("lspconfig")
-      local lsp_defaults = lspconfig.util.default_config
+      local mason_lspconfig = require("mason-lspconfig")
 
-      lsp_defaults.capabilities =
-        vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-      vim.api.nvim_create_autocmd("LspAttach", {
-        desc = "LSP actions",
-        callback = function(event)
-          local map = vim.keymap.set
-          local opts = { buffer = event.buf, remap = false }
+      local on_attach = function(_, bufnr)
+        local map = vim.keymap.set
+        local opts = { buffer = bufnr, remap = false }
 
-          -- stylua: ignore start
-          map("n", "K", function() vim.lsp.buf.hover() end, opts)
-          map("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-          map("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-          map("n", "gd", function() vim.lsp.buf.definition() end, opts)
-          map("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-          map("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-          map("n", "gl", function() vim.diagnostic.open_float() end, opts)
-          map("n", "go", function() vim.lsp.buf.type_definition() end, opts)
-          map("n", "gr", function() vim.lsp.buf.references() end, opts)
-          map("n", "gS", function() vim.lsp.buf.signature_help() end, opts)
-          map("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts)
-          -- stylua: ignore end
-        end,
-      })
-
-      local default_setup = function(server)
-        lspconfig[server].setup({})
+        -- stylua: ignore start
+        map("n", "K", function() vim.lsp.buf.hover() end, opts)
+        map("n", "[d", function() vim.diagnostic.goto_next() end, opts)
+        map("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+        map("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        map("n", "gD", function() vim.lsp.buf.declaration() end, opts)
+        map("n", "gi", function() vim.lsp.buf.implementation() end, opts)
+        map("n", "gl", function() vim.diagnostic.open_float() end, opts)
+        map("n", "go", function() vim.lsp.buf.type_definition() end, opts)
+        map("n", "gr", function() vim.lsp.buf.references() end, opts)
+        map("n", "gS", function() vim.lsp.buf.signature_help() end, opts)
+        map("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts)
+        -- stylua: ignore end
       end
 
-      require("mason").setup({})
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "pyright",
-          "bashls",
-          "yamlls",
-          "ansiblels",
-          "jsonls",
-          "dockerls",
-        },
-        handlers = {
-          default_setup,
-          pyright = function()
-            require("lspconfig").pyright.setup({
-              settings = {
-                python = {
-                  analysis = {
-                    typeCheckingMode = "basic",
-                    diagnosticMode = "workspace",
-                    inlayHints = {
-                      variableTypes = true,
-                      functionReturnTypes = true,
-                    },
-                  },
-                },
+      local servers = {
+        pyright = {
+          python = {
+            analysis = {
+              typeCheckingMode = "basic",
+              diagnosticMode = "workspace",
+              inlayHints = {
+                variableTypes = true,
+                functionReturnTypes = true,
               },
-            })
-          end,
+            },
+          },
         },
+        bashls = {},
+        yamlls = {},
+        ansiblels = {},
+        jsonls = {},
+        lua_ls = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+          },
+        },
+      }
+
+      mason_lspconfig.setup({
+        ensure_installed = vim.tbl_keys(servers),
+      })
+
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          require("lspconfig")[server_name].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
+            filetypes = (servers[server_name] or {}).filetypes,
+          })
+        end,
       })
 
       vim.diagnostic.config({
