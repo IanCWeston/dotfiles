@@ -38,7 +38,7 @@ return {
         "bash",
         "dockerfile",
         "go",
-        "help",
+        "vimdoc",
         "json",
         "lua",
         "markdown",
