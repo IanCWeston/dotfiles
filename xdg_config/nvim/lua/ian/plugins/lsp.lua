@@ -1,108 +1,27 @@
 return {
-  -- Base
   {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v2.x",
+    "williamboman/mason.nvim",
+    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     lazy = true,
-    config = function()
-      require("lsp-zero.settings").preset({})
-    end,
+    config = true,
   },
 
-  -- Autocompletion
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "L3MON4D3/LuaSnip" },
-      { "rafamadriz/friendly-snippets" },
-      { "bammab/vscode-snippets-for-ansible" },
-    },
-    config = function()
-      require("lsp-zero.cmp").extend()
-
-      local cmp = require("cmp")
-      local cmp_action = require("lsp-zero.cmp").action()
-
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
-      local cmp_confirm = { behavior = cmp.SelectBehavior.Insert, select = true }
-
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      cmp.setup({
-        mapping = {
-          ["<Tab>"] = vim.NIL,
-          ["<S-Tab>"] = vim.NIL,
-          ["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
-          ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<CR>"] = cmp.mapping.confirm(cmp_confirm),
-
-          -- Snippets
-          ["<C-j>"] = cmp_action.luasnip_jump_forward(),
-          ["<C-k>"] = cmp_action.luasnip_jump_backward(),
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered(),
-        },
-        formatting = {
-          fields = { "kind", "abbr", "menu" },
-          format = function(entry, vim_item)
-            local kind_icons = require("ian.util.icons").kind
-            vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-            vim_item.menu = ({
-              nvim_lsp = "[LSP]",
-              luasnip = "[Snippet]",
-              buffer = "[Buffer]",
-              path = "[Path]",
-            })[entry.source.name]
-            return vim_item
-          end,
-        },
-        sources = {
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
-        },
-      })
-    end,
-  },
-
-  -- LSP
-  {
-    "neovim/nvim-lspconfig",
-    cmd = "LspInfo",
+    "williamboman/mason-lspconfig.nvim",
+    cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+      { "neovim/nvim-lspconfig" },
       { "hrsh7th/cmp-nvim-lsp" },
-      { "williamboman/mason-lspconfig.nvim" },
-      { "williamboman/mason.nvim" },
+      { "folke/neodev.nvim", opts = {} },
     },
     config = function()
-      -- This is where all the LSP shenanigans will live
+      local mason_lspconfig = require("mason-lspconfig")
 
-      local lsp = require("lsp-zero")
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-      local servers = {
-        "lua_ls", -- formally sumneko_lua
-        "bashls",
-        "yamlls",
-        "ansiblels",
-        "pyright",
-        "jsonls",
-        "dockerls",
-        -- 'gopls',
-        -- 'terraformls',
-      }
-
-      lsp.on_attach(function(client, bufnr)
+      local on_attach = function(_, bufnr)
         local map = vim.keymap.set
         local opts = { buffer = bufnr, remap = false }
 
@@ -119,21 +38,10 @@ return {
         map("n", "gS", function() vim.lsp.buf.signature_help() end, opts)
         map("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts)
         -- stylua: ignore end
-      end)
+      end
 
-      -- We use null-ls for formatting
-      lsp.set_server_config({
-        capabilities = {
-          documentFormattingProvider = false,
-          documentFormattingRangeProvider = false,
-        },
-      })
-
-      -- Configure lua language server for neovim
-      require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-      lsp.configure("pyright", {
-        settings = {
+      local servers = {
+        pyright = {
           python = {
             analysis = {
               typeCheckingMode = "basic",
@@ -145,45 +53,53 @@ return {
             },
           },
         },
-      })
-
-      lsp.configure("yamlls", {
-        yaml = {
-          schemaStore = {
-            enable = true,
+        bashls = {},
+        yamlls = {},
+        ansiblels = {},
+        jsonls = {},
+        lua_ls = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
           },
         },
-      })
-
-      lsp.set_sign_icons = {
-        error = "E",
-        warn = "W",
-        hint = "H",
-        info = "I",
       }
 
-      lsp.setup()
+      mason_lspconfig.setup({
+        ensure_installed = vim.tbl_keys(servers),
+      })
+
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          require("lspconfig")[server_name].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
+            filetypes = (servers[server_name] or {}).filetypes,
+          })
+        end,
+      })
 
       vim.diagnostic.config({
         virtual_text = true,
       })
     end,
   },
-
-  -- Extra Formatting and Linting
+  {
+    "j-hui/fidget.nvim",
+    branch = "legacy",
+    opts = {},
+  },
+  -- TODO: Look into alternative formatting options
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local null_opts = require("lsp-zero").build_options("null-ls", {})
       local null_ls = require("null-ls")
       local diagnostics = null_ls.builtins.diagnostics
       local formatting = null_ls.builtins.formatting
 
       null_ls.setup({
-        on_attach = function(client, bufnr)
-          null_opts.on_attach(client, bufnr)
-        end,
         sources = {
           diagnostics.ruff,
           diagnostics.shellcheck,
@@ -197,11 +113,5 @@ return {
         },
       })
     end,
-  },
-
-  {
-    "j-hui/fidget.nvim",
-    branch = "legacy",
-    opts = {},
   },
 }

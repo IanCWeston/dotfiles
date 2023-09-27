@@ -2,13 +2,13 @@ return {
   -- FILE EXPLORER
   {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
+    branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
-    cmd = { "Neotree", "NeoTreeFloatToggle"},
+    cmd = { "Neotree" },
     opts = {
       popup_border_style = "rounded",
       filesystem = {
@@ -21,12 +21,25 @@ return {
           ["h"] = "close_node",
         },
       },
+      sources = {
+        "filesystem",
+        "buffers",
+        "git_status",
+        "document_symbols",
+      },
     },
   },
   -- FUZZY FINDER
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim",
+      "debugloop/telescope-undo.nvim",
+      "ahmedkhalf/project.nvim",
+    },
     cmd = "Telescope",
+    build = "make",
     version = false, -- telescope did only one release, so use HEAD for now
     opts = {
       defaults = {
@@ -57,14 +70,11 @@ return {
         },
       },
     },
-  },
-  -- Faster fuzzy finder results
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    build = "make",
     config = function()
+      require("project_nvim").setup()
+      require("telescope").load_extension("projects")
       require("telescope").load_extension("fzf")
+      require("telescope").load_extension("undo")
     end,
   },
   -- Better diagnostic list
@@ -79,23 +89,5 @@ return {
     cmd = { "TodoTrouble", "TodoTelescope" },
     event = { "BufReadPost", "BufNewFile" },
     config = true,
-  },
-  -- PROJECT MGMT
-  {
-    "ahmedkhalf/project.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    ft = "alpha",
-    config = function()
-      require("project_nvim").setup()
-      require("telescope").load_extension("projects")
-    end,
-  },
-  -- PREVIEW MARKDOWN
-  {
-    "iamcco/markdown-preview.nvim",
-    ft = "markdown",
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
   },
 }

@@ -24,7 +24,7 @@ return {
       },
       ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
       ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
-      ["e"] = { "<cmd>NeoTreeFloatToggle<CR>", "Explorer" },
+      ["e"] = { "<cmd>Neotree source=filesystem position=float toggle=true<CR>", "Explorer" },
       ["f"] = {
         "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
         "Find files",
@@ -113,7 +113,10 @@ return {
       nowait = true,
     }
     local vmappings = {
-      ["/"] = { '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>', "Comment" },
+      ["/"] = {
+        '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>',
+        "Comment",
+      },
       ["y"] = { '"+y', "System Yank" },
     }
 
