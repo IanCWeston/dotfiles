@@ -24,10 +24,8 @@ return {
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = "<M-n>",
-          node_incremental = "<M-n>",
-          scope_incremental = "<M-N>",
-          node_decremental = "<M-p>",
+          node_incremental = "v",
+          node_decremental = "V",
         },
       },
       autopairs = {
