@@ -90,9 +90,9 @@ return {
     branch = "legacy",
     opts = {},
   },
-  -- TODO: Look into alternative formatting options
+  -- TODO: Replace with conform.nvim
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       local null_ls = require("null-ls")
