@@ -18,6 +18,7 @@
         packages: "*"
       - description: "Install initial tools"
         packages:
+          - gcc
           - tmux
           - zsh
 
