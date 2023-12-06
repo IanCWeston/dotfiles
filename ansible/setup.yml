@@ -1,0 +1,27 @@
+---
+- name: "Set up development environment"
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+    
+  - name: "{{ item.description }}"
+    ansible.builtin.dnf:
+      name: "{{ item.packages }}"
+      state: latest
+    loop:
+      - description: "Update existing system packages"
+        packages: "*"
+      - description: "Install initial tools"
+        packages:
+          - python3-pip
+          - tmux
+          - zsh
+
+  - name: "Copy over config files"
+    ansible.builtin.copy:
+      src: ../xdg_config/
+      dest: /home/ian/.config/
+      owner: ian
+      group: ian
