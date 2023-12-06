@@ -1,5 +1,6 @@
 [tools]
 bat = "latest"
+broot = "latest"
 delta = "latest"
 eza = "latest"
 fd = "latest"
@@ -19,3 +20,6 @@ xh = "latest"
 yq = "latest"
 zellij = "latest"
 zoxide = "latest"
+
+[plugins]
+broot = 'https://github.com/cmur2/asdf-broot'
