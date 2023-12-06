@@ -4,6 +4,9 @@
   connection: local
   become: yes
 
+  vars:
+    default_user: ian
+
   tasks:
     
   - name: "{{ item.description }}"
@@ -15,7 +18,6 @@
         packages: "*"
       - description: "Install initial tools"
         packages:
-          - python3-pip
           - tmux
           - zsh
 
@@ -23,5 +25,12 @@
     ansible.builtin.copy:
       src: ../xdg_config/
       dest: /home/ian/.config/
-      owner: ian
-      group: ian
+      owner: "{{ default_user }}"
+      group: "{{ default_user }}"
+
+  - name: "Download rtx"
+    ansible.builtin.get_url:
+      url: https://rtx.pub/rtx-latest-linux-x64
+      dest: /home/ian/.local/bin/rtx
+      owner: "{{ default_user }}"
+      mode: "0774"
