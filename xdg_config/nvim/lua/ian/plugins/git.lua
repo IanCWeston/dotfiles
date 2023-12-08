@@ -13,27 +13,4 @@ return {
       },
     },
   },
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "sindrets/diffview.nvim",
-    },
-    keys = {
-      { "<leader>gg", "<Cmd>Neogit<CR>", desc = "Neogit" },
-    },
-    opts = {
-      kind = "split",
-      signs = {
-        section = { "", "" },
-        item = { "", "" },
-        hunk = { "", "" },
-      },
-      integrations = {
-        diffview = true,
-        telescope = true,
-      },
-    },
-  },
 }
