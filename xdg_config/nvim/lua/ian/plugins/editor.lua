@@ -1,35 +1,14 @@
 return {
-  -- FILE EXPLORER
+  -- FILE EDITOR
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-    cmd = { "Neotree" },
+    'stevearc/oil.nvim',
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {
-      popup_border_style = "rounded",
-      filesystem = {
-        bind_to_cwd = false,
-      },
-      window = {
-        mappings = {
-          ["<space>"] = "none",
-          ["l"] = "open",
-          ["h"] = "close_node",
-        },
-      },
-      sources = {
-        "filesystem",
-        "buffers",
-        "git_status",
-        "document_symbols",
-      },
+      keymaps = {
+        ["<leader>e"] = "actions.close"
+      }
     },
   },
-  -- FUZZY FINDER
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
