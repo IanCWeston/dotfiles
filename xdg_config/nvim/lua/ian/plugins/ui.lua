@@ -77,6 +77,7 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
+          -- theme = "catppuccin",
           component_separators = { left = "", right = "|" },
           section_separators = { left = "", right = "" },
           disabled_filetypes = {
@@ -126,10 +127,12 @@ return {
     main = "ibl",
     opts = {
       indent = {
-      char = "│",
-      tab_char = "│",
+      -- char = "╎",
+      -- tab_char = "╎",
+      -- char = "│",
+      -- tab_char = "│",
     },
-    scope = { enabled = false },
+    scope = { enabled = true },
       exclude = {
         filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason"},
       },
