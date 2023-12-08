@@ -19,6 +19,8 @@
       - description: "Install initial tools"
         packages:
           - gcc
+          - gcc-c++
+          - make
           - tmux
           - zsh
 
