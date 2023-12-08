@@ -36,7 +36,6 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
       "debugloop/telescope-undo.nvim",
-      "ahmedkhalf/project.nvim",
     },
     cmd = "Telescope",
     build = "make",
@@ -71,8 +70,6 @@ return {
       },
     },
     config = function()
-      require("project_nvim").setup()
-      require("telescope").load_extension("projects")
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("undo")
     end,
