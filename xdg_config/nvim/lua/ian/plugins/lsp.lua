@@ -13,14 +13,9 @@ return {
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "hrsh7th/cmp-nvim-lsp" },
-      { "folke/neodev.nvim", opts = {} },
+      { "folke/neodev.nvim" },
     },
     config = function()
-      local mason_lspconfig = require("mason-lspconfig")
-
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
       local on_attach = function(_, bufnr)
         local map = vim.keymap.set
         local opts = { buffer = bufnr, remap = false }
@@ -45,14 +40,11 @@ return {
           python = {
             analysis = {
               typeCheckingMode = "basic",
-              diagnosticMode = "workspace",
-              inlayHints = {
-                variableTypes = true,
-                functionReturnTypes = true,
-              },
+              diagnosticMode = "off",
             },
           },
         },
+        ruff_lsp = {},
         bashls = {},
         yamlls = {},
         ansiblels = {},
@@ -64,6 +56,13 @@ return {
           },
         },
       }
+
+      require("neodev").setup()
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+      local mason_lspconfig = require("mason-lspconfig")
 
       mason_lspconfig.setup({
         ensure_installed = vim.tbl_keys(servers),
@@ -91,27 +90,4 @@ return {
     opts = {},
   },
   -- TODO: Replace with conform.nvim
-  {
-    "nvimtools/none-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local null_ls = require("null-ls")
-      local diagnostics = null_ls.builtins.diagnostics
-      local formatting = null_ls.builtins.formatting
-
-      null_ls.setup({
-        sources = {
-          diagnostics.ruff,
-          diagnostics.shellcheck,
-          formatting.prettier.with({
-            extra_filetypes = { "toml", "xml" },
-            extra_args = { "--no-semi", "--single-quote" },
-          }),
-          formatting.ruff.with({ extra_args = { "--fixable", "I" } }),
-          formatting.black.with({ extra_args = { "--fast" } }),
-          formatting.stylua,
-        },
-      })
-    end,
-  },
 }
