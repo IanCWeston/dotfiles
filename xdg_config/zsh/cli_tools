@@ -7,5 +7,5 @@ eval "$(zoxide init zsh)"
 # Starship prompt
 eval "$(starship init zsh)"
 
-# mcfly
-eval "$(mcfly init zsh)"
+# rtx
+eval "$($HOME/.local/bin/rtx activate zsh)"
