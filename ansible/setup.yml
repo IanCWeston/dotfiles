@@ -5,7 +5,8 @@
   become: yes
 
   vars:
-    default_user: ian
+    default_user: "{{ lookup('ansible.builtin.env', 'USER') }}"
+    home_path: "{{ lookup('ansible.builtin.env', 'HOME') }}"
 
   tasks:
     
@@ -28,13 +29,13 @@
   - name: "Copy over config files"
     ansible.builtin.copy:
       src: ../xdg_config/
-      dest: /home/ian/.config/
+      dest: "{{ home_path }}/.config/"
       owner: "{{ default_user }}"
       group: "{{ default_user }}"
 
   - name: "Download rtx"
     ansible.builtin.get_url:
       url: https://rtx.pub/rtx-latest-linux-x64
-      dest: /home/ian/.local/bin/rtx
+      dest: "{{ home_path }}/.local/bin/rtx"
       owner: "{{ default_user }}"
       mode: "0774"
