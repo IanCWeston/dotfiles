@@ -20,6 +20,7 @@
         packages:
           - gcc
           - gcc-c++
+          - unzip
           - make
           - tmux
           - zsh
