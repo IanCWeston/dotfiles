@@ -53,6 +53,10 @@ return {
       require("telescope").load_extension("undo")
     end,
   },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
   -- Better diagnostic list
   {
     "folke/trouble.nvim",
