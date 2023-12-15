@@ -19,12 +19,18 @@
         packages: "*"
       - description: "Install initial tools"
         packages:
+          - git
           - gcc
           - gcc-c++
           - unzip
           - make
           - tmux
           - zsh
+
+  - name: "Initialize Tmux Package Manager"
+    ansible.builtin.git:
+      repo: https://github.com/tmux-plugins/tpm
+      dest: "{{ home_path }}/.tmux/plugins/tpm"
 
   - name: "Copy over config files"
     ansible.builtin.copy:
@@ -33,6 +39,7 @@
       owner: "{{ default_user }}"
       group: "{{ default_user }}"
 
+    # TODO: Move rtx into role
   - name: "Download rtx"
     ansible.builtin.get_url:
       url: https://rtx.pub/rtx-latest-linux-x64
