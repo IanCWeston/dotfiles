@@ -42,8 +42,11 @@ end
 local _python_fstrings = vim.api.nvim_create_augroup("_python_fstrings", { clear = true })
 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-  callback = function()
-    pythonFStr()
+  callback = function(opts)
+    -- Need to run only on python files
+    if vim.bo[opts.buf].filetype == "python" then
+      pythonFStr()
+    end
   end,
   group = _python_fstrings,
 })
