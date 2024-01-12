@@ -120,24 +120,6 @@ return {
       }
     end,
   },
-  -- INDENT BLANKLINE
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = { "BufReadPost", "BufNewFile" },
-    main = "ibl",
-    opts = {
-      indent = {
-      -- char = "╎",
-      -- tab_char = "╎",
-      -- char = "│",
-      -- tab_char = "│",
-    },
-    scope = { enabled = true },
-      exclude = {
-        filetypes = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason"},
-      },
-    },
-  },
   -- NVIM-WEB-DEVICONS
   { "nvim-tree/nvim-web-devicons", lazy = true },
   -- NUI.NVIM

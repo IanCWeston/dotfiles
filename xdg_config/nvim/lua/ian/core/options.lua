@@ -37,7 +37,10 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
-vim.opt.listchars:append("eol:↴")
+-- TODO: Find a way to ignore this for the following filetypes
+-- filetypes = { "help", "alpha", "dashboard", "Trouble", "lazy", "mason" },
+vim.opt.listchars = { leadmultispace = "│ ", multispace = "│ ", tab = "│ " }
+-- vim.opt.listchars:append("eol:↴")
 
 -- vim.cmd("set whichwrap+=<,>,[,],h,l")
 -- vim.cmd([[set iskeyword+=-]])
