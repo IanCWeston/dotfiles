@@ -15,9 +15,4 @@ return {
       ignore = "^$",
     },
   },
-  -- QUICKFIX LIST
-  {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-  },
 }
