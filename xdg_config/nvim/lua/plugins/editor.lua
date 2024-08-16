@@ -1,12 +1,12 @@
 return {
   -- FILE EDITOR
   {
-    'stevearc/oil.nvim',
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    "stevearc/oil.nvim",
+    dependencies = { "echasnovski/mini.icons" },
     opts = {
       keymaps = {
-        ["<leader>e"] = "actions.close"
-      }
+        ["<leader>e"] = "actions.close",
+      },
     },
   },
   {

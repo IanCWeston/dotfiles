@@ -120,8 +120,6 @@ return {
       }
     end,
   },
-  -- NVIM-WEB-DEVICONS
-  { "nvim-tree/nvim-web-devicons", lazy = true },
   -- NUI.NVIM
   { "MunifTanjim/nui.nvim", lazy = true },
 }
