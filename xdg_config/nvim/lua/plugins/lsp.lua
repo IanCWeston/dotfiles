@@ -13,7 +13,6 @@ return {
     dependencies = {
       { "neovim/nvim-lspconfig" },
       { "hrsh7th/cmp-nvim-lsp" },
-      { "folke/neodev.nvim" },
     },
     config = function()
       local on_attach = function(_, bufnr)
@@ -57,8 +56,6 @@ return {
         },
       }
 
-      require("neodev").setup()
-
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -98,6 +95,12 @@ return {
   {
     "j-hui/fidget.nvim",
     branch = "legacy",
+    opts = {},
+  },
+
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
     opts = {},
   },
 }

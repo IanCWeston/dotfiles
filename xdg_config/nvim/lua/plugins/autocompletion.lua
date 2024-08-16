@@ -9,6 +9,7 @@ return {
       { "hrsh7th/cmp-nvim-lua" },
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
+      { "folke/lazydev.nvim" },
     },
     config = function()
       local cmp = require("cmp")
@@ -75,6 +76,7 @@ return {
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
+          { name = "lazydev", group_index = 0 },
         },
       })
     end,
