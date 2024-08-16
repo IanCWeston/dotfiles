@@ -110,12 +110,6 @@ return {
           lualine_z = {},
         },
         tabline = {},
-        winbar = {
-          lualine_c = { "%=", { "filename", path = 3 } },
-        },
-        inactive_winbar = {
-          lualine_c = { "%=", "filename" },
-        },
         extensions = {},
       }
     end,
