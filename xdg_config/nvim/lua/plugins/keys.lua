@@ -22,7 +22,6 @@ return {
         "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
         "Buffers",
       },
-      ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
       ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
       ["e"] = { "<cmd>Oil<CR>", "Explore Filesystem" },
       ["f"] = {

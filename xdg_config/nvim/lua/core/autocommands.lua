@@ -1,16 +1,5 @@
-local _alpha = vim.api.nvim_create_augroup("_alpha", { clear = true })
 local _auto_resize = vim.api.nvim_create_augroup("_auto_resize", { clear = true })
 local _general_settings = vim.api.nvim_create_augroup("_general_settings", { clear = true })
-
-vim.api.nvim_create_autocmd({ "User" }, {
-  pattern = { "AlphaReady" },
-  callback = function()
-    vim.cmd([[
-      set laststatus=0 | autocmd BufUnload <buffer> set laststatus=3
-    ]])
-  end,
-  group = _alpha,
-})
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
