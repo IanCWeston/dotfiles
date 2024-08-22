@@ -14,7 +14,10 @@ lazygit = "latest"
 neovim = "latest"
 node = "lts"
 ripgrep = "latest"
+ruff = "latest"
 starship = "latest"
+tmux = "latest"
+uv = "latest"
 xh = "latest"
 yq = "latest"
 zellij = "latest"
@@ -22,3 +25,5 @@ zoxide = "latest"
 
 [plugins]
 broot = 'https://github.com/cmur2/asdf-broot'
+
+# TODO: Find asdf plugin for Atuin and Oh My Posh
