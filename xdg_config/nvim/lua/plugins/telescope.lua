@@ -1,14 +1,4 @@
 return {
-  -- FILE EDITOR
-  {
-    "stevearc/oil.nvim",
-    dependencies = { "echasnovski/mini.icons" },
-    opts = {
-      keymaps = {
-        ["<leader>e"] = "actions.close",
-      },
-    },
-  },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
@@ -56,18 +46,5 @@ return {
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
-  },
-  -- Better diagnostic list
-  {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    opts = { use_diagnostic_signs = true },
-  },
-  -- Todo Comments
-  {
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = { "BufReadPost", "BufNewFile" },
-    config = true,
   },
 }

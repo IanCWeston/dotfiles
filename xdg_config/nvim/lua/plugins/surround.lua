@@ -1,11 +1,10 @@
 return {
-  -- SURROUND
+  -- TODO: Review keybindings for conflicts
   {
     "kylechui/nvim-surround",
+    version = "*",
     event = "VeryLazy",
-    config = function(_, opts)
-      require("nvim-surround").setup(opts)
-    end,
+    opts = {},
   },
   -- COMMENT
   --   {
