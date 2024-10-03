@@ -1,7 +1,24 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
+  event = "VeryLazy",
   main = "ibl",
   ---@module "ibl"
   ---@type ibl.config
-  opts = {},
+  opts = {
+    indent = {
+      char = "",
+      tab_char = "",
+    },
+    scope = { enabled = false },
+    exclude = {
+      filetypes = {
+        "help",
+        "Trouble",
+        "trouble",
+        "lazy",
+        "mason",
+        "notify",
+      },
+    },
+  },
 }
