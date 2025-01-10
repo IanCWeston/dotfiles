@@ -1,5 +1,5 @@
 -- Shorten function name
-local keymap = vim.keymap.set
+local map = vim.keymap.set
 
 -- Modes
 --   normal_mode = "n",
@@ -10,41 +10,46 @@ local keymap = vim.keymap.set
 --   command_mode = "c",
 
 -- Normal --
+-- Clear highlights on search when pressing <Esc> in normal mode
+map("n", "<Esc>", "<cmd>nohlsearch<cr>")
+
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h")
-keymap("n", "<C-j>", "<C-w>j")
-keymap("n", "<C-k>", "<C-w>k")
-keymap("n", "<C-l>", "<C-w>l")
+map("n", "<C-h>", "<C-w>h")
+map("n", "<C-j>", "<C-w>j")
+map("n", "<C-k>", "<C-w>k")
+map("n", "<C-l>", "<C-w>l")
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>")
-keymap("n", "<C-Down>", ":resize +2<CR>")
-keymap("n", "<C-Right>", ":vertical resize -2<CR>")
-keymap("n", "<C-Left>", ":vertical resize +2<CR>")
+map("n", "<C-Up>", ":resize -2<CR>")
+map("n", "<C-Down>", ":resize +2<CR>")
+map("n", "<C-Right>", ":vertical resize -2<CR>")
+map("n", "<C-Left>", ":vertical resize +2<CR>")
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>")
-keymap("n", "<S-h>", ":bprevious<CR>")
+map("n", "<S-l>", ":bnext<CR>")
+map("n", "<S-h>", ":bprevious<CR>")
 
 -- Center search results
-keymap("n", "n", "nzz")
-keymap("n", "N", "Nzz")
+map("n", "n", "nzz")
+map("n", "N", "Nzz")
+
+map("n", "<space>X", "<cmd>source %<CR>", { desc = "Run lua file" })
+map("n", "<space>x", ":.lua<CR>", { desc = "Run lua code line" })
 
 -- Insert --
 -- Alternate ESC
-keymap("i", "jk", "<ESC>")
-keymap("i", "kj", "<ESC>")
+map("i", "jk", "<ESC>")
+map("i", "kj", "<ESC>")
 
 -- Tabout
-keymap("i", "<Tab>", "<Right>")
+map("i", "<Tab>", "<Right>")
 
 -- Visual --
 -- Stay in indent mode
-keymap("v", "<", "<gv")
-keymap("v", ">", ">gv")
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 -- Better paste
-keymap("v", "p", '"_dP')
+map("v", "p", '"_dP')
 
--- Telescope
-keymap("n", "<c-t>", "<cmd>Telescope grep_string<cr>")
+map("v", "<space>x", ":lua<CR>", { desc = "Run lua code selection" })

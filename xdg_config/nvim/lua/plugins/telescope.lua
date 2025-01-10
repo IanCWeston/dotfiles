@@ -41,6 +41,8 @@ return {
     config = function()
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("undo")
+
+      vim.keymap.set("n", "<c-t>", "<cmd>Telescope grep_string<cr>")
     end,
   },
   {
