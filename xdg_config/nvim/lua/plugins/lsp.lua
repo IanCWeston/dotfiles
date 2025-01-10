@@ -43,7 +43,7 @@ return {
             },
           },
         },
-        ruff_lsp = {},
+        ruff = {},
         bashls = {},
         yamlls = {},
         ansiblels = {},
