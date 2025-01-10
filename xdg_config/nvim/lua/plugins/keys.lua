@@ -88,7 +88,7 @@ return {
           "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
           "Workspace Symbols",
         },
-        t = { "<cmd>TroubleToggle<cr>", "Trouble" },
+        t = { "<cmd>Trouble diagnostics toggle<cr>", "Trouble Diagnostics" },
       },
       s = {
         name = "Search",

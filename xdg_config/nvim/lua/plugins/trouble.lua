@@ -1,5 +1,11 @@
 return {
   "folke/trouble.nvim",
-  cmd = { "TroubleToggle", "Trouble" },
-  opts = { use_diagnostic_signs = true },
+  cmd = { "Trouble" },
+  opts = {
+    modes = {
+      lsp = {
+        win = { position = "right" }
+      },
+    },
+  },
 }
