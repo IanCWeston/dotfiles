@@ -79,6 +79,9 @@ local options = {
 
   -- Display lines as one long line
   wrap = false,
+
+  -- Preview substitutions live, as you type!
+  inccommand = "split",
 }
 
 for k, v in pairs(options) do
