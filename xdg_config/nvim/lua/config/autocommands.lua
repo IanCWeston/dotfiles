@@ -1,4 +1,3 @@
-local _auto_resize = vim.api.nvim_create_augroup("_auto_resize", { clear = true })
 local _general_settings = vim.api.nvim_create_augroup("_general_settings", { clear = true })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -7,23 +6,20 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "help",
     "man",
     "lspinfo",
-    "spectre_panel",
-    "lir",
     "neo-tree",
     "tsplayground",
     "Markdown",
   },
   callback = function()
-    vim.cmd([[
-      nnoremap <silent> <buffer> q :close<CR>
-      nnoremap <silent> <buffer> <esc> :close<CR>
-      set nobuflisted
-    ]])
+    vim.keymap.set("n", "q", "<cmd>close<cr>", { silent = true, buffer = true })
+    vim.keymap.set("n", "<esc>", "<cmd>close<cr>", { silent = true, buffer = true })
+    vim.bo.buflisted = false
   end,
   group = _general_settings,
 })
 
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  desc = "Higlight when yanking (copying) text",
   callback = function()
     vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
   end,
@@ -41,5 +37,5 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     vim.cmd("tabdo wincmd =")
   end,
-  group = _auto_resize,
+  group = vim.api.nvim_create_augroup("_auto_resize", { clear = true }),
 })
