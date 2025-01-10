@@ -2,6 +2,7 @@ return {
   -- LUALINE
   {
     "nvim-lualine/lualine.nvim",
+    dependencies = { "echasnovski/mini.icons" },
     event = "VeryLazy",
     opts = function(plugin)
       local custom_fileformat = {
@@ -54,6 +55,4 @@ return {
       }
     end,
   },
-  -- NUI.NVIM
-  { "MunifTanjim/nui.nvim", lazy = true },
 }
