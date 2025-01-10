@@ -2,6 +2,7 @@ local _general_settings = vim.api.nvim_create_augroup("_general_settings", { cle
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
+    "checkhealth",
     "qf",
     "help",
     "man",

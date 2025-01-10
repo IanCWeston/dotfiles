@@ -7,120 +7,155 @@ return {
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-    local nopts = {
-      mode = "n",
-      prefix = "<leader>",
-      buffer = nil,
-      silent = true,
-      noremap = true,
-      nowait = true,
-    }
 
     local mappings = {
-      ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
-      ["<space>"] = {
+      { "<leader>/", "<cmd>norm gcc<cr>", desc = "Comment", nowait = true, remap = false },
+      {
+        "<leader><space>",
         "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-        "Buffers",
+        desc = "Buffers",
+        nowait = true,
+        remap = false,
       },
-      ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
-      ["e"] = { "<cmd>Oil<CR>", "Explore Filesystem" },
-      ["f"] = {
+      { "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text", nowait = true, remap = false },
+      { "<leader>L", "<cmd>Lazy<CR>", desc = "Lazy", nowait = true, remap = false },
+      { "<leader>c", "<cmd>bdelete!<CR>", desc = "Close Buffer", nowait = true, remap = false },
+      { "<leader>e", "<cmd>Oil<CR>", desc = "Explore Filesystem", nowait = true, remap = false },
+      {
+        "<leader>f",
         "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-        "Find files",
+        desc = "Find files",
+        nowait = true,
+        remap = false,
       },
-      ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-      ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-      ["L"] = { "<cmd>Lazy<CR>", "Lazy" },
-      ["p"] = { '"+p', "System Paste" },
-      ["q"] = { "<cmd>q<CR>", "Quit" },
-      ["w"] = { "<cmd>w<CR>", "Save" },
-      ["y"] = { '"+y', "System Yank" },
-
-      g = {
-        name = "Git",
-        j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-        k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-        l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-        p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-        r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-        R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-        s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-        u = {
-          "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-          "Undo Stage Hunk",
-        },
-        o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-        d = {
-          "<cmd>Gitsigns diffthis HEAD<cr>",
-          "Diff",
-        },
+      { "<leader>g", group = "Git", nowait = true, remap = false },
+      {
+        "<leader>gR",
+        "<cmd>lua require 'gitsigns'.reset_buffer()<cr>",
+        desc = "Reset Buffer",
+        nowait = true,
+        remap = false,
       },
-
-      l = {
-        name = "LSP",
-        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        d = {
-          "<cmd>Telescope lsp_document_diagnostics<cr>",
-          "Document Diagnostics",
-        },
-        w = {
-          "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-          "Workspace Diagnostics",
-        },
-        -- f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
-        i = { "<cmd>LspInfo<cr>", "Info" },
-        I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-        j = {
-          "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-          "Next Diagnostic",
-        },
-        k = {
-          "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-          "Prev Diagnostic",
-        },
-        l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-        q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-        S = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-          "Workspace Symbols",
-        },
-        t = { "<cmd>Trouble diagnostics toggle<cr>", "Trouble Diagnostics" },
+      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
+      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit", nowait = true, remap = false },
+      { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff", nowait = true, remap = false },
+      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
+      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk", nowait = true, remap = false },
+      { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", nowait = true, remap = false },
+      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
+      {
+        "<leader>gp",
+        "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
+        desc = "Preview Hunk",
+        nowait = true,
+        remap = false,
       },
-      s = {
-        name = "Search",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-        h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-        M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-        R = { "<cmd>Telescope registers<cr>", "Registers" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        C = { "<cmd>Telescope commands<cr>", "Commands" },
+      {
+        "<leader>gr",
+        "<cmd>lua require 'gitsigns'.reset_hunk()<cr>",
+        desc = "Reset Hunk",
+        nowait = true,
+        remap = false,
       },
+      {
+        "<leader>gs",
+        "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
+        desc = "Stage Hunk",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>gu",
+        "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
+        desc = "Undo Stage Hunk",
+        nowait = true,
+        remap = false,
+      },
+      { "<leader>h", "<cmd>nohlsearch<CR>", desc = "No Highlight", nowait = true, remap = false },
+      { "<leader>l", group = "LSP", nowait = true, remap = false },
+      { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
+      {
+        "<leader>lS",
+        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+        desc = "Workspace Symbols",
+        nowait = true,
+        remap = false,
+      },
+      { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
+      {
+        "<leader>ld",
+        "<cmd>Telescope lsp_document_diagnostics<cr>",
+        desc = "Document Diagnostics",
+        nowait = true,
+        remap = false,
+      },
+      { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
+      {
+        "<leader>lj",
+        "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
+        desc = "Next Diagnostic",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>lk",
+        "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
+        desc = "Prev Diagnostic",
+        nowait = true,
+        remap = false,
+      },
+      { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action", nowait = true, remap = false },
+      {
+        "<leader>lq",
+        "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
+        desc = "Quickfix",
+        nowait = true,
+        remap = false,
+      },
+      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
+      {
+        "<leader>ls",
+        "<cmd>Telescope lsp_document_symbols<cr>",
+        desc = "Document Symbols",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>lt",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Trouble Diagnostics",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>lw",
+        "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+        desc = "Workspace Diagnostics",
+        nowait = true,
+        remap = false,
+      },
+      { "<leader>p", '"+p', desc = "System Paste", nowait = true, remap = false },
+      { "<leader>q", "<cmd>q<CR>", desc = "Quit", nowait = true, remap = false },
+      { "<leader>s", group = "Search", nowait = true, remap = false },
+      { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands", nowait = true, remap = false },
+      { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages", nowait = true, remap = false },
+      { "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers", nowait = true, remap = false },
+      { "<leader>sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
+      { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", nowait = true, remap = false },
+      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help", nowait = true, remap = false },
+      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", nowait = true, remap = false },
+      { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
+      { "<leader>w", "<cmd>w<CR>", desc = "Save", nowait = true, remap = false },
+      { "<leader>y", '"+y', desc = "System Yank", nowait = true, remap = false },
     }
 
-    local vopts = {
-      mode = "v",
-      prefix = "<leader>",
-      buffer = nil,
-      silent = true,
-      noremap = true,
-      nowait = true,
-    }
     local vmappings = {
-      ["/"] = {
-        '<ESC><CMD>lua require("Comment.api").locked("toggle.linewise")(vim.fn.visualmode())<CR>',
-        "Comment",
-      },
-      ["y"] = { '"+y', "System Yank" },
+      { "<leader>/", "gc", desc = "Comment", mode = "v", nowait = true, remap = true },
+      { "<leader>y", '"+y', desc = "System Yank", mode = "v", nowait = true, remap = false },
     }
 
-    wk.register(mappings, nopts)
-    wk.register(vmappings, vopts)
+    wk.add(mappings)
+    wk.add(vmappings)
   end,
 }
 -- TODO: Move keymaps to individual plugins
