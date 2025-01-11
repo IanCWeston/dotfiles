@@ -93,12 +93,6 @@ return {
     end,
   },
   {
-    "j-hui/fidget.nvim",
-    branch = "legacy",
-    opts = {},
-  },
-
-  {
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
     opts = {},
