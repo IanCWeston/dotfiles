@@ -18,35 +18,34 @@ return {
   {
     "echasnovski/mini.surround",
     event = { "BufReadPre", "BufNewFile" },
-    -- TODO: Implement the util functions from LazyVim to allow for advanced key setup
-    -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/util/init.lua
     keys = function(_, keys)
-      -- -- Populate the keys based on the user's options
-      -- local opts = LazyVim.opts("mini.surround")
-      -- local mappings = {
-      --   { opts.mappings.add, desc = "Add Surrounding", mode = { "n", "v" } },
-      --   { opts.mappings.delete, desc = "Delete Surrounding" },
-      --   { opts.mappings.find, desc = "Find Right Surrounding" },
-      --   { opts.mappings.find_left, desc = "Find Left Surrounding" },
-      --   { opts.mappings.highlight, desc = "Highlight Surrounding" },
-      --   { opts.mappings.replace, desc = "Replace Surrounding" },
-      --   { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
-      -- }
-      -- mappings = vim.tbl_filter(function(m)
-      --   return m[1] and #m[1] > 0
-      -- end, mappings)
-      -- return vim.list_extend(mappings, keys)
+      -- Populate the keys based on the user's options
+      local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
+      local opts = require("lazy.core.plugin").values(plugin, "opts", false)
+      local mappings = {
+        { opts.mappings.add, desc = "Add Surrounding", mode = { "n", "v" } },
+        { opts.mappings.delete, desc = "Delete Surrounding" },
+        { opts.mappings.find, desc = "Find Right Surrounding" },
+        { opts.mappings.find_left, desc = "Find Left Surrounding" },
+        { opts.mappings.highlight, desc = "Highlight Surrounding" },
+        { opts.mappings.replace, desc = "Replace Surrounding" },
+        { opts.mappings.update_n_lines, desc = "Update `MiniSurround.config.n_lines`" },
+      }
+      mappings = vim.tbl_filter(function(m)
+        return m[1] and #m[1] > 0
+      end, mappings)
+      return vim.list_extend(mappings, keys)
     end,
     opts = {
-      -- NOTE: Using vim-surround mappings
+      -- NOTE: Using vim-surround adjacent mappings
       mappings = {
-        add = "ys", -- Add surrounding in Normal and Visual modes
+        add = "gs", -- Add surrounding in Normal and Visual modes
         delete = "ds", -- Delete surrounding
-        find = "gsf", -- Find surrounding (to the right)
-        find_left = "gsF", -- Find surrounding (to the left)
-        highlight = "gsh", -- Highlight surrounding
+        find = "gzf", -- Find surrounding (to the right)
+        find_left = "gzF", -- Find surrounding (to the left)
+        highlight = "gzh", -- Highlight surrounding
         replace = "cs", -- Replace surrounding
-        update_n_lines = "gsn", -- Update `n_lines`
+        update_n_lines = "gzn", -- Update `n_lines`
       },
       search_method = "cover_or_next",
     },
