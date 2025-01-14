@@ -2,14 +2,15 @@ local _general_settings = vim.api.nvim_create_augroup("_general_settings", { cle
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
-    "checkhealth",
-    "qf",
-    "help",
-    "man",
-    "lspinfo",
-    "neo-tree",
-    "tsplayground",
     "Markdown",
+    "checkhealth",
+    "grug-far",
+    "help",
+    "lspinfo",
+    "man",
+    "neo-tree",
+    "qf",
+    "tsplayground",
   },
   callback = function()
     vim.keymap.set("n", "q", "<cmd>close<cr>", { silent = true, buffer = true })
