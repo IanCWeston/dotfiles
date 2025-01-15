@@ -22,6 +22,7 @@ return {
         -- wo = { wrap = true } -- Wrap notifications
       },
     },
+    picker = { ui_select = true },
   },
   -- stylua: ignore
   keys = {

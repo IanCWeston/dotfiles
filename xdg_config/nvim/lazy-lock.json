@@ -31,12 +31,12 @@
   "oil.nvim": { "branch": "master", "commit": "7041528bdedb350ad66e650684deec8456e053cc" },
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },
-  "snacks.nvim": { "branch": "main", "commit": "1b7a57a0b14b37a708330a346a767865954ce448" },
+  "snacks.nvim": { "branch": "main", "commit": "541b46dfac694590a31448b7b764a2b7b16c7f09" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "dae2eac9d91464448b584c7949a31df8faefec56" },
   "telescope-undo.nvim": { "branch": "main", "commit": "2971cc9f193ec09e0c5de3563f99cbea16b63f10" },
   "telescope.nvim": { "branch": "master", "commit": "415af52339215926d705cccc08145f3782c4d132" },
-  "todo-comments.nvim": { "branch": "main", "commit": "ae0a2afb47cf7395dc400e5dc4e05274bf4fb9e0" },
-  "tokyonight.nvim": { "branch": "main", "commit": "7bb270adaa7692c2c33befc35f5567fc596a2504" },
-  "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
+  "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
+  "tokyonight.nvim": { "branch": "main", "commit": "775f82f08a3d1fb55a37fc6d3a4ab10cd7ed8a10" },
+  "trouble.nvim": { "branch": "main", "commit": "4d36b8979287f5facc03fd6d955ace67db667e1d" },
   "which-key.nvim": { "branch": "main", "commit": "1f8d414f61e0b05958c342df9b6a4c89ce268766" }
 }
