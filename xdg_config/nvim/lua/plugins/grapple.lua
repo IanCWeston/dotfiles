@@ -14,24 +14,24 @@ return {
         function()
           require("grapple").toggle()
         end,
-        desc = "Grapple toggle tag",
+        desc = "Mark file",
       },
       {
         "<leader>M",
         function()
           require("grapple").toggle_tags()
         end,
-        desc = "Grapple open tags window",
+        desc = "Open marks window",
       },
     }
 
-    for i = 1, 4 do
+    for i = 1, 5 do
       table.insert(keys, {
         "<leader>" .. i,
         function()
           require("grapple").select({ index = i })
         end,
-        desc = "Grapple to File " .. i,
+        desc = "Jump to file " .. i,
       })
     end
     return keys
