@@ -1,6 +1,7 @@
 return {
   "OXY2DEV/markview.nvim",
-  ft = "markdown",
+  ft = "markdown", -- Not recommended but definitely speeds up load times
+  cmd = { "Markview" },
 
   dependencies = {
     "echasnovski/mini.icons",
@@ -10,6 +11,9 @@ return {
     return {
       headings = presets.headings.glow,
       horizontal_rules = presets.horizontal_rules.thin,
+
+      -- Don't preview on buffer load. We handle this with a keymap
+      initial_state = false,
     }
   end,
   config = function(_, opts)
