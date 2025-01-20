@@ -60,14 +60,7 @@ return {
       {
         "<leader>gs",
         "<cmd>lua require 'gitsigns'.stage_hunk()<cr>",
-        desc = "Stage Hunk",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>gu",
-        "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-        desc = "Undo Stage Hunk",
+        desc = "Toggle Stage Hunk",
         nowait = true,
         remap = false,
       },
