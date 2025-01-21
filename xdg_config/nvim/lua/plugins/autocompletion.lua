@@ -9,6 +9,7 @@ return {
       { "hrsh7th/cmp-nvim-lua" },
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
+      { "folke/lazydev.nvim" },
     },
     config = function()
       local cmp = require("cmp")
@@ -59,7 +60,7 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
-            local kind_icons = require("ian.util.icons").kind
+            local kind_icons = require("util.icons").kind
             vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
@@ -75,18 +76,9 @@ return {
           { name = "luasnip" },
           { name = "buffer" },
           { name = "path" },
+          { name = "lazydev", group_index = 0 },
         },
       })
-    end,
-  },
-  {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
-    config = function()
-      require("nvim-autopairs").setup()
-      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-      local cmp = require("cmp")
-      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
 }

@@ -1,20 +1,9 @@
 return {
-  -- FILE EDITOR
-  {
-    'stevearc/oil.nvim',
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {
-      keymaps = {
-        ["<leader>e"] = "actions.close"
-      }
-    },
-  },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
-      "debugloop/telescope-undo.nvim",
     },
     cmd = "Telescope",
     build = "make",
@@ -50,24 +39,12 @@ return {
     },
     config = function()
       require("telescope").load_extension("fzf")
-      require("telescope").load_extension("undo")
+
+      vim.keymap.set("n", "<c-t>", "<cmd>Telescope grep_string<cr>")
     end,
   },
   {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
-  },
-  -- Better diagnostic list
-  {
-    "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    opts = { use_diagnostic_signs = true },
-  },
-  -- Todo Comments
-  {
-    "folke/todo-comments.nvim",
-    cmd = { "TodoTrouble", "TodoTelescope" },
-    event = { "BufReadPost", "BufNewFile" },
-    config = true,
   },
 }

@@ -26,6 +26,8 @@ return {
       -- },
     },
   },
+  -- TODO: Simplify this code.  It's overengineerd for our purposes
+  -- See https://github.com/Allaman/nvim/blob/fe271707d01138eb29000f6c701cdbdb9e815e0e/lua/vnext/plugins/coding.lua#L3
   config = function(_, opts)
     local M = {}
 

@@ -1,4 +1,8 @@
-require("ian.core.options")
-require("ian.core.keymaps")
-require("ian.core.autocommands")
-require("ian.core.lazy")
+-- setup leader keys
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+require("config.options")
+require("config.keymaps")
+require("config.autocommands")
+require("config.lazy")
