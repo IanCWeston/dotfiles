@@ -16,3 +16,7 @@ function argshelp() {
   $1 --help | grep -w -- "-[$ARGS]"
 }
 
+function tool_exists() {
+  command -v "$1" >/dev/null 2>&1
+  }
+

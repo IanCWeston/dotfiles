@@ -1,11 +1,14 @@
-# FZ
+# FZF
 source "$HOME/.config/fzf/key-bindings.zsh"
 
 # Zoxide
-eval "$(zoxide init zsh)"
+tool_exists zoxide && eval "$(zoxide init zsh)"
 
 # Starship prompt
-eval "$(starship init zsh)"
+tool_exists starship && eval "$(starship init zsh)"
 
-# rtx
-eval "$($HOME/.local/bin/rtx activate zsh)"
+# OhMyPosh prompt
+tool_exists oh-my-posh && eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.yaml)"
+
+# Mise
+tool_exists mise && eval "$($HOME/.local/bin/mise activate zsh)"
