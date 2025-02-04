@@ -9,11 +9,14 @@ return {
   opts = function()
     local presets = require("markview.presets")
     return {
-      headings = presets.headings.glow,
-      horizontal_rules = presets.horizontal_rules.thin,
-
+      markdown = {
+        headings = presets.headings.glow,
+        horizontal_rules = presets.horizontal_rules.thin,
+      },
       -- Don't preview on buffer load. We handle this with a keymap
-      initial_state = false,
+      preview = {
+        enable = false,
+      },
     }
   end,
   config = function(_, opts)
