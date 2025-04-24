@@ -1,29 +1,77 @@
 [tools]
+# General
+"aqua:atuinsh/atuin" = "latest"
 bat = "latest"
-broot = "latest"
 delta = "latest"
 eza = "latest"
 fd = "latest"
 fzf = "latest"
-github-cli = "latest"
-glow = "latest"
-jless = "latest"
-jq = "latest"
-just = "latest"
-lazygit = "latest"
-neovim = "latest"
-node = "lts"
 ripgrep = "latest"
-ruff = "latest"
-starship = "latest"
-tmux = "latest"
-uv = "latest"
-xh = "latest"
-yq = "latest"
-zellij = "latest"
 zoxide = "latest"
 
-[plugins]
-broot = 'https://github.com/cmur2/asdf-broot'
+# Shell prompts
+"aqua:JanDeDobbeleer/oh-my-posh" = "latest"
+starship = "latest"
 
-# TODO: Find asdf plugin for Atuin and Oh My Posh
+# Editors
+neovim = "latest"
+yazi = "latest"
+
+# Languages
+node = "lts"
+go = "latest"
+python = "latest"
+
+# Structured parsing
+fx = "latest"
+jless = "latest"
+jmespath = "latest"
+jq = "latest"
+jqp = "latest"
+yq = "latest"
+
+# Git
+github-cli = "latest"
+glab = "latest"
+lazygit = "latest"
+
+# API testing
+hurl = "latest"
+xh = "latest"
+
+# Python
+ruff = "latest"
+uv = "latest"
+
+# Lua
+stylua = "latest"
+
+# Shell
+shellcheck = "latest"
+shfmt = "latest"
+
+# YAML
+yamllint = "latest"
+
+# HTML/XML
+"npm:prettier" = "latest"
+
+# Kubernetes
+k9s = "latest"
+kubectx = "latest"
+kubens = "latest"
+
+# Docker
+nerdctl = "latest"
+hadolint = "latest"
+
+# Cloud
+aws-cli = "latest"
+terraform = "latest"
+
+# Language servers
+# TODO: Add language servers
+
+# BUG: The latest version of tmux isn't able to compile correctly through asdf
+# tmux = "latest"
+
