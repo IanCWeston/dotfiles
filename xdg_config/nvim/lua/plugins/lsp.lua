@@ -9,6 +9,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     cmd = { "LspInfo", "LspInstall", "LspStart" },
+    enabled = false,
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       { "neovim/nvim-lspconfig" },
