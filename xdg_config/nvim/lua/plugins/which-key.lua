@@ -12,18 +12,30 @@ return {
       { "<leader>/", "<cmd>norm gcc<cr>", desc = "Comment", nowait = true, remap = false },
       {
         "<leader><space>",
-        "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+        function()
+          Snacks.picker.buffers({ layout = { preset = "select" } })
+        end,
         desc = "Buffers",
         nowait = true,
         remap = false,
       },
-      { "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", desc = "Find Text", nowait = true, remap = false },
+      {
+        "<leader>F",
+        function()
+          Snacks.picker.grep({ layout = { preset = "ivy" } })
+        end,
+        desc = "Find Text",
+        nowait = true,
+        remap = false,
+      },
       { "<leader>L", "<cmd>Lazy<CR>", desc = "Lazy", nowait = true, remap = false },
       { "<leader>c", "<cmd>bdelete!<CR>", desc = "Close Buffer", nowait = true, remap = false },
       { "<leader>e", "<cmd>Oil<CR>", desc = "Explore Filesystem", nowait = true, remap = false },
       {
         "<leader>f",
-        "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+        function()
+          Snacks.picker.files({ layout = { preset = "select" } })
+        end,
         desc = "Find files",
         nowait = true,
         remap = false,
@@ -36,7 +48,15 @@ return {
         nowait = true,
         remap = false,
       },
-      { "<leader>gb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
+      {
+        "<leader>gb",
+        function()
+          Snacks.picker.git_branches()
+        end,
+        desc = "Checkout branch",
+        nowait = true,
+        remap = false,
+      },
       { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit", nowait = true, remap = false },
       { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff", nowait = true, remap = false },
       { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
