@@ -1,48 +1,88 @@
-# Set up the prompt
+# TODO: load plugins with Antidote
+# Plugins
+source $ZDOTDIR/plugins/powerlevel10k/powerlevel10k.zsh-theme
+source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
-# autoload -Uz promptinit
-# promptinit
-# prompt adam1
-
-setopt histignorealldups sharehistory
-
-# Use emacs keybindings even if our EDITOR is set to vi
+# Keybindings
 bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+# bindkey '^[w' kill-region
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+# History
+HISTSIZE=10000
 HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+### COMPLETIONS ###
+fpath=($ZDOTDIR/plugins/zsh-completions/src $fpath)
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
+# FZF completions
+source $ZDOTDIR/plugins/fzf-tab/fzf-tab.zsh
 
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# General
-set -o vi # Vi shell
-source $ZDOTDIR/aliases
+### Aliases
+alias l='eza'
+alias ll='eza -la'
+alias tree='eza --icons --tree'
+alias lg='lazygit'
+alias gl='glab'
+alias cls='clear'
+
+alias v='nvim'
+alias t='tmux'
+alias tp='tmuxp'
+alias f='fzf | xargs nvim'
+
+# Kubernetes
+alias k='kubectl'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+
+alias kcx='kubectx'
+alias kns='kubens'
+
+# Docker
+alias d='sudo docker'
+
+### Other files
 source $ZDOTDIR/custom_functions
-source $ZDOTDIR/cli_tools
 
-# Glab
-#eval "$(glab completion -s zsh)"
-#alias gl='glab'
+### Shell integrations
+# FZF
+tool_exists fzf && eval "$(fzf --zsh)"
+# source "$HOME/.config/fzf/key-bindings.zsh"
 
+# Zoxide
+tool_exists zoxide && eval "$(zoxide init --cmd cd zsh)"
+
+# Starship prompt
+# tool_exists starship && eval "$(starship init zsh)"
+
+# OhMyPosh prompt
+tool_exists oh-my-posh && eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.yaml)"
+
+# Atuin
+tool_exists atuin && eval "$(atuin init zsh)"
+
+# Mise
+tool_exists mise && eval "$($HOME/.local/bin/mise activate zsh)"

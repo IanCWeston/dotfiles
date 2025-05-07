@@ -1,8 +1,0 @@
-alias ll='exa -l'
-alias tree='exa --icons --tree'
-alias lg='lazygit'
-alias cls='clear'
-
-alias v='nvim'
-alias t='tmux'
-alias k='kubectl'
