@@ -1,8 +1,0 @@
-alias ll='exa -l'
-alias tree='exa --icons --tree'
-alias lg='lazygit'
-alias cls='clear'
-
-alias gf='/home/westoia/scripts/personal/pull_firewall_config.sh'
-alias n='nvim'
-alias tm='tmux'

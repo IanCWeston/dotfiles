@@ -7,10 +7,6 @@ return {
     event = { "VeryLazy" },
     lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    keys = {
-      { "v", desc = "Increment Selection" },
-      { "V", desc = "Decrement Selection", mode = "x" },
-    },
     opts_extend = { "ensure_installed" },
     ---@type TSConfig
     ---@diagnostic disable-next-line: missing-fields
@@ -19,36 +15,22 @@ return {
       indent = { enable = true },
       ensure_installed = {
         "bash",
-        "c",
         "diff",
         "dockerfile",
         "go",
         "html",
         "json",
         "jsonc",
-        "lua",
         "luadoc",
         "luap",
-        "markdown",
         "markdown_inline",
         "printf",
         "python",
         "query",
         "regex",
         "toml",
-        "vim",
-        "vimdoc",
         "xml",
         "yaml",
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "v",
-          node_incremental = "v",
-          scope_incremental = false,
-          node_decremental = "V",
-        },
       },
       textobjects = {
         move = {
