@@ -57,12 +57,28 @@ return {
         nowait = true,
         remap = false,
       },
-      { "<leader>gc", "<cmd>Telescope git_commits<cr>", desc = "Checkout commit", nowait = true, remap = false },
+      {
+        "<leader>gc",
+        function()
+          Snacks.picker.git_log()
+        end,
+        desc = "Checkout commit",
+        nowait = true,
+        remap = false,
+      },
       { "<leader>gd", "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff", nowait = true, remap = false },
       { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk", nowait = true, remap = false },
       { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk", nowait = true, remap = false },
       { "<leader>gl", "<cmd>lua require 'gitsigns'.blame_line()<cr>", desc = "Blame", nowait = true, remap = false },
-      { "<leader>go", "<cmd>Telescope git_status<cr>", desc = "Open changed file", nowait = true, remap = false },
+      {
+        "<leader>go",
+        function()
+          Snacks.picker.git_status()
+        end,
+        desc = "Open changed file",
+        nowait = true,
+        remap = false,
+      },
       {
         "<leader>gp",
         "<cmd>lua require 'gitsigns'.preview_hunk()<cr>",
@@ -86,23 +102,29 @@ return {
       },
       { "<leader>h", "<cmd>nohlsearch<CR>", desc = "No Highlight", nowait = true, remap = false },
       { "<leader>l", group = "LSP", nowait = true, remap = false },
+      -- TODO: Remove this mapping
       { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
       {
         "<leader>lS",
-        "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-        desc = "Workspace Symbols",
+        function()
+          Snacks.picker.lsp_workspace_symbols()
+        end,
+        desc = "Workplace Symbols",
         nowait = true,
         remap = false,
       },
       { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
       {
         "<leader>ld",
-        "<cmd>Telescope lsp_document_diagnostics<cr>",
+        function()
+          Snacks.picker.diagnostics_buffer()
+        end,
         desc = "Document Diagnostics",
         nowait = true,
         remap = false,
       },
       { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
+      -- TODO: Remove these as the functionality is covered by [d and ]d
       {
         "<leader>lj",
         "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
@@ -128,11 +150,14 @@ return {
       { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
       {
         "<leader>ls",
-        "<cmd>Telescope lsp_document_symbols<cr>",
+        function()
+          Snacks.picker.lsp_symbols()
+        end,
         desc = "Document Symbols",
         nowait = true,
         remap = false,
       },
+      -- TODO: Review this workflow
       {
         "<leader>lt",
         "<cmd>Trouble diagnostics toggle<cr>",
@@ -142,7 +167,9 @@ return {
       },
       {
         "<leader>lw",
-        "<cmd>Telescope lsp_workspace_diagnostics<cr>",
+        function()
+          Snacks.picker.diagnostics()
+        end,
         desc = "Workspace Diagnostics",
         nowait = true,
         remap = false,
@@ -150,14 +177,79 @@ return {
       { "<leader>p", '"+p', desc = "System Paste", nowait = true, remap = false },
       { "<leader>q", "<cmd>q<CR>", desc = "Quit", nowait = true, remap = false },
       { "<leader>s", group = "Search", nowait = true, remap = false },
-      { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands", nowait = true, remap = false },
-      { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages", nowait = true, remap = false },
-      { "<leader>sR", "<cmd>Telescope registers<cr>", desc = "Registers", nowait = true, remap = false },
-      { "<leader>sb", "<cmd>Telescope git_branches<cr>", desc = "Checkout branch", nowait = true, remap = false },
-      { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme", nowait = true, remap = false },
-      { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Find Help", nowait = true, remap = false },
-      { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Keymaps", nowait = true, remap = false },
-      { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File", nowait = true, remap = false },
+      {
+        "<leader>sC",
+        function()
+          Snacks.picker.commands()
+        end,
+        desc = "Commands",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>sM",
+        function()
+          Snacks.picker.man()
+        end,
+        desc = "Man Pages",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>sR",
+        function()
+          Snacks.picker.registers()
+        end,
+        desc = "Registers",
+        nowait = true,
+        remap = false,
+      },
+      -- TODO: Review duplicate keymap
+      {
+        "<leader>sb",
+        function()
+          Snacks.picker.git_branches()
+        end,
+        desc = "Checkout branch",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>sc",
+        function()
+          Snacks.picker.colorschemes()
+        end,
+        desc = "Colorscheme",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>sh",
+        function()
+          Snacks.picker.help()
+        end,
+        desc = "Find Help",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>sk",
+        function()
+          Snacks.picker.keymaps()
+        end,
+        desc = "Keymaps",
+        nowait = true,
+        remap = false,
+      },
+      {
+        "<leader>sr",
+        function()
+          Snacks.picker.recent()
+        end,
+        desc = "Open Recent File",
+        nowait = true,
+        remap = false,
+      },
       { "<leader>w", "<cmd>w<CR>", desc = "Save", nowait = true, remap = false },
       { "<leader>y", '"+y', desc = "System Yank", nowait = true, remap = false },
     }
