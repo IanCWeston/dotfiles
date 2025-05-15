@@ -1,6 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
+    version = "v1.*",
     cmd = { "Mason", "MasonInstall", "MasonUpdate" },
     lazy = false,
     config = true,
