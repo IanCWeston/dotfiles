@@ -39,8 +39,6 @@ return {
     },
     config = function()
       require("telescope").load_extension("fzf")
-
-      vim.keymap.set("n", "<c-t>", "<cmd>Telescope grep_string<cr>")
     end,
   },
   {

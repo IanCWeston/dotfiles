@@ -20,6 +20,7 @@ return {
     { "<leader>sh", function() Snacks.picker.help() end, desc = "Find Help", },
     { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps", },
     { "<leader>sr", function() Snacks.picker.recent() end, desc = "Open Recent File", },
+    { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
   },
   opts = {
     picker = {
