@@ -24,6 +24,14 @@ return {
   },
   opts = {
     picker = {
+      -- TODO: Consider switch back to default Snacks layout afte transition period
+      layout = {
+        cycle = true,
+        --- Use the telescope layout or vertical if the window is too narrow
+        preset = function()
+          return vim.o.columns >= 120 and "telescope" or "vertical"
+        end,
+      },
       actions = {
         trouble_open = function(...)
           return require("trouble.sources.snacks").actions.trouble_open.action(...)
