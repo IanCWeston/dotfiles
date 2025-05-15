@@ -13,9 +13,6 @@ return {
         prompt_prefix = " ",
         mappings = {
           i = {
-            ["<c-t>"] = function(...)
-              return require("trouble.providers.telescope").open_with_trouble(...)
-            end,
             ["<C-Down>"] = function(...)
               return require("telescope.actions").cycle_history_next(...)
             end,
