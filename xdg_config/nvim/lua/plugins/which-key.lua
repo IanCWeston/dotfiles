@@ -46,35 +46,10 @@ return {
         nowait = true,
         remap = false,
       },
-      { "<leader>h", "<cmd>nohlsearch<CR>", desc = "No Highlight", nowait = true, remap = false },
       { "<leader>l", group = "LSP", nowait = true, remap = false },
-      -- TODO: Remove this mapping
-      { "<leader>lI", "<cmd>LspInstallInfo<cr>", desc = "Installer Info", nowait = true, remap = false },
       { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
       { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
-      -- TODO: Remove these as the functionality is covered by [d and ]d
-      {
-        "<leader>lj",
-        "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-        desc = "Next Diagnostic",
-        nowait = true,
-        remap = false,
-      },
-      {
-        "<leader>lk",
-        "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-        desc = "Prev Diagnostic",
-        nowait = true,
-        remap = false,
-      },
       { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action", nowait = true, remap = false },
-      {
-        "<leader>lq",
-        "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>",
-        desc = "Quickfix",
-        nowait = true,
-        remap = false,
-      },
       { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
       -- TODO: Review this workflow
       {
