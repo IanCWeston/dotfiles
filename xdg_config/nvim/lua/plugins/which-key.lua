@@ -1,39 +1,63 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
+  ---@class wk.Opts
   opts = {
-    plugins = { spelling = true },
+    preset = "modern",
+    defaults = {},
+    icons = {
+      mappings = false,
+    },
+    spec = {
+      {
+        mode = { "n", "v" },
+        { "<leader>g", group = "Git" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>s", group = "Search" },
+        { "<leader>u", group = "ui" },
+        { "[", group = "prev" },
+        { "]", group = "next" },
+        { "g", group = "goto" },
+        { "gs", group = "surround" },
+        { "z", group = "fold" },
+        {
+          "<leader>b",
+          group = "buffer",
+          expand = function()
+            return require("which-key.extras").expand.buf()
+          end,
+        },
+        {
+          "<leader>w",
+          group = "windows",
+          proxy = "<c-w>",
+          expand = function()
+            return require("which-key.extras").expand.win()
+          end,
+        },
+        -- better descriptions
+        { "gx", desc = "Open with system app" },
+      },
+    },
+  },
+  keys = {
+    {
+      "<leader>?",
+      function()
+        require("which-key").show({ global = false })
+      end,
+      desc = "Buffer Keymaps (which-key)",
+    },
+    {
+      "<c-w><space>",
+      function()
+        require("which-key").show({ keys = "<c-w>", loop = true })
+      end,
+      desc = "Window Hydra Mode (which-key)",
+    },
   },
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-
-    local mappings = {
-      { "<leader>/", "<cmd>norm gcc<cr>", desc = "Comment", nowait = true, remap = false },
-      { "<leader>L", "<cmd>Lazy<CR>", desc = "Lazy", nowait = true, remap = false },
-      { "<leader>c", "<cmd>bdelete!<CR>", desc = "Close Buffer", nowait = true, remap = false },
-      { "<leader>e", "<cmd>Oil<CR>", desc = "Explore Filesystem", nowait = true, remap = false },
-      { "<leader>g", group = "Git", nowait = true, remap = false },
-      { "<leader>l", group = "LSP", nowait = true, remap = false },
-      { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code Action", nowait = true, remap = false },
-      { "<leader>li", "<cmd>LspInfo<cr>", desc = "Info", nowait = true, remap = false },
-      { "<leader>ll", "<cmd>lua vim.lsp.codelens.run()<cr>", desc = "CodeLens Action", nowait = true, remap = false },
-      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename", nowait = true, remap = false },
-      -- TODO: Review this workflow
-      { "<leader>p", '"+p', desc = "System Paste", nowait = true, remap = false },
-      { "<leader>q", "<cmd>q<CR>", desc = "Quit", nowait = true, remap = false },
-      { "<leader>s", group = "Search", nowait = true, remap = false },
-      { "<leader>w", "<cmd>w<CR>", desc = "Save", nowait = true, remap = false },
-      { "<leader>y", '"+y', desc = "System Yank", nowait = true, remap = false },
-    }
-
-    local vmappings = {
-      { "<leader>/", "gc", desc = "Comment", mode = "v", nowait = true, remap = true },
-      { "<leader>y", '"+y', desc = "System Yank", mode = "v", nowait = true, remap = false },
-    }
-
-    wk.add(mappings)
-    wk.add(vmappings)
   end,
 }
--- TODO: Move keymaps to individual plugins

@@ -3,6 +3,7 @@ return {
   dependencies = { "echasnovski/mini.icons" },
   keys = {
     { "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+    { "<leader>e", "<CMD>Oil<CR>", desc = "Explore filesytem" },
   },
   ---@module 'oil'
   ---@type oil.SetupOpts

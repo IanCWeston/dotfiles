@@ -10,6 +10,14 @@ local map = vim.keymap.set
 --   command_mode = "c",
 
 -- Normal --
+map("n", "<leader>/", "<cmd>norm gcc<cr>", { desc = "Comment" })
+map("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
+map("n", "<leader>c", "<cmd>bdelete!<CR>", { desc = "Close Buffer" })
+map("n", "<leader>p", '"+p', { desc = "System Paste" })
+map({ "n", "v" }, "<leader>y", '"+y', { desc = "System Yank" })
+map("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
+map("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 map("n", "<Esc>", "<cmd>nohlsearch<cr>")
 
@@ -36,6 +44,18 @@ map("n", "N", "Nzz")
 map("n", "<space>X", "<cmd>source %<CR>", { desc = "Run lua file" })
 map("n", "<space>x", ":.lua<CR>", { desc = "Run lua code line" })
 
+-- LSP
+map("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
+map("n", "<leader>la", function()
+  vim.lsp.buf.code_action()
+end, { desc = "Code Action" })
+map("n", "<leader>ll", function()
+  vim.lsp.codelens.run()
+end, { desc = "CodeLens Action" })
+map("n", "<leader>lr", function()
+  vim.lsp.buf.rename()
+end, { desc = "Rename" })
+
 -- Insert --
 -- Alternate ESC
 map("i", "jk", "<ESC>")
@@ -53,3 +73,5 @@ map("v", ">", ">gv")
 map("v", "p", '"_dP')
 
 map("v", "<space>x", ":lua<CR>", { desc = "Run lua code selection" })
+
+map("v", "<leader>/", "gc", { desc = "Comment", remap = true })
