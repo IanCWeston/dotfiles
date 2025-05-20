@@ -60,7 +60,7 @@ return {
       lualine_c = {
         "mode",
         { "filename", path = 1, newfile_status = true },
-        { "branch", icon = "" },
+        { "branch", icon = "" },
         "diff",
       },
       lualine_x = {
