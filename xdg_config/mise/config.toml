@@ -5,6 +5,8 @@ go = "latest"
 python = "latest"
 
 [settings]
+python.uv_venv_auto = true
+
 trusted_config_paths = [
     '~/projects',
     '~/code',
