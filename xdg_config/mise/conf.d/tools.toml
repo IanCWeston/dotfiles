@@ -1,0 +1,71 @@
+[tools]
+# General
+"aqua:atuinsh/atuin" = "latest"
+bat = "latest"
+delta = "latest"
+eza = "latest"
+fd = "latest"
+fzf = "latest"
+ripgrep = "latest"
+
+# Shell prompts
+"aqua:JanDeDobbeleer/oh-my-posh" = "latest"
+starship = "latest"
+
+# Editors
+neovim = "latest"
+yazi = "latest"
+
+# Structured parsing
+fx = "latest"
+jless = "latest"
+jmespath = "latest"
+jq = "latest"
+jqp = "latest"
+yq = "latest"
+
+# Git
+github-cli = "latest"
+lazygit = "latest"
+# BUG: There are currently some issues resolving glab see:
+# https://github.com/jdx/mise/discussions/3547
+# glab = "latest"
+# "aqua:gitlab.com/gitlab-org/cli" = "latest"
+
+# API testing
+hurl = "latest"
+xh = "latest"
+
+# Python
+ruff = "latest"
+uv = "latest"
+
+# Lua
+stylua = "latest"
+
+# Shell
+shellcheck = "latest"
+shfmt = "latest"
+
+# YAML
+yamllint = "latest"
+
+# HTML/XML
+"npm:prettier" = "latest"
+
+# Kubernetes
+k9s = "latest"
+kubectx = "latest"
+kubens = "latest"
+
+# Docker
+nerdctl = "latest"
+hadolint = "latest"
+
+# Cloud
+aws-cli = "latest"
+terraform = "latest"
+
+# BUG: The latest version of tmux isn't able to compile correctly through asdf
+# tmux = "latest"
+
