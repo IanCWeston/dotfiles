@@ -2,8 +2,13 @@
 {{- $email := promptStringOnce . "email" "Email address. Ex: ian.weston@workplace.net" -}}
 {{- $work := promptBoolOnce . "work" "It's a work related computer? y/N" -}}
 
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi.osRelease "id" -}}
+{{-   $osid = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
 
 data:
   name: {{ $name | quote }}
   email: {{ $email | quote }}
   work: {{ $work }}
+  osid: {{ $osid | quote }}
