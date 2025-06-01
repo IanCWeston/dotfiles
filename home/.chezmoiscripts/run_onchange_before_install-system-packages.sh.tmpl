@@ -1,0 +1,22 @@
+{{ if eq .osid "linux-debian" "linux-ubuntu" -}}
+
+{{ $packages := list
+     "curl"
+     "git"
+     "git-lfs"
+     "tmux"
+     "zsh" -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ $packages | join " " }}
+
+{{ end -}}

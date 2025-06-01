@@ -1,19 +1,24 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e # -e: exit on error
 
-function command_exists() {
-  command -v "$1" >/dev/null 2>&1
-}
+if [ ! "$(command -v chezmoi)" ]; then
+  bin_dir="$HOME/.local/bin"
+  chezmoi="$bin_dir/chezmoi"
+  if [ "$(command -v curl)" ]; then
+    sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$bin_dir"
+  elif [ "$(command -v wget)" ]; then
+    sh -c "$(wget -qO- https://git.io/chezmoi)" -- -b "$bin_dir"
+  else
+    echo "To install chezmoi, you must have curl or wget installed." >&2
+    exit 1
+  fi
+else
+  chezmoi=chezmoi
+fi
 
-# curl is needed to install mise and chezmoi
-command_exists curl || { echo "Error: curl is not installed."; exit 1; }
-
-# install mise
-command_exists mise || curl https://mise.run | sh
-# install chezmoi
-command_exists chezmoi || sh -c "$(curl -fsLS get.chezmoi.io/lb)"
+# POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
+script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 
 # exec: replace current process with chezmoi init
-exec chezmoi init --apply IanCWeston
-
+exec "$chezmoi" init --apply "--source=$script_dir"
