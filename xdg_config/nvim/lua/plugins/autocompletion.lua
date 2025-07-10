@@ -100,6 +100,12 @@ return {
         default = { "lsp", "snippets", "buffer", "path", "lazydev" },
         providers = {
           lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
+          cmdline = {
+            -- ignores cmdline completions when executing shell commands
+            enabled = function()
+              return vim.fn.getcmdtype() ~= ":" or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+            end,
+          },
         },
       },
 
