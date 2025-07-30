@@ -3,17 +3,13 @@ return {
   dependencies = { "echasnovski/mini.icons" },
   lazy = false,
   keys = {
-    { "-", "<CMD>vsplit | Oil<CR>", desc = "Oil split" },
+    { "-", "<CMD>Oil<CR>", desc = "Oil" },
     { "<leader>e", "<CMD>Oil --float<CR>", desc = "Explore filesytem (Oil)" },
   },
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {
     skip_confirm_for_simple_edits = true,
-    keymaps = {
-      ["H"] = { "actions.parent", mode = "n" },
-      ["L"] = { "actions.select", mode = "n" },
-    },
     float = {
       -- Padding around the floating window
       padding = 2,
