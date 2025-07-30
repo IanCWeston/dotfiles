@@ -1,5 +1,3 @@
--- NOTE: Choosing to specify each server manually for now
--- for better management
 vim.lsp.enable({
   -- ansible
   "ansiblels",
@@ -43,11 +41,8 @@ vim.lsp.enable({
   -- yaml
   "yamlls",
 
-  -- FIX: Disabled due to breaking config
-  -- TODO: Copy over lspconfig util functions to resolve
-  --
-  -- "gitlab_ci_ls",
-  -- "tailwindcss",
+  "gitlab_ci_ls",
+  "tailwindcss",
 })
 
 -- vim.api.nvim_create_autocmd('LspAttach', {
@@ -130,12 +125,3 @@ vim.diagnostic.config({
     end,
   },
 })
-
-vim.api.nvim_create_user_command("LspRestart", function()
-  vim.lsp.stop_client(vim.lsp.get_clients())
-  vim.cmd.edit()
-end, {})
-
-vim.api.nvim_create_user_command("LspInfo", function()
-  vim.cmd.checkhealth("vim.lsp")
-end, {})

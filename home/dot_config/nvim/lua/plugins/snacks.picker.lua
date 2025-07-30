@@ -22,6 +22,7 @@ return {
     { "<leader>sr", function() Snacks.picker.recent() end, desc = "Open Recent File", },
     { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
   },
+  ---@type snacks.Config
   opts = {
     picker = {
       -- TODO: Consider switch back to default Snacks layout afte transition period
@@ -60,6 +61,7 @@ return {
           },
         },
       },
+      formatters = { file = { truncate = vim.api.nvim_win_get_width(0) * 0.8 } },
     },
   },
 }
