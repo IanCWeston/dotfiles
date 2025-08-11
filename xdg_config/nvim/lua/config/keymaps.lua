@@ -10,6 +10,7 @@ local map = vim.keymap.set
 --   command_mode = "c",
 
 -- Normal --
+map("n", " ", "<Nop>", { silent = true }) -- prevent conflicts with leader
 map("n", "<leader>/", "<cmd>norm gcc<cr>", { desc = "Comment" })
 map("n", "<leader>L", "<cmd>Lazy<CR>", { desc = "Lazy" })
 map("n", "<leader>c", "<cmd>bdelete!<CR>", { desc = "Close Buffer" })
