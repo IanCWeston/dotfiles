@@ -9,6 +9,7 @@ vim.lsp.enable({
   "bashls",
   -- css
   "cssls",
+  "tailwindcss",
   -- docker
   "dockerls",
   -- html
@@ -16,6 +17,7 @@ vim.lsp.enable({
   "html",
   -- ci/cd
   "gh_actions_ls",
+  "gitlab_ci_ls",
   -- go
   "gopls",
   "htmx",
@@ -40,9 +42,6 @@ vim.lsp.enable({
   "ts_ls",
   -- yaml
   "yamlls",
-
-  "gitlab_ci_ls",
-  "tailwindcss",
 })
 
 -- vim.api.nvim_create_autocmd('LspAttach', {
@@ -102,23 +101,26 @@ end
 -- DIAGNOSTICS
 
 local diagnostic_signs = {
-	[vim.diagnostic.severity.ERROR] = "󰅚 ",
-	[vim.diagnostic.severity.WARN] = "󰀪 ",
-	[vim.diagnostic.severity.INFO] = "󰋽 ",
-	[vim.diagnostic.severity.HINT] = "󰌶 ",
+  [vim.diagnostic.severity.ERROR] = "󰅚 ",
+  [vim.diagnostic.severity.WARN] = "󰀪 ",
+  [vim.diagnostic.severity.INFO] = "󰋽 ",
+  [vim.diagnostic.severity.HINT] = "󰌶 ",
+}
 
+local shorter_source_names = {
+  ["Lua Diagnostics."] = "Lua",
+  ["Lua Syntax Check."] = "Lua",
 }
 
 function diagnostic_format(diagnostic)
-    return string.format(
-        "%s %s (%s): %s",
-        diagnostic_signs[diagnostic.severity],
-        shorter_source_names[diagnostic.source] or diagnostic.source,
-        diagnostic.code,
-        diagnostic.message
-    )
+  return string.format(
+    "%s %s (%s): %s",
+    diagnostic_signs[diagnostic.severity],
+    shorter_source_names[diagnostic.source] or diagnostic.source,
+    diagnostic.code,
+    diagnostic.message
+  )
 end
-
 
 vim.diagnostic.config({
   severity_sort = true,
@@ -127,7 +129,7 @@ vim.diagnostic.config({
 
   float = { border = "rounded", source = "if_many" },
   signs = {
-	  text = diagnostic_signs,
+    text = diagnostic_signs,
   },
   virtual_text = {
     -- source = "if_many",
@@ -136,7 +138,7 @@ vim.diagnostic.config({
     format = diagnostic_format,
   },
   virtual_lines = {
-	current_line = true,
-	format = diagnostic_format,
+    current_line = true,
+    format = diagnostic_format,
   },
 })
