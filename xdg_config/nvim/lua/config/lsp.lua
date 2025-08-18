@@ -99,29 +99,44 @@ vim.lsp.buf.hover = function()
   })
 end
 
+-- DIAGNOSTICS
+
+local diagnostic_signs = {
+	[vim.diagnostic.severity.ERROR] = "󰅚 ",
+	[vim.diagnostic.severity.WARN] = "󰀪 ",
+	[vim.diagnostic.severity.INFO] = "󰋽 ",
+	[vim.diagnostic.severity.HINT] = "󰌶 ",
+
+}
+
+function diagnostic_format(diagnostic)
+    return string.format(
+        "%s %s (%s): %s",
+        diagnostic_signs[diagnostic.severity],
+        shorter_source_names[diagnostic.source] or diagnostic.source,
+        diagnostic.code,
+        diagnostic.message
+    )
+end
+
+
 vim.diagnostic.config({
   severity_sort = true,
+  -- underline = { severity = vim.diagnostic.severity.ERROR },
+  underline = true,
+
   float = { border = "rounded", source = "if_many" },
-  underline = { severity = vim.diagnostic.severity.ERROR },
   signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = "󰅚 ",
-      [vim.diagnostic.severity.WARN] = "󰀪 ",
-      [vim.diagnostic.severity.INFO] = "󰋽 ",
-      [vim.diagnostic.severity.HINT] = "󰌶 ",
-    },
+	  text = diagnostic_signs,
   },
   virtual_text = {
-    source = "if_many",
-    spacing = 2,
-    format = function(diagnostic)
-      local diagnostic_message = {
-        [vim.diagnostic.severity.ERROR] = diagnostic.message,
-        [vim.diagnostic.severity.WARN] = diagnostic.message,
-        [vim.diagnostic.severity.INFO] = diagnostic.message,
-        [vim.diagnostic.severity.HINT] = diagnostic.message,
-      }
-      return diagnostic_message[diagnostic.severity]
-    end,
+    -- source = "if_many",
+    spacing = 4,
+    prefix = "",
+    format = diagnostic_format,
+  },
+  virtual_lines = {
+	current_line = true,
+	format = diagnostic_format,
   },
 })
