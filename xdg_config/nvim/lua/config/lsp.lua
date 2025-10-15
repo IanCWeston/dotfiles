@@ -19,6 +19,7 @@ vim.lsp.enable({
   "gh_actions_ls",
   "gitlab_ci_ls",
   -- go
+  "golangci_lint_ls",
   "gopls",
   "htmx",
   "templ",

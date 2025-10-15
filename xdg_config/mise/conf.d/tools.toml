@@ -38,6 +38,9 @@ xh = "latest"
 ruff = "latest"
 uv = "latest"
 
+# Go
+golangci-lint = "latest"
+
 # Lua
 stylua = "latest"
 
@@ -47,6 +50,9 @@ shfmt = "latest"
 
 # YAML
 yamllint = "latest"
+
+# TOML
+taplo = "latest"
 
 # HTML/XML
 "npm:prettier" = "latest"
