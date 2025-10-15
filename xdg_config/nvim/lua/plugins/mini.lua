@@ -1,6 +1,6 @@
 return {
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     opts = {},
     lazy = true,
     specs = {
@@ -14,7 +14,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     event = { "BufReadPre", "BufNewFile" },
     keys = function(_, keys)
       -- Populate the keys based on the user's options
@@ -49,7 +49,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     event = "VeryLazy",
     opts = function()
       local ai = require("mini.ai")

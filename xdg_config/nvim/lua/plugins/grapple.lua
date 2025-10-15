@@ -1,7 +1,7 @@
 return {
   "cbochs/grapple.nvim",
   dependencies = {
-    { "echasnovski/mini.icons", lazy = true },
+    { "nvim-mini/mini.icons", lazy = true },
   },
   opts = {
     scope = "git", -- also try out "git_branch"

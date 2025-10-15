@@ -4,7 +4,7 @@ return {
   cmd = { "Markview" },
 
   dependencies = {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
   },
   opts = function()
     local presets = require("markview.presets")

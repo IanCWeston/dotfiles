@@ -32,7 +32,7 @@ local indent = {
 return {
   -- LUALINE
   "nvim-lualine/lualine.nvim",
-  dependencies = { "echasnovski/mini.icons" },
+  dependencies = { "nvim-mini/mini.icons" },
   event = "VeryLazy",
   opts = {
     options = {
