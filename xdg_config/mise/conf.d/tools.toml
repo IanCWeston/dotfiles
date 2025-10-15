@@ -22,15 +22,13 @@ jless = "latest"
 jmespath = "latest"
 jq = "latest"
 jqp = "latest"
+tree-sitter = "latest"
 yq = "latest"
 
 # Git
 github-cli = "latest"
 lazygit = "latest"
-# BUG: There are currently some issues resolving glab see:
-# https://github.com/jdx/mise/discussions/3547
-# glab = "latest"
-# "aqua:gitlab.com/gitlab-org/cli" = "latest"
+glab = "latest"
 
 # API testing
 hurl = "latest"
