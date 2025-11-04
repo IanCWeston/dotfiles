@@ -4,21 +4,7 @@ return {
     event = "InsertEnter",
     version = "1.*",
     dependencies = {
-      -- Snippet Engine
-      {
-        "L3MON4D3/LuaSnip",
-        version = "2.*",
-        dependencies = {
-          {
-            "rafamadriz/friendly-snippets",
-            config = function()
-              require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
-              require("luasnip.loaders.from_vscode").lazy_load()
-            end,
-          },
-        },
-        opts = {},
-      },
+      "rafamadriz/friendly-snippets",
       "folke/lazydev.nvim",
     },
     --- @module 'blink.cmp'
@@ -102,8 +88,6 @@ return {
           lazydev = { module = "lazydev.integrations.blink", score_offset = 100 },
         },
       },
-
-      snippets = { preset = "luasnip" },
 
       -- Blink.cmp includes an optional, recommended rust fuzzy matcher,
       -- which automatically downloads a prebuilt binary when enabled.
