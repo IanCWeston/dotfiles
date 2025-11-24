@@ -29,6 +29,17 @@ local indent = {
   end,
 }
 
+local recording_macro = {
+  icon = "󰻃",
+  cond = function()
+    return vim.fn.reg_recording() ~= ""
+  end,
+  function()
+    local reg = vim.fn.reg_recording()
+    return "Recording @" .. reg
+  end,
+}
+
 return {
   -- LUALINE
   "nvim-lualine/lualine.nvim",
@@ -64,6 +75,7 @@ return {
         "diff",
       },
       lualine_x = {
+        recording_macro,
         "searchcount",
         "diagnostics",
         fileformat,
