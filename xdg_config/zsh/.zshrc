@@ -80,7 +80,6 @@ source $ZDOTDIR/custom_functions
 ### Shell integrations
 # FZF
 tool_exists fzf && eval "$(fzf --zsh)"
-# source "$HOME/.config/fzf/key-bindings.zsh"
 
 # Zoxide
 tool_exists zoxide && eval "$(zoxide init --cmd cd zsh)"
