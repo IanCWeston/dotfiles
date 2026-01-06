@@ -9,10 +9,9 @@ return {
     end,
   },
 
-  -- Trial Colorschemes
+  -- More Muted Colorschemes
   { "rebelot/kanagawa.nvim", lazy = true },
   { "webhooked/kanso.nvim", lazy = true },
-  { "catppuccin/nvim", name = "catppuccin" , lazy = true},
-  { "everviolet/nvim", name = "evergarden" , lazy = true},
-  { "rose-pine/neovim", name = "rose-pine" , lazy = true},
+  { "everviolet/nvim", name = "evergarden", lazy = true },
+  { "rose-pine/neovim", name = "rose-pine", lazy = true },
 }
