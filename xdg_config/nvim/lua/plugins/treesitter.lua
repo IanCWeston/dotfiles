@@ -95,6 +95,8 @@ return {
         "snacks_picker_input",
         "snacks_picker_list",
         "snacks_win",
+        "OverseerOutput",
+        "OverseerList",
       }
 
       -- Auto-install parsers and enable highlighting on FileType

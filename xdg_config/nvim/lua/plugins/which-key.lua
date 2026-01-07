@@ -13,6 +13,7 @@ return {
         mode = { "n", "v" },
         { "<leader>g", group = "Git" },
         { "<leader>l", group = "LSP" },
+        { "<leader>o", group = "Overseer" },
         { "<leader>s", group = "Search" },
         { "<leader>u", group = "ui" },
         { "[", group = "prev" },
