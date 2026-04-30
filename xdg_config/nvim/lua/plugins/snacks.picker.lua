@@ -3,6 +3,7 @@ return {
   -- stylua: ignore
   keys = {
     { "<leader><space>", function() Snacks.picker.buffers({ layout = { preset = "select" } }) end, desc = "Buffers", },
+    { "<leader>E", function() Snacks.picker.explorer() end, desc = "Open file tree", },
     { "<leader>F", function() Snacks.picker.grep({ layout = { preset = "ivy" } }) end, desc = "Find Text", },
     { "<leader>f", function() Snacks.picker.files({ layout = { preset = "select" } }) end, desc = "Find files", },
     { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Checkout branch", },
