@@ -11,6 +11,7 @@ return {
     spec = {
       {
         mode = { "n", "v" },
+        { "<leader>a", group = "AI" },
         { "<leader>g", group = "Git" },
         { "<leader>l", group = "LSP" },
         { "<leader>o", group = "Overseer" },
