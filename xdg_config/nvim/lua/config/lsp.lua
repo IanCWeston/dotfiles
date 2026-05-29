@@ -66,11 +66,26 @@ vim.lsp.enable({
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    -- Prefer LSP folding if client supports it
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    if client == nil then
+      return
+    end
+
+    -- Prefer LSP folding if client supports it
     if client:supports_method("textDocument/foldingRange") then
       local win = vim.api.nvim_get_current_win()
       vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
+    end
+
+    -- Format on save if client supports it
+    if client:supports_method("textDocument/formatting") then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = args.buf,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
+        end,
+      })
     end
 
     -- local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -82,8 +97,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- stylua: ignore start
     -- map("n", "K", function() vim.lsp.buf.hover() end, opts)
-    map("n", "[d", function() vim.diagnostic.jump({count=1, float=true}) end, opts)
-    map("n", "]d", function() vim.diagnostic.jump({count=-1, float=true}) end, opts)
+    map("n", "[d", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
+    map("n", "]d", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
     map("n", "gd", function() vim.lsp.buf.definition() end, opts)
     map("n", "gD", function() vim.lsp.buf.declaration() end, opts)
     map("n", "gi", function() vim.lsp.buf.implementation() end, opts)
@@ -91,7 +106,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "go", function() vim.lsp.buf.type_definition() end, opts)
     map("n", "gr", function() vim.lsp.buf.references() end, opts)
     map("n", "gS", function() vim.lsp.buf.signature_help() end, opts)
-    map("n", "<leader>lf", function() vim.lsp.buf.format({async=true}) end, opts)
+    map("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end,
+      { buffer = args.buf, remap = false, desc = "Format" })
     -- map("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts) -- replaced with gra
     -- stylua: ignore end
   end,
