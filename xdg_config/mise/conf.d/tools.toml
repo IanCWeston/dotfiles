@@ -7,10 +7,11 @@ eza = "latest"
 fd = "latest"
 fzf = "latest"
 ripgrep = "latest"
+tmux = "latest"
 
 # Shell prompts
 "aqua:JanDeDobbeleer/oh-my-posh" = "latest"
-starship = "latest"
+# starship = "latest"
 
 # Editors
 neovim = "latest"
@@ -37,25 +38,39 @@ xh = "latest"
 # Python
 ruff = "latest"
 uv = "latest"
+ty = "latest"
+# "npm:basedpyright" = "latest"
 
 # Go
+"go:golang.org/x/tools/gopls" = "latest"
 golangci-lint = "latest"
+golangci-lint-langserver = "latest"
 
 # Lua
 stylua = "latest"
+lua-language-server = "latest"
 
 # Shell
 shellcheck = "latest"
 shfmt = "latest"
+"npm:bash-language-server" = "latest"
+
+# Ansible
+# "npm:@ansible/ansible-language-server" = "latest"
 
 # YAML
 yamllint = "latest"
+"npm:yaml-language-server" = "latest"
 
 # TOML
 taplo = "latest"
 
 # HTML/JSON/XML
-prettier = "latest"
+oxfmt = "latest"
+"npm:vscode-langservers-extracted" = "latest"
+
+# Markdown
+marksman = "latest"
 
 # Kubernetes
 k9s = "latest"
@@ -65,11 +80,11 @@ kubens = "latest"
 # Docker
 nerdctl = "latest"
 hadolint = "latest"
+"npm:dockerfile-language-server-nodejs" = "latest"
 
 # Cloud
 aws-cli = "latest"
-terraform = "latest"
-
-# BUG: The latest version of tmux isn't able to compile correctly through asdf
-# tmux = "latest"
-
+opentofu = "latest"
+"aqua:opentofu/tofu-ls" = "latest"
+# terraform = "latest"
+# terraform-ls = "latest"
