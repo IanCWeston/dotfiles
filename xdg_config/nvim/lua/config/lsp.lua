@@ -1,48 +1,56 @@
 vim.lsp.enable({
-  -- ansible
-  "ansiblels",
-  -- python
-  "basedpyright",
+  -- PYTHON
   "ruff",
-  "jinja_lsp",
-  -- bash
+  "ty",
+  -- "pyrefly",
+  -- "basedpyright",
+  -- "jinja_lsp",
+
+  -- SHELL
   "bashls",
-  -- css
-  "cssls",
-  "tailwindcss",
-  -- docker
+
+  -- DOCKER
   "dockerls",
-  -- html
-  "emmet_language_server",
-  "html",
-  -- ci/cd
+
+  -- CI/CD
   "gh_actions_ls",
   "gitlab_ci_ls",
-  -- go
-  "golangci_lint_ls",
+
+  -- GO
   "gopls",
-  "htmx",
-  "templ",
-  -- helm
+  "golangci_lint_ls",
+  -- "htmx",
+  -- "templ",
+
+  -- HELM
   "helm_ls",
-  -- json
+
+  -- JSON
   "jsonls",
-  -- http
-  "kulala_ls",
-  -- lua
+
+  -- LUA
   "lua_ls",
-  -- markdown
+  "stylua",
+
+  -- MARKDOWN
   "marksman",
-  -- sql
-  "sqlls",
-  -- toml
+  "vale_ls",
+
+  -- TOML
   "taplo",
-  -- terraform
-  "terraformls",
-  -- typescript/javascript
-  "ts_ls",
-  -- yaml
+
+  -- IaC
+  "tofu_ls",
+  -- "terraformls",
+
+  -- YAML
   "yamlls",
+
+  -- ANSIBLE
+  "ansiblels",
+
+  -- FORMATTING
+  "oxfmt",
 })
 
 -- vim.api.nvim_create_autocmd('LspAttach', {
@@ -83,6 +91,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "go", function() vim.lsp.buf.type_definition() end, opts)
     map("n", "gr", function() vim.lsp.buf.references() end, opts)
     map("n", "gS", function() vim.lsp.buf.signature_help() end, opts)
+    map("n", "<leader>lf", function() vim.lsp.buf.format({async=true}) end, opts)
     -- map("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts) -- replaced with gra
     -- stylua: ignore end
   end,
@@ -113,7 +122,7 @@ local shorter_source_names = {
   ["Lua Syntax Check."] = "Lua",
 }
 
-function diagnostic_format(diagnostic)
+local function diagnostic_format(diagnostic)
   return string.format(
     "%s %s (%s): %s",
     diagnostic_signs[diagnostic.severity],
