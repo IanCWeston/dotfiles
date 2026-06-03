@@ -88,28 +88,34 @@ vim.api.nvim_create_autocmd("LspAttach", {
       })
     end
 
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-    -- Set LSP Keymaps
-    local map = vim.keymap.set
     local opts = { buffer = args.buf, remap = false }
 
     -- stylua: ignore start
-    -- map("n", "K", function() vim.lsp.buf.hover() end, opts)
-    map("n", "[d", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
-    map("n", "]d", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
-    map("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    map("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-    map("n", "gi", function() vim.lsp.buf.implementation() end, opts)
-    map("n", "gl", function() vim.diagnostic.open_float() end, opts)
-    map("n", "go", function() vim.lsp.buf.type_definition() end, opts)
-    map("n", "gr", function() vim.lsp.buf.references() end, opts)
-    map("n", "gS", function() vim.lsp.buf.signature_help() end, opts)
-    map("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end,
+    -- Navigation (single-result jumps → Snacks picker for multi-result UI)
+    vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end,     { buffer = args.buf, desc = "Goto Definition" })
+    vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end,    { buffer = args.buf, desc = "Goto Declaration" })
+
+    -- Override 0.11 defaults that send to quickfix → use Snacks picker instead
+    vim.keymap.set("n", "grr", function() Snacks.picker.lsp_references() end,     { buffer = args.buf, nowait = true, desc = "References" })
+    vim.keymap.set("n", "gri", function() Snacks.picker.lsp_implementations() end,{ buffer = args.buf, desc = "Goto Implementation" })
+    vim.keymap.set("n", "grt", function() Snacks.picker.lsp_type_definitions() end,{ buffer = args.buf, desc = "Goto Type Definition" })
+    vim.keymap.set("n", "gO",  function() Snacks.picker.lsp_symbols() end,        { buffer = args.buf, desc = "LSP Symbols" })
+
+    -- Diagnostics (keep float = true behavior, which defaults don't have)
+    vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+    vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1,  float = true }) end, opts)
+    vim.keymap.set("n", "gl", function() vim.diagnostic.open_float() end, opts)
+
+    -- Format (no default exists for this)
+    vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end,
       { buffer = args.buf, remap = false, desc = "Format" })
-    -- map("n", "<M-a>", function() vim.lsp.buf.code_action() end, opts) -- replaced with gra
+
+    -- Left as global 0.11 defaults (grn, gra, gra visual, <C-s>, grx):
+    -- grn  → vim.lsp.buf.rename()
+    -- gra  → vim.lsp.buf.code_action()
+    -- <C-s> → vim.lsp.buf.signature_help()
     -- stylua: ignore end
+
   end,
 })
 
