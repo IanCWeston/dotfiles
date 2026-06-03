@@ -11,7 +11,5 @@ return {
 
   -- More Muted Colorschemes
   { "rebelot/kanagawa.nvim", lazy = true },
-  { "webhooked/kanso.nvim", lazy = true },
-  { "everviolet/nvim", name = "evergarden", lazy = true },
-  { "rose-pine/neovim", name = "rose-pine", lazy = true },
+  { "everviolet/nvim",       name = "evergarden", lazy = true },
 }
