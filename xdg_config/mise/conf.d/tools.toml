@@ -7,6 +7,7 @@ eza = "latest"
 fd = "latest"
 fzf = "latest"
 ripgrep = "latest"
+television = "latest"
 tmux = "latest"
 "aqua:joshmedeski/sesh" = "latest"
 
