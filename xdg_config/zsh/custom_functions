@@ -16,10 +16,6 @@ function argshelp() {
   $1 --help | grep -w -- "-[$ARGS]"
 }
 
-function tool_exists() {
-  command -v "$1" >/dev/null 2>&1
-  }
-
 # Recommended Yazi wrapper (https://yazi-rs.github.io/docs/quick-start#shell-wrapper)
 function y() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
