@@ -10,6 +10,8 @@ antidote load ${ZDOTDIR:-~}/.zsh_plugins.txt
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # ---------------------------------------------------------------------------
 # History
