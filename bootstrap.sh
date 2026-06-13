@@ -163,7 +163,7 @@ create_symlinks() {
       continue
     fi
 
-    ln -sf "$dir" "$target"
+    ln -sfn "$dir" "$target"
     print_success "Linked .config/$name"
   done
 }
