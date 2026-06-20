@@ -105,7 +105,7 @@ mise_install_tools() {
 install_antidote() {
   print_info "Installing antidote..."
 
-  ANTIDOTE_DIR="${ZDOTDIR:-$HOME}/.antidote"
+  ANTIDOTE_DIR="${HOME}/.antidote"
 
   if [ -d "$ANTIDOTE_DIR" ]; then
     print_success "antidote already installed, skipping"

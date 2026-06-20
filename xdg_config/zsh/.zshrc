@@ -2,7 +2,7 @@
 # Antidote — plugin manager
 # ---------------------------------------------------------------------------
 source ${HOME}/.antidote/antidote.zsh
-antidote load ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load ${ZDOTDIR}/.zsh_plugins.txt
 
 # ---------------------------------------------------------------------------
 # Keybindings
