@@ -1,7 +1,6 @@
 zsh-users/zsh-completions kind:fpath path:src
 Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
-zsh-users/zsh-history-substring-search
 hlissner/zsh-autopair
 
 # Oh My ZSH

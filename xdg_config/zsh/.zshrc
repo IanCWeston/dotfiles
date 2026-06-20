@@ -10,8 +10,6 @@ antidote load ${ZDOTDIR}/.zsh_plugins.txt
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 # ---------------------------------------------------------------------------
 # History
@@ -89,5 +87,5 @@ source $ZDOTDIR/custom_functions
 tool_exists fzf        && eval "$(fzf --zsh)"
 tool_exists zoxide     && eval "$(zoxide init --cmd cd zsh)"
 tool_exists oh-my-posh && eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.yaml)"
-tool_exists atuin      && eval "$(atuin init zsh --disable-up-arrow)"
+tool_exists atuin      && eval "$(atuin init zsh)"
 tool_exists mise       && eval "$(mise activate zsh)"
