@@ -10,6 +10,7 @@ ripgrep = "latest"
 television = "latest"
 tmux = "latest"
 "aqua:joshmedeski/sesh" = "latest"
+zoxide = "latest"
 
 # Shell prompts
 "aqua:JanDeDobbeleer/oh-my-posh" = "latest"
