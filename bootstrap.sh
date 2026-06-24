@@ -9,6 +9,7 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 DOTFILES_DIR="$HOME/.dotfiles"
+OFFLINE=false
 
 print_success() { echo -e "${GREEN}✓${NC} $1"; }
 print_error() { echo -e "${RED}✗${NC} $1"; }
@@ -17,6 +18,21 @@ print_warn() { echo -e "${YELLOW}⚠${NC} $1"; }
 
 is_wsl() {
   grep -qi microsoft /proc/version 2>/dev/null
+}
+
+parse_args() {
+  for arg in "$@"; do
+    case $arg in
+    --offline)
+      OFFLINE=true
+      ;;
+    esac
+  done
+
+  if [ "$OFFLINE" = true ]; then
+    print_warn "Running in --offline mode: mise, antidote, and TPM installation will be skipped"
+    print_warn "Run the script again without --offline once you have direct internet access"
+  fi
 }
 
 # ---------------------------------------------------------------------------
@@ -71,6 +87,11 @@ install_base_packages() {
 # mise — handles all dev tools from xdg_config/mise/
 # ---------------------------------------------------------------------------
 install_mise() {
+  if [ "$OFFLINE" = true ]; then
+    print_warn "Skipping mise install (offline mode)"
+    return
+  fi
+
   print_info "Installing mise..."
 
   if command -v mise &>/dev/null; then
@@ -88,6 +109,11 @@ install_mise() {
 # mise install — bootstrap all tools from xdg_config/mise/
 # ---------------------------------------------------------------------------
 mise_install_tools() {
+  if [ "$OFFLINE" = true ]; then
+    print_warn "Skipping mise tool installation (offline mode)"
+    return
+  fi
+
   print_info "Installing mise tools..."
 
   if ! command -v mise &>/dev/null; then
@@ -103,9 +129,14 @@ mise_install_tools() {
 # antidote — zsh plugin manager
 # ---------------------------------------------------------------------------
 install_antidote() {
+  if [ "$OFFLINE" = true ]; then
+    print_warn "Skipping antidote install (offline mode)"
+    return
+  fi
+
   print_info "Installing antidote..."
 
-  ANTIDOTE_DIR="${HOME}/.antidote"
+  ANTIDOTE_DIR="${ZDOTDIR:-$HOME}/.antidote"
 
   if [ -d "$ANTIDOTE_DIR" ]; then
     print_success "antidote already installed, skipping"
@@ -120,6 +151,11 @@ install_antidote() {
 # TPM — tmux plugin manager
 # ---------------------------------------------------------------------------
 install_tpm() {
+  if [ "$OFFLINE" = true ]; then
+    print_warn "Skipping TPM install (offline mode)"
+    return
+  fi
+
   print_info "Installing TPM..."
 
   TPM_DIR="$HOME/.tmux/plugins/tpm"
@@ -203,6 +239,9 @@ main() {
     exit 1
   fi
 
+  parse_args "$@"
+  echo ""
+
   detect_os && echo ""
   install_base_packages && echo ""
   install_mise && echo ""
@@ -218,8 +257,13 @@ main() {
   echo ""
   echo "Next steps:"
   echo "  1. Log out and back in for the shell change to take effect"
-  echo "  2. antidote will install zsh plugins on first zsh launch"
-  echo "  3. In tmux, press prefix + I to install tmux plugins"
+  if [ "$OFFLINE" = true ]; then
+    echo "  2. Run ./bootstrap.sh again (without --offline) once you have direct internet access"
+    echo "     This will install mise, mise tools, antidote, and tmux plugins"
+  else
+    echo "  2. antidote will install zsh plugins on first zsh launch"
+    echo "  3. In tmux, press prefix + I to install tmux plugins"
+  fi
   if is_wsl; then
     echo ""
     echo "WSL reminders:"
@@ -229,4 +273,4 @@ main() {
   echo ""
 }
 
-main
+main "$@"
