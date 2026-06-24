@@ -1,0 +1,27 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+
+blacklist = ["scratch"]
+dir_length = 1
+
+[default_session]
+startup_command = "nvim -c 'lua Snacks.picker.files()'"
+preview_command = "eza --all --git --icons --color=always {}"
+
+
+[[session]]
+name = "Neovim Config"
+path = "~/.config/nvim/"
+startup_command = "nvim ."
+
+[[wildcard]]
+pattern = "~/sre/**"
+startup_command = "git pull"
+windows = ["code", "duo"]
+
+[[window]]
+name = "code"
+startup_script = "nvim"
+
+[[window]]
+name = "duo"
+startup_script = "glab mr ls; duo"
