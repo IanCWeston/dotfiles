@@ -48,7 +48,7 @@ ty = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 golangci-lint = "latest"
 golangci-lint-langserver = "latest"
-"github:go-delve/delve" = "latest"
+"go:github.com/go-delve/delve/cmd/dlv" = "latest"
 
 # Lua
 stylua = "latest"
