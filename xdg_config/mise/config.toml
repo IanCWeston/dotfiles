@@ -1,3 +1,5 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
 [tools]
 # Languages
 node = "lts"
@@ -7,10 +9,8 @@ python = "latest"
 [settings]
 python.uv_venv_auto = true
 
-trusted_config_paths = [
-    '~/projects',
-    '~/code',
-]
-env_file = '.env' # load env vars from a dotenv file, see `MISE_ENV_FILE`
+trusted_config_paths = ['~/projects', '~/code']
+env_file = '.env'
 
-experimental = true # enable experimental features
+lockfile = true
+experimental = true

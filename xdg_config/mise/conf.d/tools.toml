@@ -1,3 +1,5 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
 [tools]
 # General
 atuin = "latest"
@@ -8,9 +10,12 @@ fd = "latest"
 fzf = "latest"
 ripgrep = "latest"
 television = "latest"
-tmux = "latest"
 "aqua:joshmedeski/sesh" = "latest"
 zoxide = "latest"
+
+# Tmux
+tmux = "latest"
+"github:tmuxpack/tpack" = "latest"
 
 # Shell prompts
 "aqua:JanDeDobbeleer/oh-my-posh" = "latest"
