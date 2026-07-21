@@ -1,0 +1,35 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[settings]
+dotfiles.root = "~/.dotfiles"
+dotfiles.default_mode = "symlink"
+
+[bootstrap.packages]
+# Ubuntu
+"apt:git" = "latest"
+"apt:curl" = "latest"
+"apt:zsh" = "latest"
+"apt:build-essential" = "latest"
+# Fedora
+"dnf:git" = "latest"
+"dnf:curl" = "latest"
+"dnf:zsh" = "latest"
+"dnf:@development-tools" = "latest"
+
+[bootstrap.repos]
+# "~/.dotfiles" = { url = "https://github.com/IanCWeston/dotfiles.git", ref = "main" }
+"~/.antidote" = { url = "https://github.com/mattmc3/antidote.git", ref = "main" }
+
+[dotfiles]
+"~/.zshenv" = {}
+"~/.config/*" = { source = "xdg_config/*" }
+
+[bootstrap.mise_shell_activate]
+zprofile = "shims"
+zshrc = "activate"
+
+[bootstrap.user]
+login_shell = "/bin/zsh"
+
+[tasks.bootstrap]
+run = "gh auth status || gh auth login"
