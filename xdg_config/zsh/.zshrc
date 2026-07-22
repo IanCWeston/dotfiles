@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # ---------------------------------------------------------------------------
 # Antidote — plugin manager
 # ---------------------------------------------------------------------------
@@ -90,3 +97,7 @@ tool_exists zoxide     && eval "$(zoxide init --cmd cd zsh)"
 tool_exists oh-my-posh && eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/zen.yaml)"
 tool_exists atuin      && eval "$(atuin init zsh)"
 tool_exists mise       && eval "$(mise activate zsh)"
+
+# Custom powerlevel10k configuration
+[[ ! -f ${ZDOTDIR}/p10k.zsh ]] || source ${ZDOTDIR}/p10k.zsh
+
