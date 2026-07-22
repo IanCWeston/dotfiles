@@ -1,9 +1,9 @@
 [credential "https://github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/home/ian/.local/share/mise/installs/github-cli/2.93.0/gh_2.93.0_linux_amd64/bin/gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper = !/home/ian/.local/share/mise/installs/github-cli/2.93.0/gh_2.93.0_linux_amd64/bin/gh auth git-credential
 [user]
 	email = 55521563+IanCWeston@users.noreply.github.com
 	name = Ian Weston
