@@ -1,4 +1,5 @@
 zsh-users/zsh-completions kind:fpath path:src
+romkatv/powerlevel10k conditional:is_work
 Aloxaf/fzf-tab
 hlissner/zsh-autopair
 zsh-users/zsh-autosuggestions

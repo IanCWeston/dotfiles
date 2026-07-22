@@ -1,6 +1,7 @@
 # ---------------------------------------------------------------------------
 # Antidote — plugin manager
 # ---------------------------------------------------------------------------
+is_work() { [[ -v PC_TYPE && $PC_TYPE == "work" ]] }
 source ${HOME}/.antidote/antidote.zsh
 antidote load ${ZDOTDIR}/.zsh_plugins.txt
 
