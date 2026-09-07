@@ -1,4 +1,5 @@
 {
+  "SchemaStore.nvim": { "branch": "main", "commit": "4a0e1b74096937d366031bc1e2b244546af39f8e" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "codediff.nvim": { "branch": "main", "commit": "61521381445aab22d5f988e7d99c2d7a76ccc1a1" },
   "evergarden": { "branch": "main", "commit": "c8e5e7e67a36694e5d917b7065b26b59b8cb489f" },
