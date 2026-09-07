@@ -22,6 +22,10 @@ vim.lsp.enable({
   -- "htmx",
   -- "templ",
 
+  -- TYPESCRIPT
+  "vtsls",
+  "eslint",
+
   -- HELM
   "helm_ls",
 
@@ -115,7 +119,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- gra  → vim.lsp.buf.code_action()
     -- <C-s> → vim.lsp.buf.signature_help()
     -- stylua: ignore end
-
   end,
 })
 
