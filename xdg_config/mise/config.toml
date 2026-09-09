@@ -3,7 +3,7 @@
 [tools]
 # Languages
 node = "lts"
-go = "latest"
+# go = "latest"
 python = "latest"
 
 [settings]
@@ -17,13 +17,6 @@ experimental = true
 
 auto_install_disable_tools = [
   # Heavy Tools
-  "go",
   "node",
   "k9s",
-
-  # Go dev stack
-  "gopls",
-  "golangci-lint",
-  "golangci-lint-langserver",
-  "delve",
 ]
