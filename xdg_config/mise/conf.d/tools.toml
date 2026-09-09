@@ -63,10 +63,10 @@ ty = "latest"
 # "npm:basedpyright" = "latest"
 
 # Go
-gopls = "latest"
-golangci-lint = "latest"
-golangci-lint-langserver = "latest"
-delve = "latest"
+# gopls = "latest"
+# golangci-lint = "latest"
+# golangci-lint-langserver = "latest"
+# delve = "latest"
 
 # Lua
 stylua = "latest"
