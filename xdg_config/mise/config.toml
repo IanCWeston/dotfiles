@@ -14,3 +14,16 @@ env_file = '.env'
 
 lockfile = true
 experimental = true
+
+auto_install_disable_tools = [
+  # Heavy Tools
+  "go",
+  "node",
+  "k9s",
+
+  # Go dev stack
+  "gopls",
+  "golangci-lint",
+  "golangci-lint-langserver",
+  "delve",
+]

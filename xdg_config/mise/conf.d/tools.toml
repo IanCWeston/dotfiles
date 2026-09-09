@@ -1,5 +1,18 @@
 #:schema https://github.com/jdx/mise/raw/main/schema/mise.json
 
+[tool_alias]
+
+sesh = "aqua:joshmedeski/sesh"
+tpack = "github:tmuxpack/tpack"
+oh-my-posh = "aqua:JanDeDobbeleer/oh-my-posh"
+gopls = "go:golang.org/x/tools/gopls"
+delve = "go:github.com/go-delve/delve/cmd/dlv"
+bash-lsp = "npm:bash-language-server"
+yaml-lsp = "npm:yaml-language-server"
+vscode-lsps = "npm:vscode-langservers-extracted"
+dockerfile-lsp = "npm:dockerfile-language-server-nodejs"
+tofu-ls = "aqua:opentofu/tofu-ls"
+
 [tools]
 # General
 atuin = "latest"
@@ -10,15 +23,15 @@ fd = "latest"
 fzf = "latest"
 ripgrep = "latest"
 television = "latest"
-"aqua:joshmedeski/sesh" = "latest"
 zoxide = "latest"
 
 # Tmux
 tmux = "latest"
-"github:tmuxpack/tpack" = "latest"
+tpack = "latest"
+sesh = "latest"
 
 # Shell prompts
-"aqua:JanDeDobbeleer/oh-my-posh" = "latest"
+oh-my-posh = "latest"
 # starship = "latest"
 
 # Editors
@@ -50,10 +63,10 @@ ty = "latest"
 # "npm:basedpyright" = "latest"
 
 # Go
-"go:golang.org/x/tools/gopls" = "latest"
+gopls = "latest"
 golangci-lint = "latest"
 golangci-lint-langserver = "latest"
-"go:github.com/go-delve/delve/cmd/dlv" = "latest"
+delve = "latest"
 
 # Lua
 stylua = "latest"
@@ -62,21 +75,21 @@ lua-language-server = "latest"
 # Shell
 shellcheck = "latest"
 shfmt = "latest"
-"npm:bash-language-server" = "latest"
+bash-lsp = "latest"
 
 # Ansible
 # "npm:@ansible/ansible-language-server" = "latest"
 
 # YAML
 yamllint = "latest"
-"npm:yaml-language-server" = "latest"
+yaml-lsp = "latest"
 
 # TOML
 taplo = "latest"
 
 # HTML/JSON/XML
 oxfmt = "latest"
-"npm:vscode-langservers-extracted" = "latest"
+vscode-lsps = "latest"
 
 # Markdown
 marksman = "latest"
@@ -89,11 +102,9 @@ kubens = "latest"
 # Docker
 nerdctl = "latest"
 hadolint = "latest"
-"npm:dockerfile-language-server-nodejs" = "latest"
+dockerfile-lsp = "latest"
 
 # Cloud
-aws-cli = "latest"
+# aws-cli = "latest"
 opentofu = "latest"
-"aqua:opentofu/tofu-ls" = "latest"
-# terraform = "latest"
-# terraform-ls = "latest"
+tofu-ls = "latest"
