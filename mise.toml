@@ -1,0 +1,106 @@
+#:schema https://github.com/jdx/mise/raw/main/schema/mise.json
+
+[tools]
+# Languages
+node = "lts"
+# go = "latest"
+python = "latest"
+
+[settings]
+python.uv_venv_auto = true
+
+trusted_config_paths = ['~/projects', '~/code']
+env_file = '.env'
+
+lockfile = true
+experimental = true
+
+auto_install_disable_tools = [
+  # Heavy Tools
+  "node",
+  "k9s",
+]
+
+# ---------------------------------------------------------------------------
+# Bootstrap — replaces the old bootstrap.sh
+# Apply on a fresh machine with:
+#   mise bootstrap --adopt https://github.com/IanCWeston/dotfiles.git --yes
+# Or re-run from an existing clone (which is now ~/.config/mise/):
+#   mise bootstrap --yes
+# ---------------------------------------------------------------------------
+
+[bootstrap.packages]
+# Base packages only — versioned tools are managed by [tools] above.
+# mise runs only entries whose manager is available on the current OS.
+"apt:git"                = "latest"
+"apt:curl"               = "latest"
+"apt:zsh"                = "latest"
+"apt:tmux"               = "latest"
+"apt:build-essential"    = "latest"
+"dnf:git"                = "latest"
+"dnf:curl"               = "latest"
+"dnf:zsh"                = "latest"
+"dnf:tmux"               = "latest"
+"dnf:@development-tools" = "latest"
+
+[bootstrap.repos]
+# Each key is the target path mise clones into. The URL is a git remote.
+# antidote and tpm are plugin managers with no upstream release artifacts,
+# so a git clone is the right mechanism.
+"~/.antidote"         = { url = "https://github.com/mattmc3/antidote.git" }
+"~/.tmux/plugins/tpm" = { url = "https://github.com/tmux-plugins/tpm.git" }
+
+[dotfiles]
+# Source paths are relative to the directory containing this config file.
+# After `mise bootstrap --adopt`, this file lives at ~/.config/mise/mise.toml
+# and the repo is cloned to ~/.config/mise/. xdg_config/ is a sibling of this
+# file (under the same mise/ dir), so the sources below resolve correctly.
+#
+# mode = "symlink" (default) creates one link at the target. The directory
+# at the target must NOT pre-exist (mise refuses to replace a real dir
+# with a symlink without --force-dotfiles).
+#
+# wezterm is macOS-only: variants.os = "macos" excludes both native Linux
+# and WSL (which reports as linux). The old script skipped wezterm on WSL
+# only; on native Linux the symlink is no longer created. Acceptable trade-off.
+# Note: ~/.config/mise is NOT listed here — after --adopt, this file IS
+# the user's active mise config, so there's nothing to symlink.
+
+"~/.zshenv"               = { source = ".zshenv",                   mode = "symlink" }
+"~/.config/atuin"         = { source = "xdg_config/atuin",          mode = "symlink" }
+"~/.config/git"           = { source = "xdg_config/git",            mode = "symlink" }
+"~/.config/k9s"           = { source = "xdg_config/k9s",            mode = "symlink" }
+"~/.config/lazygit"       = { source = "xdg_config/lazygit",        mode = "symlink" }
+"~/.config/nvim"          = { source = "xdg_config/nvim",           mode = "symlink" }
+"~/.config/ohmyposh"      = { source = "xdg_config/ohmyposh",       mode = "symlink" }
+"~/.config/sesh"          = { source = "xdg_config/sesh",           mode = "symlink" }
+"~/.config/starship.toml" = { source = "xdg_config/starship.toml",  mode = "symlink" }
+"~/.config/tmux"          = { source = "xdg_config/tmux",           mode = "symlink" }
+"~/.config/wezterm"       = { source = "xdg_config/wezterm",        mode = "symlink",
+                             variants = [{ os = "macos" }] }
+"~/.config/yamllint"      = { source = "xdg_config/yamllint",       mode = "symlink" }
+"~/.config/zsh"           = { source = "xdg_config/zsh",            mode = "symlink" }
+
+[bootstrap.mise_shell_activate]
+# Writes a marker-delimited `eval "$(mise activate zsh --shims)"` block to
+# ~/.zshrc. We deliberately do NOT set zshenv here — the .zshenv symlink
+# from [dotfiles] is the source of truth for that file (it sets ZDOTDIR
+# and shim-activates mise; overwriting it would break the ~/.config/zsh
+# layout that ZDOTDIR points at).
+zshrc = "shims"
+
+[bootstrap.user]
+# Replaces the old change_shell(). mise auto-adds the path to /etc/shells
+# (uses sudo) and runs `chsh -s` on the current user's account.
+login_shell = "/bin/zsh"
+
+[bootstrap.hooks.final]
+# After every bootstrap, verify that the post-install environment is sane.
+# Runs as a hook so it executes even on re-bootstrap when no tools changed.
+run = '''
+mise doctor || true
+echo "Bootstrap complete. Log out and back in for shell change to take effect."
+if grep -qi microsoft /proc/version 2>/dev/null; then
+  echo "WSL detected — install wezterm config on the Windows side at %APPDATA%\\wezterm\\"
+fi
+'''
