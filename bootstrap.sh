@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Wrapper that installs mise and dispatches to `mise bootstrap --adopt`.
-# All real configuration lives in mise.toml at the repo root.
+# All real configuration lives within the mise-config remote repo
 #
 # Fresh-machine usage (no clone needed):
 #   curl -fsSL https://raw.githubusercontent.com/IanCWeston/dotfiles/main/bootstrap.sh | bash
@@ -12,17 +12,21 @@ set -euo pipefail
 #
 # Flags:
 #   --offline             skip network phases (packages, repos, tools)
-#   DOTFILES_REPO=<url>   env var override for the dotfiles repo URL
 
-DOTFILES_REPO="${DOTFILES_REPO:-https://github.com/IanCWeston/dotfiles.git}"
+MISE_REPO="https://github.com/IanCWeston/mise-config.git"
 OFFLINE=false
 
 for arg in "$@"; do
   case "$arg" in
-    --offline)    OFFLINE=true ;;
-    --help|-h)
-      sed -n '2,16p' "$0"; exit 0 ;;
-    *) echo "Unknown arg: $arg" >&2; exit 2 ;;
+  --offline) OFFLINE=true ;;
+  --help | -h)
+    sed -n '2,16p' "$0"
+    exit 0
+    ;;
+  *)
+    echo "Unknown arg: $arg" >&2
+    exit 2
+    ;;
   esac
 done
 
@@ -32,10 +36,10 @@ if ! command -v mise >/dev/null 2>&1; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
-echo ">>> Running mise bootstrap --adopt $DOTFILES_REPO"
+echo ">>> Running mise bootstrap --adopt $MISE_REPO"
 if [ "$OFFLINE" = true ]; then
-  exec mise bootstrap --adopt "$DOTFILES_REPO" --yes \
+  exec mise bootstrap --adopt "$MISE_REPO" --yes \
     --skip packages,repos,tools,task,final-hook
 else
-  exec mise bootstrap --adopt "$DOTFILES_REPO" --yes
+  exec mise bootstrap --adopt "$MISE_REPO" --yes
 fi
