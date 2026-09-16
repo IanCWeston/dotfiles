@@ -36,6 +36,11 @@ if ! command -v mise >/dev/null 2>&1; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
+if command -v apt-get >/dev/null 2>&1; then
+  echo ">>> Updating apt repos"
+  sudo apt-get update -y
+fi
+
 echo ">>> Running mise bootstrap --adopt $MISE_REPO"
 if [ "$OFFLINE" = true ]; then
   exec mise bootstrap --adopt "$MISE_REPO" --yes \
