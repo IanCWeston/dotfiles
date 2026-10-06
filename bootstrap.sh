@@ -5,30 +5,65 @@ set -euo pipefail
 # All real configuration lives within the mise-config remote repo
 #
 # Fresh-machine usage (no clone needed):
-#   curl -fsSL https://raw.githubusercontent.com/IanCWeston/dotfiles/main/bootstrap.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/IanCWeston/dotfiles/main/bootstrap.sh | bash -s -- --profile personal
 #
 # Local re-run (already bootstrapped — repo is now ~/.config/mise/):
-#   mise bootstrap --yes
+#   mise -E personal bootstrap --yes
 #
 # Flags:
-#   --offline             skip network phases (packages, repos, tools)
+#   --profile personal|work  select a mise config environment (default: personal)
+#   --offline                use the adopted config and skip network-dependent phases
 
 MISE_REPO="https://github.com/IanCWeston/mise-config.git"
 OFFLINE=false
+PROFILE=personal
 
-for arg in "$@"; do
-  case "$arg" in
-  --offline) OFFLINE=true ;;
+while (($#)); do
+  case "$1" in
+  --offline)
+    OFFLINE=true
+    shift
+    ;;
+  --profile)
+    if (($# < 2)); then
+      echo "--profile requires personal or work" >&2
+      exit 2
+    fi
+    case "$2" in
+    personal | work) PROFILE="$2" ;;
+    *)
+      echo "Invalid profile '$2': expected personal or work" >&2
+      exit 2
+      ;;
+    esac
+    shift 2
+    ;;
   --help | -h)
-    sed -n '2,16p' "$0"
+    sed -n '2,19p' "$0"
     exit 0
     ;;
   *)
-    echo "Unknown arg: $arg" >&2
+    echo "Unknown arg: $1" >&2
     exit 2
     ;;
   esac
 done
+
+if [ "$OFFLINE" = true ]; then
+  if ! command -v mise >/dev/null 2>&1; then
+    echo "Offline bootstrap requires mise to be installed already" >&2
+    exit 1
+  fi
+  if [ ! -f "$HOME/.config/mise/config.toml" ]; then
+    echo "Offline bootstrap requires an adopted config at ~/.config/mise" >&2
+    exit 1
+  fi
+
+  echo ">>> Running offline mise bootstrap with profile $PROFILE"
+  cd "$HOME/.config/mise"
+  exec env MISE_OFFLINE=1 mise -E "$PROFILE" bootstrap --yes \
+    --skip packages,repos,tools,task,final-hook
+fi
 
 if ! command -v mise >/dev/null 2>&1; then
   echo ">>> Installing mise"
@@ -41,10 +76,5 @@ if command -v apt-get >/dev/null 2>&1; then
   sudo apt-get update -y
 fi
 
-echo ">>> Running mise bootstrap --adopt $MISE_REPO"
-if [ "$OFFLINE" = true ]; then
-  exec mise bootstrap --adopt "$MISE_REPO" --yes \
-    --skip packages,repos,tools,task,final-hook
-else
-  exec mise bootstrap --adopt "$MISE_REPO" --yes
-fi
+echo ">>> Running mise bootstrap with profile $PROFILE --adopt $MISE_REPO"
+exec mise -E "$PROFILE" bootstrap --adopt "$MISE_REPO" --yes
