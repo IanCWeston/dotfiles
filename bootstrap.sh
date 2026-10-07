@@ -13,15 +13,21 @@ set -euo pipefail
 # Flags:
 #   --profile personal|work  select a mise config environment (default: personal)
 #   --offline                use the adopted config and skip network-dependent phases
+#   --skip-tools             skip mise-managed tool installation
 
 MISE_REPO="https://github.com/IanCWeston/mise-config.git"
 OFFLINE=false
+SKIP_TOOLS=false
 PROFILE=personal
 
 while (($#)); do
   case "$1" in
   --offline)
     OFFLINE=true
+    shift
+    ;;
+  --skip-tools)
+    SKIP_TOOLS=true
     shift
     ;;
   --profile)
@@ -77,4 +83,7 @@ if command -v apt-get >/dev/null 2>&1; then
 fi
 
 echo ">>> Running mise bootstrap with profile $PROFILE --adopt $MISE_REPO"
+if [ "$SKIP_TOOLS" = true ]; then
+  exec mise -E "$PROFILE" bootstrap --adopt "$MISE_REPO" --yes --skip tools
+fi
 exec mise -E "$PROFILE" bootstrap --adopt "$MISE_REPO" --yes
